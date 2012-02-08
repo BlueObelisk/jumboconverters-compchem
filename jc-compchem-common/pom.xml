@@ -22,12 +22,13 @@
         </dependency>
         <dependency>
             <groupId>cml</groupId>
-            <artifactId>jc-core</artifactId>
+            <artifactId>jc-top-core</artifactId>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>cml</groupId>
-            <artifactId>jc-templates</artifactId>
-            <version>0.3-SNAPSHOT</version>
+            <artifactId>jc-top-templates</artifactId>
+            <version>${project.version}</version>
         </dependency>
 
         <dependency>
@@ -37,7 +38,8 @@
         </dependency>
         <dependency>
             <groupId>cml</groupId>
-            <artifactId>jc-testutils</artifactId>
+            <artifactId>jc-top-testutils</artifactId>
+            <version>${project.version}</version>
             <scope>test</scope>
         </dependency>
 

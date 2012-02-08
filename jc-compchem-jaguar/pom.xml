@@ -12,21 +12,23 @@
     </parent>
 
     <artifactId>jc-compchem-jaguar</artifactId>
-
     <name>jc-compchem-jaguar</name>
 
     <dependencies>
         <dependency>
             <groupId>${jumbo.groupId}</groupId>
             <artifactId>jumbo</artifactId>
+            <version>${jumbo.version}</version>
         </dependency>
         <dependency>
             <groupId>cml</groupId>
-            <artifactId>jc-core</artifactId>
+            <artifactId>jc-top-core</artifactId>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>cml</groupId>
             <artifactId>jc-compchem-common</artifactId>
+            <version>${project.version}</version>
         </dependency>
 
         <dependency>
@@ -36,12 +38,14 @@
         </dependency>
         <dependency>
             <groupId>cml</groupId>
-            <artifactId>jc-testutils</artifactId>
+            <artifactId>jc-top-testutils</artifactId>
+            <version>${project.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>cml</groupId>
             <artifactId>jc-compchem-testutils</artifactId>
+            <version>${project.version}</version>
             <scope>test</scope>
         </dependency>
 
