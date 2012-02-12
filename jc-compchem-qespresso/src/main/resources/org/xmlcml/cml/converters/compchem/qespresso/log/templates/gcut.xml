@@ -1,1 +1,0 @@
-    <template id='gcut' name='gcut' repeat='*' pattern='.*G cutoff.*' endPattern='\s*'/>

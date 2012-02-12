@@ -29,12 +29,9 @@
         <module>jc-compchem-dlpoly</module>
         <module>jc-compchem-dummy</module>
         <module>jc-compchem-gamessuk</module>
-        <module>jc-compchem-gamessus</module>
         <module>jc-compchem-gaussian</module>
         <module>jc-compchem-jaguar</module>
-        <module>jc-compchem-molcas</module>
         <module>jc-compchem-nwchem</module>
-        <module>jc-compchem-qespresso</module>
         <module>jc-compchem-testutils</module>
         <module>jc-compchem-turbomole</module>
     </modules>
