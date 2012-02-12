@@ -33,7 +33,6 @@
         <module>jc-compchem-gaussian</module>
         <module>jc-compchem-jaguar</module>
         <module>jc-compchem-molcas</module>
-        <module>jc-compchem-mopac</module>
         <module>jc-compchem-nwchem</module>
         <module>jc-compchem-qespresso</module>
         <module>jc-compchem-testutils</module>

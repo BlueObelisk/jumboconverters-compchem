@@ -61,11 +61,6 @@
         </dependency>
         <dependency>
             <groupId>cml</groupId>
-            <artifactId>jc-compchem-mopac</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>cml</groupId>
             <artifactId>jc-compchem-nwchem</artifactId>
             <version>${project.version}</version>
         </dependency>
