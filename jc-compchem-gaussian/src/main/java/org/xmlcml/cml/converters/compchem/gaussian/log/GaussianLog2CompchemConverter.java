@@ -1,12 +1,15 @@
 package org.xmlcml.cml.converters.compchem.gaussian.log;
 
 import java.io.File;
+
+
 import java.io.IOException;
 
 import nu.xom.Element;
 
 import org.apache.log4j.Logger;
 import org.xmlcml.cml.converters.AbstractConverter;
+import org.xmlcml.cml.converters.Dummy;
 import org.xmlcml.cml.converters.MimeType;
 import org.xmlcml.cml.converters.cml.CMLCommon;
 import org.xmlcml.cml.converters.compchem.gaussian.GaussianModule;
@@ -19,8 +22,8 @@ public class GaussianLog2CompchemConverter extends AbstractConverter {
             "org/xmlcml/cml/converters/compchem/gaussian/log/templates/gaussian2compchem.xml";
 
     private static final String BASE_URI = "classpath:/"+DEFAULT_TEMPLATE_RESOURCE;
-
-	private GaussianLog2XMLConverter logConverter;
+    
+    private GaussianLog2XMLConverter logConverter;
 	private GaussianLogXML2CompchemConverter xmlConverter;
 
     public GaussianLog2CompchemConverter() {
@@ -30,13 +33,17 @@ public class GaussianLog2CompchemConverter extends AbstractConverter {
      * 
      * @param dummy
      */
-    private GaussianLog2CompchemConverter(int dummy) {
-    	logConverter = GaussianLog2XMLConverter.createDefaultConverter();
-    	xmlConverter = GaussianLogXML2CompchemConverter.createDefaultConverter();
+    private GaussianLog2CompchemConverter(Dummy.D dummy) {
+    	createConverters();
     }
 
+	private void createConverters() {
+		logConverter = GaussianLog2XMLConverter.createDefaultConverter();
+    	xmlConverter = GaussianLogXML2CompchemConverter.createDefaultConverter();
+	}
+
     public static GaussianLog2CompchemConverter createDefaultConverter() {
-    	return new GaussianLog2CompchemConverter(999);
+    	return new GaussianLog2CompchemConverter(Dummy.D.DUMMY);
     }
 
     private void ensureLogConverter() {

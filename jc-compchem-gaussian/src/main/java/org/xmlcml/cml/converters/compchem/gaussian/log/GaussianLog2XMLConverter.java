@@ -2,6 +2,8 @@ package org.xmlcml.cml.converters.compchem.gaussian.log;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 import nu.xom.Element;
 
@@ -32,26 +34,15 @@ public class GaussianLog2XMLConverter extends CompchemText2XMLTemplateConverter 
 		super(templateElement);
 	}
 	
-	public static void main(String[] args) throws IOException {
-		if (args.length == 1) {
-			GaussianLog2XMLConverter converter = new GaussianLog2XMLConverter();
-			ConverterUtils.convertFilesInDirectory(converter, args[0], ".out", ".cml");
-		} else if (args.length == 2) {
-			GaussianLog2XMLConverter converter = new GaussianLog2XMLConverter(BASE_URI,
-			"templates/"+args[1]);
-			ConverterUtils.convertFilesInDirectory(converter, args[0], ".out", ".cml");
-		} else {
-			CompchemText2XMLTemplateConverter converter = new GaussianLog2XMLConverter();
-//			convertFile(converter, "gtest", "test002");
-//			convertFile(converter, "in", "jobTest");
-//			convertFile(converter, "in", "anna0");
-			for (int i = 0; i < 10; i++) {
-////				convertFile(converter, "in", "anna"+i);
-				convertFile(converter, "gtest", "test00"+i);
-			}
-		}
+	private void ensureCoverterTemplate() {
+		
 	}
-
+	
+	public void convert(InputStream is, OutputStream os) {
+		ensureCoverterTemplate();
+		super.convert(is, os);
+	}
+	
 	private static void convertFile(CompchemText2XMLTemplateConverter converter, String dir, String fileRoot) {
 		File in = new File("src/test/resources/compchem/gaussian/log/"+dir+"/"+fileRoot+".log");
 		if (!in.exists()) {
@@ -77,6 +68,26 @@ public class GaussianLog2XMLConverter extends CompchemText2XMLTemplateConverter 
 
 	public String getDescription() {
 		return "Convert Gaussian Log to XML";
+	}
+
+	public static void main(String[] args) throws IOException {
+		if (args.length == 1) {
+			GaussianLog2XMLConverter converter = new GaussianLog2XMLConverter();
+			ConverterUtils.convertFilesInDirectory(converter, args[0], ".out", ".cml");
+		} else if (args.length == 2) {
+			GaussianLog2XMLConverter converter = new GaussianLog2XMLConverter(BASE_URI,
+			"templates/"+args[1]);
+			ConverterUtils.convertFilesInDirectory(converter, args[0], ".out", ".cml");
+		} else {
+			CompchemText2XMLTemplateConverter converter = new GaussianLog2XMLConverter();
+//			convertFile(converter, "gtest", "test002");
+//			convertFile(converter, "in", "jobTest");
+//			convertFile(converter, "in", "anna0");
+			for (int i = 0; i < 10; i++) {
+////				convertFile(converter, "in", "anna"+i);
+				convertFile(converter, "gtest", "test00"+i);
+			}
+		}
 	}
 
 }

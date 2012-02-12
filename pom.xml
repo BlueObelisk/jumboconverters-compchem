@@ -13,6 +13,14 @@
     <packaging>pom</packaging>
     <name>jc-compchem</name>
 
+	<repositories>
+	  <repository>
+	    <id>ucc-repo</id>
+	    <url>http://maven.ch.cam.ac.uk/m2repo</url>
+	  </repository>
+	</repositories>
+	
+
     <modules>
         <module>jc-compchem-all</module>
         <module>jc-compchem-amber</module>

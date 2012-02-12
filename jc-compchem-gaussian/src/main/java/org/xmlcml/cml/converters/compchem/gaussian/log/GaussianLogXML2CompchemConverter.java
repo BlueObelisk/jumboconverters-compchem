@@ -25,7 +25,7 @@ public class GaussianLogXML2CompchemConverter extends XML2XMLTransformConverter 
     private static final String BASE_URI = "classpath:/"+DEFAULT_TEMPLATE_RESOURCE;
 
 
-	private GaussianLogXML2CompchemConverter() {
+	public GaussianLogXML2CompchemConverter() {
 	}
 	
 	public static GaussianLogXML2CompchemConverter createDefaultConverter() {
@@ -46,7 +46,8 @@ public class GaussianLogXML2CompchemConverter extends XML2XMLTransformConverter 
     }
 
     public GaussianLogXML2CompchemConverter(Element templateElement) {
-        super(templateElement);
+//        super(templateElement);
+        setTemplateElement(templateElement);
     }
 
 	public Element convertToXML(Element xml) {
