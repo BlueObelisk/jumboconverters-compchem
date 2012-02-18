@@ -6,7 +6,7 @@ import org.apache.log4j.Logger;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.xmlcml.cml.converters.compchem.CompchemText2XMLTemplateConverter;
-import org.xmlcml.cml.converters.compchem.TestUtils;
+import org.xmlcml.cml.converters.compchem.testutils.TestUtils;
 import org.xmlcml.cml.converters.templates.output.Text2XMLTemplateConverter;
 import org.xmlcml.cml.converters.testutils.RegressionSuite;
 import org.xmlcml.euclid.Util;

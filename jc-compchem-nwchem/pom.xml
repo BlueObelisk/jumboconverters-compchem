@@ -13,39 +13,17 @@
     <name>jc-compchem-nwchem</name>
 
     <dependencies>
-      <dependency>
-          <groupId>org.lensfield</groupId>
-          <artifactId>lensfield2-api</artifactId>
-          <version>0.2</version>
-      </dependency>
-        <dependency>
-            <groupId>${jumbo.groupId}</groupId>
-            <artifactId>jumbo</artifactId>
-            <version>${jumbo.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>cml</groupId>
-            <artifactId>jc-top-core</artifactId>
-            <version>${project.version}</version>
-        </dependency>
         <dependency>
             <groupId>cml</groupId>
             <artifactId>jc-compchem-common</artifactId>
             <version>${project.version}</version>
         </dependency>
-
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <scope>test</scope>
-        </dependency>
         <dependency>
             <groupId>cml</groupId>
-            <artifactId>jc-top-testutils</artifactId>
+            <artifactId>jc-compchem-testutils</artifactId>
             <version>${project.version}</version>
             <scope>test</scope>
         </dependency>
-
     </dependencies>
 
 </project>

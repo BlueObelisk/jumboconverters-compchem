@@ -22,9 +22,9 @@
 	
 
     <modules>
-        <module>jc-compchem-all</module>
-        <module>jc-compchem-amber</module>
         <module>jc-compchem-common</module>
+        <module>jc-compchem-testutils</module>
+        <module>jc-compchem-amber</module>
         <module>jc-compchem-dalton</module>
         <module>jc-compchem-dlpoly</module>
         <module>jc-compchem-dummy</module>
@@ -32,10 +32,34 @@
         <module>jc-compchem-gaussian</module>
         <module>jc-compchem-jaguar</module>
         <module>jc-compchem-nwchem</module>
-        <module>jc-compchem-testutils</module>
         <module>jc-compchem-turbomole</module>
+        <module>jc-compchem-all</module>
     </modules>
 
+    <dependencies>
+        <dependency>
+            <groupId>cml</groupId>
+            <artifactId>jc-top-core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+		<dependency>
+            <groupId>cml</groupId>
+            <artifactId>jc-top-templates</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>cml</groupId>
+			<artifactId>jc-top-testutils</artifactId>
+            <version>${project.version}</version>
+			<scope>test</scope>
+		</dependency>
+    </dependencies>
 
 </project>
 

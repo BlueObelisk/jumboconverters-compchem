@@ -2,7 +2,7 @@ package org.xmlcml.cml.converters.compchem.amber.in;
 
 import org.junit.Ignore;
 import org.junit.Test;
-import org.xmlcml.cml.converters.compchem.TestUtils;
+import org.xmlcml.cml.converters.compchem.testutils.TestUtils;
 import org.xmlcml.cml.converters.testutils.RegressionSuite;
 
 @Ignore // under we change templates

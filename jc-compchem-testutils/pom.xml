@@ -14,13 +14,8 @@
 
     <dependencies>
         <dependency>
-            <groupId>${jumbo.groupId}</groupId>
-            <artifactId>jumbo</artifactId>
-            <version>${jumbo.version}</version>
-        </dependency>
-        <dependency>
             <groupId>cml</groupId>
-            <artifactId>jc-top-core</artifactId>
+            <artifactId>jc-top-testutils</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
@@ -28,17 +23,11 @@
             <artifactId>jc-compchem-common</artifactId>
             <version>${project.version}</version>
         </dependency>
-
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>cml</groupId>
-            <artifactId>jc-top-testutils</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-
+          <dependency>
+              <groupId>${cml.groupId}</groupId>
+              <artifactId>jumbo-testutil</artifactId>
+              <version>${jumbo-testutil.version}</version>
+          </dependency>
     </dependencies>
 
 </project>
