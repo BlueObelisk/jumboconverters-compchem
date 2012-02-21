@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>cml</groupId>
+        <groupId>org.xml-cml.jc</groupId>
         <artifactId>jc-compchem</artifactId>
         <version>0.3-SNAPSHOT</version>
     </parent>
@@ -15,47 +15,47 @@
 	
     <dependencies>
         <dependency>
-            <groupId>cml</groupId>
+            <groupId>${jc.groupId}</groupId>
             <artifactId>jc-compchem-amber</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>cml</groupId>
+            <groupId>${jc.groupId}</groupId>
             <artifactId>jc-compchem-dalton</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>cml</groupId>
+            <groupId>${jc.groupId}</groupId>
             <artifactId>jc-compchem-dlpoly</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>cml</groupId>
+            <groupId>${jc.groupId}</groupId>
             <artifactId>jc-compchem-dummy</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>cml</groupId>
+            <groupId>${jc.groupId}</groupId>
             <artifactId>jc-compchem-gamessuk</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>cml</groupId>
+            <groupId>${jc.groupId}</groupId>
             <artifactId>jc-compchem-gaussian</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>cml</groupId>
+            <groupId>${jc.groupId}</groupId>
             <artifactId>jc-compchem-jaguar</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>cml</groupId>
+            <groupId>${jc.groupId}</groupId>
             <artifactId>jc-compchem-nwchem</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>cml</groupId>
+            <groupId>${jc.groupId}</groupId>
             <artifactId>jc-compchem-turbomole</artifactId>
             <version>${project.version}</version>
         </dependency>

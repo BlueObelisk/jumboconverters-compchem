@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>cml</groupId>
+        <groupId>org.xml-cml.jc</groupId>
         <artifactId>jc-compchem</artifactId>
         <version>0.3-SNAPSHOT</version>
     </parent>
@@ -15,12 +15,12 @@
 
     <dependencies>
         <dependency>
-            <groupId>cml</groupId>
+            <groupId>${jc.groupId}</groupId>
             <artifactId>jc-compchem-common</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>cml</groupId>
+            <groupId>${jc.groupId}</groupId>
             <artifactId>jc-compchem-testutils</artifactId>
             <version>${project.version}</version>
             <scope>test</scope>
