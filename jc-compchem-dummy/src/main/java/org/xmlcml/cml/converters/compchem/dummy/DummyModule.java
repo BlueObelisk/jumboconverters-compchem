@@ -1,7 +1,6 @@
 package org.xmlcml.cml.converters.compchem.dummy;
 
 import java.util.ArrayList;
-
 import java.util.List;
 
 import org.xmlcml.cml.converters.Converter;

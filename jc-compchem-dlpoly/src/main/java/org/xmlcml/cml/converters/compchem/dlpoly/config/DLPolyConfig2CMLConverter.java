@@ -1,7 +1,6 @@
 package org.xmlcml.cml.converters.compchem.dlpoly.config;
 
 import java.io.File;
-
 import java.util.List;
 
 import nu.xom.Element;

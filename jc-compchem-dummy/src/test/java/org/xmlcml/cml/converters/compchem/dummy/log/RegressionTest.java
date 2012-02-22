@@ -1,7 +1,6 @@
  package org.xmlcml.cml.converters.compchem.dummy.log;
 
 import org.junit.Test;
-
 import org.xmlcml.cml.converters.testutils.RegressionSuite;
 
 /**

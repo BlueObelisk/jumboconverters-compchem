@@ -1,8 +1,6 @@
 package org.xmlcml.cml.converters.compchem.gaussian.log;
 
 import java.io.File;
-
-
 import java.io.IOException;
 
 import nu.xom.Element;

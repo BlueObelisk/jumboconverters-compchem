@@ -2,7 +2,6 @@ package org.xmlcml.cml.converters.compchem.testutils;
 
 import java.io.InputStream;
 
-
 import org.xmlcml.cml.converters.compchem.CompchemText2XMLTemplateConverter;
 import org.xmlcml.cml.converters.templates.output.Text2XMLTemplateConverter;
 import org.xmlcml.cml.converters.testutils.RegressionSuite;

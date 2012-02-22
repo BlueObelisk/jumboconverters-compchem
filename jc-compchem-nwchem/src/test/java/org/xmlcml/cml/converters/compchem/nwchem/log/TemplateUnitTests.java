@@ -2,7 +2,6 @@ package org.xmlcml.cml.converters.compchem.nwchem.log;
 
 import nu.xom.Element;
 
-
 import org.junit.Ignore;
 import org.junit.Test;
 import org.xmlcml.cml.converters.testutils.TemplateTestUtils;

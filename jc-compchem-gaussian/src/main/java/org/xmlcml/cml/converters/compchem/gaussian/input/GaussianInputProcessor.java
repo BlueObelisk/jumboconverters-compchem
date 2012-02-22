@@ -10,6 +10,7 @@ import org.apache.log4j.Logger;
 import org.xmlcml.cml.attribute.NamespaceRefAttribute;
 import org.xmlcml.cml.base.CMLConstants;
 import org.xmlcml.cml.base.CMLUtil;
+import org.xmlcml.cml.converters.compchem.AbstractCompchemProcessor.Solvent;
 import org.xmlcml.cml.converters.compchem.input.AbstractCompchemInputProcessor;
 import org.xmlcml.cml.converters.compchem.input.Job;
 import org.xmlcml.cml.converters.compchem.input.Operations;

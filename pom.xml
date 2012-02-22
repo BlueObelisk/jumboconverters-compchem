@@ -22,7 +22,7 @@
 	
 
     <modules>
-        <module>jc-compchem-common</module>
+        <module>jc-compchem-core</module>
         <module>jc-compchem-testutils</module>
         <module>jc-compchem-amber</module>
         <module>jc-compchem-dalton</module>
