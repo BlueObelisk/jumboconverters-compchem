@@ -3,12 +3,12 @@ package org.xmlcml.cml.converters.compchem.nwchem;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.xmlcml.cml.converters.AbstractConverterModule;
 import org.xmlcml.cml.converters.Converter;
 import org.xmlcml.cml.converters.MimeType;
 import org.xmlcml.cml.converters.MimeType.ObjectType;
 import org.xmlcml.cml.converters.compchem.nwchem.log.NWChemLog2CompchemConverter;
 import org.xmlcml.cml.converters.compchem.nwchem.log.NWChemLog2XMLConverter;
-import org.xmlcml.cml.converters.registry.AbstractConverterModule;
 
 /**
  * @author pm286
@@ -29,8 +29,11 @@ public class NWChemModule extends AbstractConverterModule {
     }
 
 	public List<Converter> getConverterList() {
-		converterList.add(new NWChemLog2CompchemConverter());
-		converterList.add(new NWChemLog2XMLConverter());
+		if (converterList == null) {
+			converterList = new ArrayList<Converter>();
+			converterList.add(new NWChemLog2CompchemConverter());
+			converterList.add(new NWChemLog2XMLConverter());
+		}
 		return converterList;
 	}
 	

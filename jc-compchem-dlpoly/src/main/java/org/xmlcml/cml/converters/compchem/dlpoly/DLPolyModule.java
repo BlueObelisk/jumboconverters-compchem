@@ -3,12 +3,12 @@ package org.xmlcml.cml.converters.compchem.dlpoly;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.xmlcml.cml.converters.AbstractConverterModule;
 import org.xmlcml.cml.converters.Converter;
 import org.xmlcml.cml.converters.MimeType;
 import org.xmlcml.cml.converters.MimeType.ObjectType;
 import org.xmlcml.cml.converters.compchem.dlpoly.config.DLPolyConfig2CMLConverter;
 import org.xmlcml.cml.converters.compchem.dlpoly.log.DLPolyLog2XMLConverter;
-import org.xmlcml.cml.converters.registry.AbstractConverterModule;
 
 /**
  * @author pm286

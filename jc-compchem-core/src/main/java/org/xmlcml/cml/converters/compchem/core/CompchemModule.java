@@ -2,9 +2,9 @@ package org.xmlcml.cml.converters.compchem.core;
 
 import java.util.List;
 
+import org.xmlcml.cml.converters.AbstractConverterModule;
 import org.xmlcml.cml.converters.Converter;
 import org.xmlcml.cml.converters.MimeType;
-import org.xmlcml.cml.converters.registry.AbstractConverterModule;
 
 /**
  * A collection of common objects such as namespaces, dictionaries used

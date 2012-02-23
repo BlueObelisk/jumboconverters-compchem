@@ -3,11 +3,11 @@ package org.xmlcml.cml.converters.compchem.jaguar;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.xmlcml.cml.converters.AbstractConverterModule;
 import org.xmlcml.cml.converters.Converter;
 import org.xmlcml.cml.converters.MimeType;
 import org.xmlcml.cml.converters.MimeType.ObjectType;
 import org.xmlcml.cml.converters.compchem.jaguar.log.JaguarLog2XMLConverter;
-import org.xmlcml.cml.converters.registry.AbstractConverterModule;
 
 /**
  * @author PeterMR
@@ -27,7 +27,10 @@ public class JaguarModule extends AbstractConverterModule {
     }
 
 	public List<Converter> getConverterList() {
-		converterList.add(new JaguarLog2XMLConverter());
+		if (converterList == null) {
+			converterList = new ArrayList<Converter>();
+			converterList.add(new JaguarLog2XMLConverter());
+		}
 		return converterList;
 	}
 

@@ -34,6 +34,7 @@
         <module>jc-compchem-nwchem</module>
         <module>jc-compchem-turbomole</module>
         <module>jc-compchem-all</module>
+        <module>jc-compchem-test</module>
     </modules>
 
     <dependencies>
