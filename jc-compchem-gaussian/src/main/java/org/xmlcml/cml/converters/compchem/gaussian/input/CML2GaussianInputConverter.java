@@ -16,7 +16,7 @@ import org.xmlcml.cml.base.CMLElement;
 import org.xmlcml.cml.converters.MimeType;
 import org.xmlcml.cml.converters.cml.CMLCommon;
 import org.xmlcml.cml.converters.cml.CMLSelector;
-import org.xmlcml.cml.converters.compchem.AbstractCompchem2CMLConverter;
+import org.xmlcml.cml.converters.compchem.core.AbstractCompchem2CMLConverter;
 import org.xmlcml.cml.converters.compchem.gaussian.GaussianModule;
 import org.xmlcml.cml.element.CMLMolecule;
 

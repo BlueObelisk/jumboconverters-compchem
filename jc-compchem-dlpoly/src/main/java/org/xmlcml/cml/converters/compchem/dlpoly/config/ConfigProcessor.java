@@ -14,6 +14,7 @@ import org.xmlcml.cml.element.CMLScalar;
 import org.xmlcml.euclid.Point3;
 import org.xmlcml.molutil.ChemicalElement;
 
+// for DLPOLY
 public class ConfigProcessor {
 
 	

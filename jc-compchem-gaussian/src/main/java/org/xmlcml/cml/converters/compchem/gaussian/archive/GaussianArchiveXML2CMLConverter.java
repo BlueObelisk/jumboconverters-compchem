@@ -6,7 +6,7 @@ import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.xmlcml.cml.converters.MimeType;
 import org.xmlcml.cml.converters.cml.CMLCommon;
-import org.xmlcml.cml.converters.compchem.AbstractCompchem2CMLConverter;
+import org.xmlcml.cml.converters.compchem.core.AbstractCompchem2CMLConverter;
 import org.xmlcml.cml.converters.compchem.gaussian.GaussianModule;
 
 public class GaussianArchiveXML2CMLConverter extends AbstractCompchem2CMLConverter{

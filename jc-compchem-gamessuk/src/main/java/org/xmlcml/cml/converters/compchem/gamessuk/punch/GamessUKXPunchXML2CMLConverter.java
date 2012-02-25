@@ -7,7 +7,7 @@ import org.apache.log4j.Logger;
 import org.xmlcml.cml.base.CMLElement;
 import org.xmlcml.cml.converters.MimeType;
 import org.xmlcml.cml.converters.cml.RawXML2CMLProcessor;
-import org.xmlcml.cml.converters.compchem.AbstractCompchem2CMLConverter;
+import org.xmlcml.cml.converters.compchem.core.AbstractCompchem2CMLConverter;
 import org.xmlcml.cml.converters.compchem.gamessuk.GamessUKModule;
 
 public class GamessUKXPunchXML2CMLConverter extends AbstractCompchem2CMLConverter{

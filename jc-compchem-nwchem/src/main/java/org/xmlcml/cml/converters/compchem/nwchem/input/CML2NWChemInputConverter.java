@@ -1,7 +1,6 @@
 package org.xmlcml.cml.converters.compchem.nwchem.input;
 
 import java.io.File;
-
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
@@ -10,13 +9,12 @@ import java.util.List;
 import org.xmlcml.cml.converters.JumboParameter;
 import org.xmlcml.cml.converters.MimeType;
 import org.xmlcml.cml.converters.cml.CMLCommon;
-import org.xmlcml.cml.converters.compchem.input.Parameter;
-import org.xmlcml.cml.converters.compchem.input.BasisSet;
-import org.xmlcml.cml.converters.compchem.input.CML2CompchemInputConverter;
-import org.xmlcml.cml.converters.compchem.input.CalculationComponents;
-import org.xmlcml.cml.converters.compchem.input.Method;
-import org.xmlcml.cml.converters.compchem.input.MethodBasis;
-import org.xmlcml.cml.converters.compchem.input.Parameter;
+import org.xmlcml.cml.converters.compchem.core.input.BasisSet;
+import org.xmlcml.cml.converters.compchem.core.input.CML2CompchemInputConverter;
+import org.xmlcml.cml.converters.compchem.core.input.CalculationComponents;
+import org.xmlcml.cml.converters.compchem.core.input.Method;
+import org.xmlcml.cml.converters.compchem.core.input.MethodBasis;
+import org.xmlcml.cml.converters.compchem.core.input.Parameter;
 import org.xmlcml.cml.converters.compchem.nwchem.NWChemModule;
 import org.xmlcml.euclid.Util;
 

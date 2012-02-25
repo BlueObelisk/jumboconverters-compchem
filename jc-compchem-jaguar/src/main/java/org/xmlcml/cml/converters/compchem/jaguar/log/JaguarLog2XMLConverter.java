@@ -7,7 +7,7 @@ import nu.xom.Element;
 
 import org.apache.log4j.Logger;
 import org.xmlcml.cml.converters.MimeType;
-import org.xmlcml.cml.converters.compchem.CompchemText2XMLTemplateConverter;
+import org.xmlcml.cml.converters.compchem.core.CompchemText2XMLTemplateConverter;
 import org.xmlcml.cml.converters.compchem.jaguar.JaguarModule;
 import org.xmlcml.cml.converters.util.ConverterUtils;
 

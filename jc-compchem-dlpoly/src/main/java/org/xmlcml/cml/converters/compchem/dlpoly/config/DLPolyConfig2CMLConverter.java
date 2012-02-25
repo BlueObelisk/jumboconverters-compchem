@@ -34,7 +34,7 @@ public class DLPolyConfig2CMLConverter extends AbstractConverter {
 	public Element convertToXML(List<String> lines) {
 		CMLCml cml = null;
 		if (lines != null && lines.size() > 0) {
-			ConfigProcessor processor = new ConfigProcessor();
+			ConfigProcessor processor = new org.xmlcml.cml.converters.compchem.dlpoly.config.ConfigProcessor();
 			cml = processor.create(lines);
 		}
 		return cml;

@@ -5,7 +5,7 @@ import java.io.InputStream;
 import org.apache.log4j.Logger;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.xmlcml.cml.converters.compchem.CompchemText2XMLTemplateConverter;
+import org.xmlcml.cml.converters.compchem.core.CompchemText2XMLTemplateConverter;
 import org.xmlcml.cml.converters.compchem.testutils.TestUtils;
 import org.xmlcml.cml.converters.templates.output.Text2XMLTemplateConverter;
 import org.xmlcml.cml.converters.testutils.JumboConvertersRegressionSuite;
