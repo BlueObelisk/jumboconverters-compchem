@@ -34,20 +34,9 @@
         <module>jc-compchem-nwchem</module>
         <module>jc-compchem-turbomole</module>
         <module>jc-compchem-all</module>
-        <module>jc-compchem-test</module>
     </modules>
 
     <dependencies>
-        <dependency>
-            <groupId>${jc.groupId}</groupId>
-            <artifactId>jc-top-core</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-		<dependency>
-            <groupId>${jc.groupId}</groupId>
-            <artifactId>jc-top-templates</artifactId>
-            <version>${project.version}</version>
-        </dependency>
         
 		<dependency>
 			<groupId>junit</groupId>

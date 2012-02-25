@@ -6,8 +6,8 @@ import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.xmlcml.cml.converters.MimeType;
 import org.xmlcml.cml.converters.cml.CMLCommon;
-import org.xmlcml.cml.converters.compchem.AbstractCompchem2CMLConverter;
 import org.xmlcml.cml.converters.compchem.amber.AmberModule;
+import org.xmlcml.cml.converters.compchem.core.AbstractCompchem2CMLConverter;
 
 public class AmberMdoutXML2CMLConverter extends AbstractCompchem2CMLConverter{
 	private static final Logger LOG = Logger.getLogger(AmberMdoutXML2CMLConverter.class);

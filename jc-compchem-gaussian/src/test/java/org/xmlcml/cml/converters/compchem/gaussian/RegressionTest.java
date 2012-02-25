@@ -3,7 +3,7 @@ package org.xmlcml.cml.converters.compchem.gaussian;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.xmlcml.cml.converters.compchem.gaussian.input.CML2GaussianInputConverter;
-import org.xmlcml.cml.converters.testutils.RegressionSuite;
+import org.xmlcml.cml.converters.testutils.JumboConvertersRegressionSuite;
 
 /**
  *
@@ -22,7 +22,7 @@ public class RegressionTest {
    @Test
    @Ignore
    public void cmlFreq2gauIn() {
-      RegressionSuite.run("compchem/gaussian/input/freq", "cml", "gau.in",
+	   JumboConvertersRegressionSuite.run("compchem/gaussian/input/freq", "cml", "gau.in",
                           new CML2GaussianInputConverter());
    }
 

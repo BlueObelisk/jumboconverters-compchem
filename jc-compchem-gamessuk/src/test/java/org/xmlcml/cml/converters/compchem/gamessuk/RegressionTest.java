@@ -3,7 +3,7 @@
 import org.junit.Ignore;
 import org.junit.Test;
 import org.xmlcml.cml.converters.compchem.gamessuk.punch.GamessUKXPunchXML2CMLConverter;
-import org.xmlcml.cml.converters.testutils.RegressionSuite;
+import org.xmlcml.cml.converters.testutils.JumboConvertersRegressionSuite;
 
 /**
  *
@@ -21,7 +21,7 @@ public class RegressionTest {
 	   }
 	   @Test
 	   public void gamessukXML2CML() {
-	      RegressionSuite.run("compchem/gamessuk/complete", "xml", "cml",
+		   JumboConvertersRegressionSuite.run("compchem/gamessuk/complete", "xml", "cml",
 	                          new GamessUKXPunchXML2CMLConverter());
 	                              
 	   }

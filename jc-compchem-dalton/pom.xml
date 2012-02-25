@@ -15,9 +15,10 @@
     <dependencies>
         <dependency>
             <groupId>${jc.groupId}</groupId>
-            <artifactId>jc-compchem-common</artifactId>
+            <artifactId>jc-compchem-core</artifactId>
             <version>${project.version}</version>
         </dependency>
+        
         <dependency>
             <groupId>${jc.groupId}</groupId>
             <artifactId>jc-compchem-testutils</artifactId>

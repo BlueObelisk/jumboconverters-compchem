@@ -8,7 +8,7 @@ import org.junit.Test;
 import org.xmlcml.cml.converters.compchem.CompchemText2XMLTemplateConverter;
 import org.xmlcml.cml.converters.compchem.testutils.TestUtils;
 import org.xmlcml.cml.converters.templates.output.Text2XMLTemplateConverter;
-import org.xmlcml.cml.converters.testutils.RegressionSuite;
+import org.xmlcml.cml.converters.testutils.JumboConvertersRegressionSuite;
 import org.xmlcml.euclid.Util;
 
 public class ConverterTest {
@@ -33,7 +33,7 @@ public class ConverterTest {
     @Ignore // need whitespace comparison
     public void turbomoleOut2XML() {
 		Text2XMLTemplateConverter converter = createConverter("org/xmlcml/cml/converters/compchem/"+codeType+"/"+fileType+"/topTemplate.xml");
-        RegressionSuite.run("compchem/"+codeType+"/"+fileType, "last", "xml", converter, true);
+		JumboConvertersRegressionSuite.run("compchem/"+codeType+"/"+fileType, "last", "xml", converter, true);
     }
    
 	private void testConverter(String name) {

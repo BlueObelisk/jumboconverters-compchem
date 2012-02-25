@@ -2,10 +2,11 @@ package org.xmlcml.cml.converters.compchem.dalton.log;
 
 import java.io.IOException;
 
+
 import nu.xom.Element;
 
 import org.xmlcml.cml.converters.MimeType;
-import org.xmlcml.cml.converters.compchem.CompchemText2XMLTemplateConverter;
+import org.xmlcml.cml.converters.compchem.core.CompchemText2XMLTemplateConverter;
 import org.xmlcml.cml.converters.compchem.dalton.DaltonModule;
 
 public class DaltonLog2XMLConverter extends CompchemText2XMLTemplateConverter {

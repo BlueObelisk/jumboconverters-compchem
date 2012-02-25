@@ -1,7 +1,8 @@
  package org.xmlcml.cml.converters.compchem.dummy.mol;
 
 import org.junit.Test;
-import org.xmlcml.cml.converters.testutils.RegressionSuite;
+
+import org.xmlcml.cml.converters.testutils.JumboConvertersRegressionSuite;
 
 /**
  *
@@ -11,7 +12,7 @@ public class ConverterTest {
 
 	   @Test
 	   public void dummyMol2CML() {
-	      RegressionSuite.run("compchem/dummy/mol", "mol", "xml",
+		   JumboConvertersRegressionSuite.run("compchem/dummy/mol", "mol", "xml",
 	                          new DummyMol2CMLConverter());
 	   }
 

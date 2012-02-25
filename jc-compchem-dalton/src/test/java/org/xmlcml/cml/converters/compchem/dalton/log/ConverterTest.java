@@ -5,10 +5,10 @@ import java.io.InputStream;
 import org.apache.log4j.Logger;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.xmlcml.cml.converters.compchem.CompchemText2XMLTemplateConverter;
+import org.xmlcml.cml.converters.compchem.core.CompchemText2XMLTemplateConverter;
 import org.xmlcml.cml.converters.compchem.testutils.TestUtils;
 import org.xmlcml.cml.converters.templates.output.Text2XMLTemplateConverter;
-import org.xmlcml.cml.converters.testutils.RegressionSuite;
+import org.xmlcml.cml.converters.testutils.JumboConvertersRegressionSuite;
 import org.xmlcml.euclid.Util;
 
 public class ConverterTest {
@@ -33,7 +33,7 @@ public class ConverterTest {
     @Ignore // more to do here
     public void daltonOut2XML() {
 		Text2XMLTemplateConverter converter = createConverter("org/xmlcml/cml/converters/compchem/"+codeType+"/"+fileType+"/topTemplate.xml");
-        RegressionSuite.run("compchem/"+codeType+"/"+fileType, "log", "xml", converter, true);
+		JumboConvertersRegressionSuite.run("compchem/"+codeType+"/"+fileType, "log", "xml", converter, true);
     }
    
 	private void testConverter(String name) {

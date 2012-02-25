@@ -2,9 +2,9 @@ package org.xmlcml.cml.converters.compchem.testutils;
 
 import java.io.InputStream;
 
-import org.xmlcml.cml.converters.compchem.CompchemText2XMLTemplateConverter;
+import org.xmlcml.cml.converters.compchem.core.CompchemText2XMLTemplateConverter;
 import org.xmlcml.cml.converters.templates.output.Text2XMLTemplateConverter;
-import org.xmlcml.cml.converters.testutils.RegressionSuite;
+import org.xmlcml.cml.converters.testutils.JumboConvertersRegressionSuite;
 import org.xmlcml.euclid.Util;
 
 /** 
@@ -28,7 +28,7 @@ public class ConverterTester {
 
 	public void runTemplateTests() {
 		Text2XMLTemplateConverter converter = createConverter("org/xmlcml/cml/converters/compchem/"+codeType+"/"+fileType+"/topTemplate.xml");
-        RegressionSuite.run("compchem/"+codeType+"/"+fileType, "log", "xml", converter, true);
+		JumboConvertersRegressionSuite.run("compchem/"+codeType+"/"+fileType, "log", "xml", converter, true);
 	}
 	
 	public Text2XMLTemplateConverter createConverter(String templateXML) {

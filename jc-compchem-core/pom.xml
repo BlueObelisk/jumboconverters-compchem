@@ -13,13 +13,11 @@
     <name>jc-compchem-core</name>
 
     <dependencies>
-    <!-- 
-        <dependency>
+		<dependency>
             <groupId>${jc.groupId}</groupId>
-            <artifactId>jc-compchem</artifactId>
+            <artifactId>jc-top-templates</artifactId>
             <version>${project.version}</version>
         </dependency>
- 	-->
      </dependencies>
 
 </project>

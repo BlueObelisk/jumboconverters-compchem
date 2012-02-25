@@ -1,6 +1,7 @@
 package org.xmlcml.cml.converters.compchem.registry;
 
 import static org.junit.Assert.assertNull;
+
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
@@ -25,21 +26,22 @@ public class CompchemConverterRegistryTest {
 	String FOO = "chemical/x-foo";
 	TypePair PAIR_OK  = new TypePair(FOO, CML);
 	TypePair PAIR_MISSING  = new TypePair(FOO, CIF);
-	private static int SIZE = 5;
+	private static int MAP_SIZE = 16;
+	private static int CONVERTER_SIZE = 18;
 
     @Test
     public void testMap() {
     	Map<TypePair, List<Converter>> map = ConverterRegistry.getDefaultConverterRegistry().getMap();
     	Assert.assertNotNull(map);
     	// size will change as more are added
-    	Assert.assertEquals(SIZE, map.size());
+    	Assert.assertTrue(""+map.size(), MAP_SIZE <= map.size());
     }
 
     @Test
     public void testList() {
     	List<Converter> converterList = ConverterRegistry.getDefaultConverterRegistry().getConverterList();
     	Assert.assertNotNull(converterList);
-    	Assert.assertEquals(SIZE, converterList.size());
+    	Assert.assertEquals(CONVERTER_SIZE, converterList.size());
     }
 
     @Test
@@ -85,7 +87,7 @@ public class CompchemConverterRegistryTest {
 //    	for (Converter converter : converters) {
 //    		System.out.println(converter);
 //    	}
-    	Assert.assertEquals("cml", 2, converters.size());
+    	Assert.assertEquals("cml", 1, converters.size());
     }
 
 	@Test
@@ -162,14 +164,14 @@ public class CompchemConverterRegistryTest {
 		ConverterRegistry converterRegistry = ConverterRegistry.getDefaultConverterRegistry();
 		List<Converter> converterList = converterRegistry.getConverterList();
 		Assert.assertNotNull(converterList);
-		Assert.assertEquals("converterList", SIZE, converterList.size());
+		Assert.assertTrue("converterList"+converterList.size(), CONVERTER_SIZE <= converterList.size());
 	}
 
 	@Test
 	public void testSingletonConverterRegistryList() {
 		List<Converter> converterList = ConverterRegistry.getDefaultConverterRegistry().getConverterList();
 		Assert.assertNotNull(converterList);
-		Assert.assertEquals("converterList", SIZE, converterList.size());
+		Assert.assertTrue("converterList"+converterList.size(), CONVERTER_SIZE <= converterList.size());
 	}
 
 }

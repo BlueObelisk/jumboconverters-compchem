@@ -3,7 +3,7 @@ package org.xmlcml.cml.converters.compchem.amber.in;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.xmlcml.cml.converters.compchem.testutils.TestUtils;
-import org.xmlcml.cml.converters.testutils.RegressionSuite;
+import org.xmlcml.cml.converters.testutils.JumboConvertersRegressionSuite;
 
 @Ignore // under we change templates
 public class ConverterTest {
@@ -23,12 +23,12 @@ public class ConverterTest {
 	   @Test
 	   @Ignore
 	   public void amberFF2XML() {
-	      RegressionSuite.run("compchem/amber/in", "txt", "xml",
+	      JumboConvertersRegressionSuite.run("compchem/amber/in", "txt", "xml",
 	                          new AmberFF2XMLConverter());
 	   }
 	   @Test
 	   public void testParm() {
-	      RegressionSuite.run("compchem/amber/in", "dat", "xml",
+		   JumboConvertersRegressionSuite.run("compchem/amber/in", "dat", "xml",
 	                          new AmberFF2XMLConverter());
 	   }
 

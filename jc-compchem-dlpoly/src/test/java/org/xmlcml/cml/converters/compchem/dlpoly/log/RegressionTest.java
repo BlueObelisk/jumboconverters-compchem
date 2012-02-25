@@ -2,7 +2,7 @@
 
 import org.junit.Ignore;
 import org.junit.Test;
-import org.xmlcml.cml.converters.testutils.RegressionSuite;
+import org.xmlcml.cml.converters.testutils.JumboConvertersRegressionSuite;
 
 /**
  *
@@ -13,7 +13,7 @@ public class RegressionTest {
     @Test
     @Ignore // fails with null pointer
     public void log2XML() {
-        RegressionSuite.run("compchem/dlpoly/log", "log", "xml",
+    	JumboConvertersRegressionSuite.run("compchem/dlpoly/log", "log", "xml",
                           new DLPolyLog2XMLConverter());
     }
 }

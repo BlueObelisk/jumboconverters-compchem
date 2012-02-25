@@ -15,7 +15,7 @@ import org.xmlcml.cml.base.CMLUtil;
 import org.xmlcml.cml.converters.compchem.CompchemText2XMLTemplateConverter;
 import org.xmlcml.cml.converters.compchem.TestUtils;
 import org.xmlcml.cml.converters.templates.output.Text2XMLTemplateConverter;
-import org.xmlcml.cml.converters.testutils.RegressionSuite;
+import org.xmlcml.cml.converters.testutils.JumboConvertersRegressionSuite;
 import org.xmlcml.cml.element.CMLModule;
 import org.xmlcml.euclid.Util;
 
@@ -47,7 +47,7 @@ public class ConverterTest {
     @Ignore // need whitespace comparison
     public void nwchemOut2XML() {
 		Text2XMLTemplateConverter converter = createConverter("org/xmlcml/cml/converters/compchem/nwchem/log/templateList.xml");
-        RegressionSuite.run("compchem/nwchem/log", "out", "xml", converter, true);
+		JumboConvertersRegressionSuite.run("compchem/nwchem/log", "out", "xml", converter, true);
     }
     
     @Test

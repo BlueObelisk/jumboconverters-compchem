@@ -1,7 +1,7 @@
  package org.xmlcml.cml.converters.compchem.dlpoly.config;
 
 import org.junit.Test;
-import org.xmlcml.cml.converters.testutils.RegressionSuite;
+import org.xmlcml.cml.converters.testutils.JumboConvertersRegressionSuite;
 
 /**
  *
@@ -11,7 +11,7 @@ public class RegressionTest {
 
 	   @Test
 	   public void config2CML() {
-	      RegressionSuite.run("compchem/dlpoly/config", "config", "xml",
+		   JumboConvertersRegressionSuite.run("compchem/dlpoly/config", "config", "xml",
 	                          new DLPolyConfig2CMLConverter());
 	   }
 }
