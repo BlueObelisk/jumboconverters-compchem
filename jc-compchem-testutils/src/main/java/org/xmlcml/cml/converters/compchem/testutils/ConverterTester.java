@@ -2,9 +2,11 @@ package org.xmlcml.cml.converters.compchem.testutils;
 
 import java.io.InputStream;
 
+
 import org.xmlcml.cml.converters.compchem.core.CompchemText2XMLTemplateConverter;
 import org.xmlcml.cml.converters.templates.output.Text2XMLTemplateConverter;
 import org.xmlcml.cml.converters.testutils.JumboConvertersRegressionSuite;
+import org.xmlcml.cml.converters.compchem.testutils.TestUtils1;
 import org.xmlcml.euclid.Util;
 
 /** 

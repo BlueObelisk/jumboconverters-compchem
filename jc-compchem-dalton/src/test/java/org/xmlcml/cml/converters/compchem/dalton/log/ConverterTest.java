@@ -2,6 +2,7 @@ package org.xmlcml.cml.converters.compchem.dalton.log;
 
 import java.io.InputStream;
 
+
 import org.apache.log4j.Logger;
 import org.junit.Ignore;
 import org.junit.Test;

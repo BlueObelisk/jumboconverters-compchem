@@ -1,0 +1,57 @@
+<template id="orbener" name="Orbital energies" repeat="*"
+    pattern="\s*Orbital energies and kinetic energies \(.*\):\s*" 
+    endPattern="\s*Total kinetic energy.*" endOffset="1"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    >
+    
+  <comment class="example.input" id="l601.orbener">
+ Orbital energies and kinetic energies (alpha):
+                                 1                 2
+   1         O               -19.220614         29.018940
+   2         O               -19.204491         29.021591
+   6         O               -10.328835         15.892512
+  21         O               -10.206765         15.887140
+  22         O                -1.120312          2.500173
+  23         O                -1.103634          2.525798
+  74         O                -0.249420          1.557836
+  75         O                -0.211130          1.562711
+  76         V                -0.080929          1.620198
+  77         V                -0.029144          1.216316
+  78         V                -0.018727          0.582143
+  79         V                -0.016174          1.244179
+ 469         V                 4.908005         10.665273
+ 470         V                 5.015079         13.002852
+ Total kinetic energy from orbitals= 9.654343918052D+02
+  </comment>
+
+   <!-- read title and extract alpha/beta from brackets -->
+   <record id="orbeneralpha">.*\({A,g:alphabeta}\)\:\s*</record>
+   <!--  skip next line - we don't think the numbers are meaningful -->
+   <record/>
+   <!--  read orbitals repeatedly until the closing title -->
+   <record id="orb" repeat="*" makeArray="true">\s*{I,cc:serial}\s*{A,g:occvirt}\s*{F,compchem:orbital_energy}\s*{F,compchem:orbital_kinetic_energy}\s*</record>
+   <!-- the D nottaion is covered by E -->
+   <record id="kinener">\s*Total kinetic energy from orbitals={E,compchem:orbital_total_ke}</record>
+
+  <transform process="pullup" xpath=".//cml:scalar"/>
+  <transform process="pullup" xpath=".//cml:list/cml:scalar"/>
+<!--   
+  <transform process="pullup" xpath=".//cml:module[@cmlx:templateRef='l601.spatial']/cml:scalar"/>
+  <transform process="pullup" xpath=".//cml:module[@cmlx:templateRef='l601.charge']/cml:scalar"/>
+  <transform process="delete" xpath=".//cml:module[@cmlx:templateRef='l601.spatial']"/>
+  <transform process="delete" xpath=".//cml:module[@cmlx:templateRef='l601.charge']"/>
+-->
+  <comment class="example.output" id="l601.orbener">
+	<module cmlx:templateRef="orbener" xmlns="http://www.xml-cml.org/schema" xmlns:cmlx="http://www.xml-cml.org/schema/cmlx">
+	  <scalar dataType="xsd:string" dictRef="g:alphabeta">alpha</scalar>
+	  <list cmlx:lineCount="14" cmlx:templateRef="orb">
+	    <array dataType="xsd:integer" dictRef="cc:serial" size="14">1 2 6 21 22 23 74 75 76 77 78 79 469 470</array>
+	    <array dataType="xsd:string" dictRef="g:occvirt" size="14">O O O O O O O O V V V V V V</array>
+	    <array dataType="xsd:double" dictRef="compchem:orbital_energy" size="14">-19.220614 -19.204491 -10.328835 -10.206765 -1.120312 -1.103634 -0.24942 -0.21113 -0.080929 -0.029144 -0.018727 -0.016174 4.908005 5.015079</array>
+	    <array dataType="xsd:double" dictRef="compchem:orbital_kinetic_energy" size="14">29.01894 29.021591 15.892512 15.88714 2.500173 2.525798 1.557836 1.562711 1.620198 1.216316 0.582143 1.244179 10.665273 13.002852</array>
+	  </list>
+	  <scalar dataType="xsd:double" dictRef="compchem:orbital_total_ke">965.4343918052</scalar>
+	</module>
+ </comment>
+</template>
+ 

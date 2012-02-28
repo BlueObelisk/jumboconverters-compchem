@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module><
+<eigen dictRef="cc:gaussianOrbital">
+  <array dictRef="cc:orbitals">
+    <list dictRef="cc:orbital">
+      <scalar dictRef="cc:orbitalEnergy" units="u:hartree">-20.0123</scalar>
+      <array dictRef="cc:orbitalCoefficients" units="u:none">0.1 0.2 0.13 ...</array>
+      <array dictRef="cc:basisRef" id="ab">b1 b2 b3</array>
+    </list>
+  </array>
+</eigen>
+<array dictRef="BasiFunctionList">
+</array>
+<map>
+  <link from="ab" to="basis>"
+</map>
+</module>

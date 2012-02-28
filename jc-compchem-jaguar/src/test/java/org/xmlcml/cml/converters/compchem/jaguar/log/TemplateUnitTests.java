@@ -4,7 +4,7 @@ import nu.xom.Element;
 
 import org.junit.Ignore;
 import org.junit.Test;
-import org.xmlcml.cml.converters.testutils.TemplateTestUtils;
+import org.xmlcml.cml.converters.templates.TemplateTestUtils;
 
 public class TemplateUnitTests {
 	

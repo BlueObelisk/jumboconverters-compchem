@@ -20,6 +20,11 @@
         </dependency>
         <dependency>
             <groupId>${jc.groupId}</groupId>
+            <artifactId>jc-template-parser</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${jc.groupId}</groupId>
             <artifactId>jc-compchem-testutils</artifactId>
             <version>${project.version}</version>
             <scope>test</scope>

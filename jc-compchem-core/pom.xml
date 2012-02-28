@@ -20,7 +20,7 @@
         </dependency>
 		<dependency>
             <groupId>${jc.groupId}</groupId>
-            <artifactId>jc-top-templates</artifactId>
+            <artifactId>jc-template-parser</artifactId>
             <version>${project.version}</version>
         </dependency>
      </dependencies>

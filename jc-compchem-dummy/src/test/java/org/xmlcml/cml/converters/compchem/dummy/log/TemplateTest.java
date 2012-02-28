@@ -1,7 +1,7 @@
 package org.xmlcml.cml.converters.compchem.dummy.log;
 
 import org.junit.Test;
-import org.xmlcml.cml.converters.testutils.TemplateTester;
+import org.xmlcml.cml.converters.templates.TemplateTester;
 
 public class TemplateTest {
 	
