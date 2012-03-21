@@ -13,20 +13,14 @@
      <parameter dictRef="compchem:executable">
       <scalar dataType="xsd:string">/home/mw529/code/NWChem/nwchem-6.0/bin/LINUX64/nwchem</scalar>
      </parameter>
-     <parameter dictRef="compchem:run.date">
+     <parameter dictRef="compchem:date">
       <scalar dataType="xsd:string">Fri May 13 17:54:33 2011</scalar>
      </parameter>
-     <parameter dictRef="compchem:compile.date">
+     <parameter dictRef="compchem:compile_date">
       <scalar dataType="xsd:string">Fri_May_13_09:22:53_2011</scalar>
-     </parameter>
-     <parameter dictRef="compchem:package.root">
-      <scalar dataType="xsd:string">/home/mw529/code/NWChem/nwchem-6.0</scalar>
      </parameter>
      <parameter dictRef="compchem:version">
       <scalar dataType="xsd:string">6.0</scalar>
-     </parameter>
-     <parameter dictRef="compchem:input">
-      <scalar dataType="xsd:string">fukui.nw</scalar>
      </parameter>
      <parameter dictRef="compchem:nproc">
       <scalar dataType="xsd:string">1</scalar>
@@ -50,6 +44,8 @@
       </list>
      </module>
      <module>
+      <scalar dataType="xsd:string" dictRef="n:package_root">/home/mw529/code/NWChem/nwchem-6.0</scalar>
+      <scalar dataType="xsd:string" dictRef="n:input_filename">fukui.nw</scalar>
       <scalar dataType="xsd:string" dictRef="n:prefix">john_fukui.</scalar>
       <scalar dataType="xsd:string" dictRef="n:database">./john_fukui.db</scalar>
       <scalar dataType="xsd:string" dictRef="n:startup">startup</scalar>
@@ -261,10 +257,10 @@
       </list>
      </module>
      <module>
-      <scalar dataType="xsd:double" dictRef="n:effnucrep">696.3904688786</scalar>
+      <scalar dataType="xsd:double" dictRef="cc:nuclear_repulsion_energy">696.3904688786</scalar>
      </module>
      <module>
-      <array dataType="xsd:double" dictRef="cc:nucdipole" size="3">-33.8837318382 -0.9167060771 3.1896684961</array>
+      <array dataType="xsd:double" dictRef="cc:nuclear_dipole_moment" size="3">-33.8837318382 -0.9167060771 3.1896684961</array>
      </module>
      <module>
       <scalar dataType="xsd:string" dictRef="n:basis.title">"ao basis" -&gt; "" (cartesian)</scalar>

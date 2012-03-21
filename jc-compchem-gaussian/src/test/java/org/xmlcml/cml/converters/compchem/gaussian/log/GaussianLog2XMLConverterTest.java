@@ -18,6 +18,7 @@ public class GaussianLog2XMLConverterTest {
 	private static String URI_BASE = ClassPathXIncludeResolver.createClasspath(GaussianLog2XMLConverterTest.class);
 	
 	@Test
+	@Ignore // BAD XINCLUDE
 	public void test1() throws Exception {
 		InputStream templateStream = Util.getInputStreamFromResource(URI_BASE+"templates/topTemplate.xml");
 		Element templateXML = new Builder().build(templateStream, "classpath:"+URI_BASE+"templates/").getRootElement();

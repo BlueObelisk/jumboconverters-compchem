@@ -7,9 +7,7 @@ import nu.xom.Element;
 
 import org.apache.log4j.Logger;
 import org.xmlcml.cml.converters.AbstractConverter;
-import org.xmlcml.cml.converters.Dummy;
 import org.xmlcml.cml.converters.MimeType;
-import org.xmlcml.cml.converters.cml.CMLCommon;
 import org.xmlcml.cml.converters.compchem.gaussian.GaussianModule;
 
 public class GaussianLog2CompchemConverter extends AbstractConverter {
@@ -20,64 +18,65 @@ public class GaussianLog2CompchemConverter extends AbstractConverter {
             "org/xmlcml/cml/converters/compchem/gaussian/log/templates/gaussian2compchem.xml";
 
     private static final String BASE_URI = "classpath:/"+DEFAULT_TEMPLATE_RESOURCE;
-    
-    private GaussianLog2XMLConverter logConverter;
+
+	private GaussianLog2XMLConverter logConverter;
 	private GaussianLogXML2CompchemConverter xmlConverter;
 
+
     public GaussianLog2CompchemConverter() {
+    	logConverter = new GaussianLog2XMLConverter();
+    	xmlConverter = new GaussianLogXML2CompchemConverter();
     }
 
-    /** signature to distinguish from no-args constructor
-     * 
-     * @param dummy
-     */
-    private GaussianLog2CompchemConverter(Dummy.D dummy) {
-    	createConverters();
-    }
-
-	private void createConverters() {
-		logConverter = GaussianLog2XMLConverter.createDefaultConverter();
-    	xmlConverter = GaussianLogXML2CompchemConverter.createDefaultConverter();
-	}
-
-    public static GaussianLog2CompchemConverter createDefaultConverter() {
-    	return new GaussianLog2CompchemConverter(Dummy.D.DUMMY);
-    }
-
-    private void ensureLogConverter() {
-    	if (logConverter == null) {
-    		logConverter = GaussianLog2XMLConverter.createDefaultConverter();
-    	}
-    }
-    
-    private void ensureXmlConverter() {
-    	if (xmlConverter == null) {
-    		xmlConverter = GaussianLogXML2CompchemConverter.createDefaultConverter();
-    	}
-    }
-    
     public void convert(File in, File out) {
-    	ensureLogConverter();
     	Element xmlElement = logConverter.convertToXML(in);
-    	ensureXmlConverter();
     	xmlConverter.convert(xmlElement, out);
     }
 
     public static void main(String[] args) throws IOException {
         if (args.length == 1) {
-            GaussianLog2CompchemConverter converter = new GaussianLog2CompchemConverter();
-//            converter.runTests(args[0]);
+            
+            File logFile = new File(args[0]);
+            if (! logFile.exists()) {
+                throw new RuntimeException("Cannot find file: " + logFile.getAbsolutePath() +"!\n");
+            }
+            String cmlFilename = getCmlFilenameFromLogFilename(args[0]);
+            File cmlFile = new File(cmlFilename);
+
+            System.out.println("Converting: " + logFile.getAbsolutePath()
+                    + "\n to \n" + cmlFile.getAbsolutePath());
+            
+            try {
+                    GaussianLog2CompchemConverter converter = new GaussianLog2CompchemConverter();
+                    converter.convert(logFile, cmlFile);
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.err.println("Cannot read/convert "
+                        + logFile.getAbsolutePath() + "; " + e);
+            }
         } else if (args.length == 2) {
         } else {
             AbstractConverter converter = new GaussianLog2CompchemConverter();
-//            convertFile(converter, "jobTest");
-//            convertFile(converter, "anna0");
-			for (int i = 1; i <= 4; i++) {
-				convertFile(converter, "anna"+i);
-			}
+            // convertFile(converter, "jobTest");
+            // convertFile(converter, "anna0");
+            for (int i = 1; i <= 4; i++) {
+                convertFile(converter, "anna" + i);
+            }
         }
     }
 
+    private static String getCmlFilenameFromLogFilename(String logfileName) {
+        String cmlExt = "cml";
+        int mid = logfileName.lastIndexOf(".");
+        String cmlFileName;
+        if (mid > 0) {
+            cmlFileName = logfileName.substring(0, mid) + "."+ cmlExt;
+        } else {
+            cmlFileName = logfileName + "." + cmlExt;
+        }
+        return cmlFileName;
+    }
+    
 	private static void convertFile(AbstractConverter converter, String fileRoot) {
 		File out;
 		File in = null;
@@ -99,10 +98,10 @@ public class GaussianLog2CompchemConverter extends AbstractConverter {
 	}
 
 	public MimeType getOutputType() {
-		return CMLCommon.CML_TYPE;
+		return GaussianModule.LOG_XML_TYPE;
 	}
 
-	public String getDescription() {
+	public String getRegistryMessage() {
 		return "Convert Gaussian Log to CML-compchem";
 	}
 

@@ -1,0 +1,116 @@
+<template id="mulliken" name="mulliken" repeat="*"
+    newline="$" pattern="\s*Mulliken atomic charges:\s*" 
+    endPattern="\s*Charge=.*" endOffset="1"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    >
+    
+  <comment class="example.input" id="l601.mulliken">
+    Full Mulliken population analysis:
+                           1         2         3         4         5
+   1 1   O  1S          2.07684
+   2        2S         -0.04217   0.50469
+   3        2PX         0.00000   0.00000   0.81653
+   4        2PY         0.00000   0.00000   0.00000   0.50989
+   5        2PZ         0.00000   0.00000   0.00000   0.00000   0.64463
+   6        3S         -0.03713   0.39785   0.00000   0.00000   0.00000
+   7        3PX         0.00000   0.00000   0.32829   0.00000   0.00000
+   8        3PY         0.00000   0.00000   0.00000   0.15382   0.00000
+   9        3PZ         0.00000   0.00000   0.00000   0.00000   0.23645
+  10        4XX        -0.00030   0.00125   0.00000   0.00000   0.00000
+  11        4YY        -0.00068   0.01467   0.00000   0.00000   0.00000
+  12        4ZZ        -0.00033   0.00223   0.00000   0.00000   0.00000
+  13        4XY         0.00000   0.00000   0.00000   0.00000   0.00000
+  14        4XZ         0.00000   0.00000   0.00000   0.00000   0.00000
+  15        4YZ         0.00000   0.00000   0.00000   0.00000   0.00000
+  16 2   H  1S         -0.00119   0.01982   0.00000   0.05490   0.02920
+  17        2S          0.00073  -0.00933   0.00000   0.01296   0.00819
+  18 3   H  1S         -0.00119   0.01982   0.00000   0.05490   0.02920
+  19        2S          0.00073  -0.00933   0.00000   0.01296   0.00819
+                           6         7         8         9        10
+   6        3S          0.58990
+   7        3PX         0.00000   0.52478
+   8        3PY         0.00000   0.00000   0.18448
+   9        3PZ         0.00000   0.00000   0.00000   0.34531
+  10        4XX         0.00427   0.00000   0.00000   0.00000   0.00030
+  11        4YY         0.01735   0.00000   0.00000   0.00000  -0.00002
+  12        4ZZ        -0.00768   0.00000   0.00000   0.00000  -0.00034
+  13        4XY         0.00000   0.00000   0.00000   0.00000   0.00000
+  14        4XZ         0.00000   0.00000   0.00000   0.00000   0.00000
+  15        4YZ         0.00000   0.00000   0.00000   0.00000   0.00000
+  16 2   H  1S          0.01196   0.00000   0.06731   0.04240  -0.00057
+  17        2S         -0.03523   0.00000   0.02540   0.01961  -0.00078
+  18 3   H  1S          0.01196   0.00000   0.06731   0.04240  -0.00057
+  19        2S         -0.03523   0.00000   0.02540   0.01961  -0.00078
+                          11        12        13        14        15
+  11        4YY         0.00166
+  12        4ZZ         0.00039   0.00465
+  13        4XY         0.00000   0.00000   0.00000
+  14        4XZ         0.00000   0.00000   0.00000   0.00210
+  15        4YZ         0.00000   0.00000   0.00000   0.00000   0.00487
+  16 2   H  1S          0.00321   0.00503   0.00000   0.00000   0.00728
+  17        2S          0.00011   0.00322   0.00000   0.00000   0.00061
+  18 3   H  1S          0.00321   0.00503   0.00000   0.00000   0.00728
+  19        2S          0.00011   0.00322   0.00000   0.00000   0.00061
+                          16        17        18        19
+  16 2   H  1S          0.17935
+  17        2S          0.04837   0.03717
+  18 3   H  1S         -0.00158  -0.00530   0.17935
+  19        2S         -0.00530  -0.00399   0.04837   0.03717
+     Gross orbital populations:
+  </comment>
+
+  <templateList>
+    <template id="l601.mullik" repeat="*" pattern=".*[Aa]tomic charges.*" 
+      endPattern="\s*Sum of.*" endOffset="1">
+      <record id="title">{X,g:title}</record>
+      <record id="serial">{I,cc:serial}</record>
+      <record id="row" repeat="*" makeArray="true">{I,cc:serial}{A,cc:elementType}{F,x:charge}</record>
+      <record id="sum">\s*Sum of\s*{A,x:type}\s*charges={F,x:charge.sum}</record>
+    </template>
+    <template id="l601.spatial" pattern="\s*Electronic spatial extent.*" repeat="*"
+      endPattern=".*" endOffset="0">
+      <record id="l601.elect">\s*Electronic spatial extent.*={F,g:electextent2}\s*</record>
+    </template>
+    <template id="l601.charge" pattern="\s*Charge\s*=.*" repeat="*"
+      endPattern=".*" endOffset="0">
+      <record id="l601.charge">\s*Charge=\s*{F,g:charge}\s*electrons\s*</record>
+    </template>
+  </templateList>
+  
+  <transform process="pullup" xpath=".//cml:scalar"/>
+  <transform process="pullup" xpath=".//cml:list/cml:scalar"/>
+  <transform process="pullup" xpath=".//cml:module[@cmlx:templateRef='l601.spatial']/cml:scalar"/>
+  <transform process="pullup" xpath=".//cml:module[@cmlx:templateRef='l601.charge']/cml:scalar"/>
+  <transform process="delete" xpath=".//cml:module[@cmlx:templateRef='l601.spatial']"/>
+  <transform process="delete" xpath=".//cml:module[@cmlx:templateRef='l601.charge']"/>
+
+  <comment class="example.output" id="l601.mulliken">
+    <module cmlx:templateRef="mulliken" xmlns="http://www.xml-cml.org/schema" xmlns:cmlx="http://www.xml-cml.org/schema/cmlx">
+      <module cmlx:lineCount="8" cmlx:templateRef="l601.mullik">
+        <scalar dataType="xsd:string" dictRef="g:title">Mulliken atomic charges:</scalar>
+        <scalar dataType="xsd:integer" dictRef="cc:serial">1</scalar>
+        <list cmlx:lineCount="5" cmlx:templateRef="row">
+          <array dataType="xsd:integer" dictRef="cc:serial" size="5">1 2 3 4 5</array>
+          <array dataType="xsd:string" dictRef="cc:elementType" size="5">C H H H H</array>
+          <array dataType="xsd:double" dictRef="x:charge" size="5">-0.619218 0.154804 0.154804 0.154804 0.154804</array>
+        </list>
+        <scalar dataType="xsd:string" dictRef="x:type">Mulliken</scalar>
+        <scalar dataType="xsd:double" dictRef="x:charge.sum">0.0</scalar>
+      </module>
+      <module cmlx:lineCount="8" cmlx:templateRef="l601.mullik">
+        <scalar dataType="xsd:string" dictRef="g:title">Atomic charges with hydrogens summed into heavy atoms:</scalar>
+        <scalar dataType="xsd:integer" dictRef="cc:serial">1</scalar>
+        <list cmlx:lineCount="5" cmlx:templateRef="row">
+          <array dataType="xsd:integer" dictRef="cc:serial" size="5">1 2 3 4 5</array>
+          <array dataType="xsd:string" dictRef="cc:elementType" size="5">C H H H H</array>
+          <array dataType="xsd:double" dictRef="x:charge" size="5">0.0 0.0 0.0 0.0 0.0</array>
+        </list>
+        <scalar dataType="xsd:string" dictRef="x:type">Mulliken</scalar>
+        <scalar dataType="xsd:double" dictRef="x:charge.sum">0.0</scalar>
+      </module>
+      <scalar dataType="xsd:double" dictRef="g:electextent2">36.2154</scalar>
+      <scalar dataType="xsd:double" dictRef="g:charge">0.0</scalar>
+    </module>
+  </comment>
+</template>
+ 

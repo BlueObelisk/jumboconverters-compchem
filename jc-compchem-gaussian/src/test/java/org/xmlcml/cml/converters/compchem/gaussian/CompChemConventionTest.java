@@ -14,6 +14,7 @@ import nu.xom.Node;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.xmlcml.cml.base.CMLConstants;
 import org.xmlcml.cml.base.CMLUtil;
@@ -21,6 +22,7 @@ import org.xmlcml.cml.converters.compchem.gaussian.log.GaussianLog2XMLConverter;
 import org.xmlcml.cml.converters.compchem.gaussian.log.GaussianLogXML2CompchemConverter;
 import org.xmlcml.cml.element.CMLModule;
 
+@Ignore
 public class CompChemConventionTest {
 
 	private static Document doc;

@@ -5,6 +5,7 @@
     xmlns:xi="http://www.w3.org/2001/XInclude"
     >
     
+    <!-- This is really hairy as there are no naturaL breaks and some optional components -->
   <comment class="example.input" id="l601.popanal">
  **********************************************************************
 
@@ -218,6 +219,10 @@
   <record repeat="5"/>
   <record repeat="2"/>
   <templateList>
+    <xi:include href="l601.molorb.xml"/>
+    <xi:include href="l601.densmat.xml"/>
+    <xi:include href="l601.fullmulliken.xml"/>
+    <xi:include href="l601.grossorb.xml"/>
     <xi:include href="l601.condensed.xml"/>
     <xi:include href="../l401/l4601.virtual.xml"/>
     <xi:include href="../l401/l4601.occupied.xml"/>

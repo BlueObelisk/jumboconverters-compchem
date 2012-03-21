@@ -1,0 +1,291 @@
+<template id="molorb" name="Molecular Orbital Coefficients" repeat="*"
+    pattern="\s*Molecular Orbital Coefficients:\s*" 
+    endPattern=".*$\s*[DFGC].*" endOffset="-2"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    >
+    
+  <comment class="example.input" id="l601.molorb">
+     Molecular Orbital Coefficients:
+                           1         2         3         4         5
+                        (A1)--O   (A1)--O   (B2)--O   (A1)--O   (B1)--O
+     Eigenvalues --   -20.55795  -1.33613  -0.71418  -0.56029  -0.49560
+   1 1   O  1S          0.99463  -0.21029   0.00000  -0.07006   0.00000
+   2        2S          0.02114   0.47674   0.00000   0.15689   0.00000
+   3        2PX         0.00000   0.00000   0.00000   0.00000   0.63896
+   4        2PY         0.00000   0.00000   0.50492   0.00000   0.00000
+   5        2PZ        -0.00130  -0.08745   0.00000   0.56095   0.00000
+   6        3S          0.00416   0.44270   0.00000   0.31456   0.00000
+   7        3PX         0.00000   0.00000   0.00000   0.00000   0.51224
+   8        3PY         0.00000   0.00000   0.30371   0.00000   0.00000
+   9        3PZ         0.00045  -0.04846   0.00000   0.41268   0.00000
+  10        4XX        -0.00393  -0.00119   0.00000   0.01143   0.00000
+  11        4YY        -0.00422   0.02852   0.00000  -0.00063   0.00000
+  12        4ZZ        -0.00408   0.01898   0.00000  -0.04411   0.00000
+  13        4XY         0.00000   0.00000   0.00000   0.00000   0.00000
+  14        4XZ         0.00000   0.00000   0.00000   0.00000  -0.03242
+  15        4YZ         0.00000   0.00000  -0.04935   0.00000   0.00000
+  16 2   H  1S          0.00033   0.12927   0.23261  -0.13733   0.00000
+  17        2S         -0.00022   0.00228   0.10637  -0.08522   0.00000
+  18 3   H  1S          0.00033   0.12927  -0.23261  -0.13733   0.00000
+  19        2S         -0.00022   0.00228  -0.10637  -0.08522   0.00000
+                           6         7         8         9        10
+                        (A1)--V   (B2)--V   (B2)--V   (A1)--V   (A1)--V
+     Eigenvalues --     0.21060   0.30390   1.04582   1.11665   1.15957
+   1 1   O  1S         -0.10244   0.00000   0.00000   0.02986   0.04523
+   2        2S          0.06086   0.00000   0.00000  -0.68284   0.52381
+   3        2PX         0.00000   0.00000   0.00000   0.00000   0.00000
+   4        2PY         0.00000  -0.32768  -0.12005   0.00000   0.00000
+   5        2PZ        -0.21160   0.00000   0.00000  -0.09661   0.85201
+   6        3S          1.42064   0.00000   0.00000   1.04248  -1.21488
+   7        3PX         0.00000   0.00000   0.00000   0.00000   0.00000
+   8        3PY         0.00000  -0.84514  -0.66946   0.00000   0.00000
+   9        3PZ        -0.48764   0.00000   0.00000   0.53216  -0.62788
+  10        4XX        -0.07082   0.00000   0.00000  -0.33264   0.13191
+  11        4YY        -0.05622   0.00000   0.00000  -0.01023   0.32038
+  12        4ZZ        -0.04522   0.00000   0.00000  -0.23411   0.21240
+  13        4XY         0.00000   0.00000   0.00000   0.00000   0.00000
+  14        4XZ         0.00000   0.00000   0.00000   0.00000   0.00000
+  15        4YZ         0.00000   0.02295  -0.20910   0.00000   0.00000
+  16 2   H  1S         -0.06031   0.04533   0.84580   0.79378   0.35940
+  17        2S         -1.04330   1.37930  -0.43891  -0.54962  -0.09202
+  18 3   H  1S         -0.06031  -0.04533  -0.84580   0.79378   0.35940
+  19        2S         -1.04330  -1.37930   0.43891  -0.54962  -0.09202
+     Density Matrix:
+  </comment>
+
+  <record/>
+  <templateList>
+    <template id="l601.molorb" repeat="*" pattern="\s{20}\s+(\d+\s+)+\s*" 
+       endPattern="\s*\d+\s+.*\d\.\d+.*$(\s{20}\s+(\d+\s+)+\s*)|(\s*[DFGC].*)" endOffset="1">
+       <record id="serial">\s{20}\s*{5I,g:serial}\s*</record>
+       <record id="symm">\s{20}\s*{5A,g:symm}\s*</record>
+       <record id="eig">\s*Eigenvalues \-\-\s*{5F,g:eigval}\s*</record>
+       <record id="row" repeat="*" >\s*{I4,cc:serial}\s\s*{A11,g:basis}\s*{5F,cc:eigvec}</record>
+    </template>
+  </templateList>
+  
+  <!-- 
+  <transform process="pullup" xpath=".//cml:scalar"/>
+-->
+  <comment class="example.output" id="l601.molorb">
+	<module cmlx:templateRef="molorb" xmlns="http://www.xml-cml.org/schema" xmlns:cmlx="http://www.xml-cml.org/schema/cmlx">
+	  <module cmlx:lineCount="22" cmlx:templateRef="l601.molorb">
+	    <list cmlx:templateRef="serial">
+	      <array dataType="xsd:integer" size="5" dictRef="g:serial">1 2 3 4 5</array>
+	    </list>
+	    <list cmlx:templateRef="symm">
+	      <array dataType="xsd:string" size="5" dictRef="g:symm">(A1)--O (A1)--O (B2)--O (A1)--O (B1)--O</array>
+	    </list>
+	    <list cmlx:templateRef="eig">
+	      <array dataType="xsd:double" size="5" dictRef="g:eigval">-20.55795 -1.33613 -0.71418 -0.56029 -0.4956</array>
+	    </list>
+	    <list cmlx:templateRef="row">
+	      <list>
+	        <scalar dataType="xsd:integer" dictRef="cc:serial">1</scalar>
+	        <scalar dataType="xsd:string" dictRef="g:basis">1 O 1S</scalar>
+	        <array dataType="xsd:double" size="5" dictRef="cc:eigvec">0.99463 -0.21029 0.0 -0.07006 0.0</array>
+	      </list>
+	      <list>
+	        <scalar dataType="xsd:integer" dictRef="cc:serial">2</scalar>
+	        <scalar dataType="xsd:string" dictRef="g:basis">2S</scalar>
+	        <array dataType="xsd:double" size="5" dictRef="cc:eigvec">0.02114 0.47674 0.0 0.15689 0.0</array>
+	      </list>
+	      <list>
+	        <scalar dataType="xsd:integer" dictRef="cc:serial">3</scalar>
+	        <scalar dataType="xsd:string" dictRef="g:basis">2PX</scalar>
+	        <array dataType="xsd:double" size="5" dictRef="cc:eigvec">0.0 0.0 0.0 0.0 0.63896</array>
+	      </list>
+	      <list>
+	        <scalar dataType="xsd:integer" dictRef="cc:serial">4</scalar>
+	        <scalar dataType="xsd:string" dictRef="g:basis">2PY</scalar>
+	        <array dataType="xsd:double" size="5" dictRef="cc:eigvec">0.0 0.0 0.50492 0.0 0.0</array>
+	      </list>
+	      <list>
+	        <scalar dataType="xsd:integer" dictRef="cc:serial">5</scalar>
+	        <scalar dataType="xsd:string" dictRef="g:basis">2PZ -</scalar>
+	        <array dataType="xsd:double" size="5" dictRef="cc:eigvec">0.0013 -0.08745 0.0 0.56095 0.0</array>
+	      </list>
+	      <list>
+	        <scalar dataType="xsd:integer" dictRef="cc:serial">6</scalar>
+	        <scalar dataType="xsd:string" dictRef="g:basis">3S</scalar>
+	        <array dataType="xsd:double" size="5" dictRef="cc:eigvec">0.00416 0.4427 0.0 0.31456 0.0</array>
+	      </list>
+	      <list>
+	        <scalar dataType="xsd:integer" dictRef="cc:serial">7</scalar>
+	        <scalar dataType="xsd:string" dictRef="g:basis">3PX</scalar>
+	        <array dataType="xsd:double" size="5" dictRef="cc:eigvec">0.0 0.0 0.0 0.0 0.51224</array>
+	      </list>
+	      <list>
+	        <scalar dataType="xsd:integer" dictRef="cc:serial">8</scalar>
+	        <scalar dataType="xsd:string" dictRef="g:basis">3PY</scalar>
+	        <array dataType="xsd:double" size="5" dictRef="cc:eigvec">0.0 0.0 0.30371 0.0 0.0</array>
+	      </list>
+	      <list>
+	        <scalar dataType="xsd:integer" dictRef="cc:serial">9</scalar>
+	        <scalar dataType="xsd:string" dictRef="g:basis">3PZ</scalar>
+	        <array dataType="xsd:double" size="5" dictRef="cc:eigvec">4.5E-4 -0.04846 0.0 0.41268 0.0</array>
+	      </list>
+	      <list>
+	        <scalar dataType="xsd:integer" dictRef="cc:serial">10</scalar>
+	        <scalar dataType="xsd:string" dictRef="g:basis">4XX -</scalar>
+	        <array dataType="xsd:double" size="5" dictRef="cc:eigvec">0.00393 -0.00119 0.0 0.01143 0.0</array>
+	      </list>
+	      <list>
+	        <scalar dataType="xsd:integer" dictRef="cc:serial">11</scalar>
+	        <scalar dataType="xsd:string" dictRef="g:basis">4YY -</scalar>
+	        <array dataType="xsd:double" size="5" dictRef="cc:eigvec">0.00422 0.02852 0.0 -6.3E-4 0.0</array>
+	      </list>
+	      <list>
+	        <scalar dataType="xsd:integer" dictRef="cc:serial">12</scalar>
+	        <scalar dataType="xsd:string" dictRef="g:basis">4ZZ -</scalar>
+	        <array dataType="xsd:double" size="5" dictRef="cc:eigvec">0.00408 0.01898 0.0 -0.04411 0.0</array>
+	      </list>
+	      <list>
+	        <scalar dataType="xsd:integer" dictRef="cc:serial">13</scalar>
+	        <scalar dataType="xsd:string" dictRef="g:basis">4XY</scalar>
+	        <array dataType="xsd:double" size="5" dictRef="cc:eigvec">0.0 0.0 0.0 0.0 0.0</array>
+	      </list>
+	      <list>
+	        <scalar dataType="xsd:integer" dictRef="cc:serial">14</scalar>
+	        <scalar dataType="xsd:string" dictRef="g:basis">4XZ</scalar>
+	        <array dataType="xsd:double" size="5" dictRef="cc:eigvec">0.0 0.0 0.0 0.0 -0.03242</array>
+	      </list>
+	      <list>
+	        <scalar dataType="xsd:integer" dictRef="cc:serial">15</scalar>
+	        <scalar dataType="xsd:string" dictRef="g:basis">4YZ</scalar>
+	        <array dataType="xsd:double" size="5" dictRef="cc:eigvec">0.0 0.0 -0.04935 0.0 0.0</array>
+	      </list>
+	      <list>
+	        <scalar dataType="xsd:integer" dictRef="cc:serial">16</scalar>
+	        <scalar dataType="xsd:string" dictRef="g:basis">2 H 1S</scalar>
+	        <array dataType="xsd:double" size="5" dictRef="cc:eigvec">3.3E-4 0.12927 0.23261 -0.13733 0.0</array>
+	      </list>
+	      <list>
+	        <scalar dataType="xsd:integer" dictRef="cc:serial">17</scalar>
+	        <scalar dataType="xsd:string" dictRef="g:basis">2S -</scalar>
+	        <array dataType="xsd:double" size="5" dictRef="cc:eigvec">2.2E-4 0.00228 0.10637 -0.08522 0.0</array>
+	      </list>
+	      <list>
+	        <scalar dataType="xsd:integer" dictRef="cc:serial">18</scalar>
+	        <scalar dataType="xsd:string" dictRef="g:basis">3 H 1S</scalar>
+	        <array dataType="xsd:double" size="5" dictRef="cc:eigvec">3.3E-4 0.12927 -0.23261 -0.13733 0.0</array>
+	      </list>
+	      <list>
+	        <scalar dataType="xsd:integer" dictRef="cc:serial">19</scalar>
+	        <scalar dataType="xsd:string" dictRef="g:basis">2S -</scalar>
+	        <array dataType="xsd:double" size="5" dictRef="cc:eigvec">2.2E-4 0.00228 -0.10637 -0.08522 0.0</array>
+	      </list>
+	    </list>
+	  </module>
+	  <module cmlx:lineCount="22" cmlx:templateRef="l601.molorb">
+	    <list cmlx:templateRef="serial">
+	      <array dataType="xsd:integer" size="5" dictRef="g:serial">6 7 8 9 10</array>
+	    </list>
+	    <list cmlx:templateRef="symm">
+	      <array dataType="xsd:string" size="5" dictRef="g:symm">(A1)--V (B2)--V (B2)--V (A1)--V (A1)--V</array>
+	    </list>
+	    <list cmlx:templateRef="eig">
+	      <array dataType="xsd:double" size="5" dictRef="g:eigval">0.2106 0.3039 1.04582 1.11665 1.15957</array>
+	    </list>
+	    <list cmlx:templateRef="row">
+	      <list>
+	        <scalar dataType="xsd:integer" dictRef="cc:serial">1</scalar>
+	        <scalar dataType="xsd:string" dictRef="g:basis">1 O 1S</scalar>
+	        <array dataType="xsd:double" size="5" dictRef="cc:eigvec">-0.10244 0.0 0.0 0.02986 0.04523</array>
+	      </list>
+	      <list>
+	        <scalar dataType="xsd:integer" dictRef="cc:serial">2</scalar>
+	        <scalar dataType="xsd:string" dictRef="g:basis">2S</scalar>
+	        <array dataType="xsd:double" size="5" dictRef="cc:eigvec">0.06086 0.0 0.0 -0.68284 0.52381</array>
+	      </list>
+	      <list>
+	        <scalar dataType="xsd:integer" dictRef="cc:serial">3</scalar>
+	        <scalar dataType="xsd:string" dictRef="g:basis">2PX</scalar>
+	        <array dataType="xsd:double" size="5" dictRef="cc:eigvec">0.0 0.0 0.0 0.0 0.0</array>
+	      </list>
+	      <list>
+	        <scalar dataType="xsd:integer" dictRef="cc:serial">4</scalar>
+	        <scalar dataType="xsd:string" dictRef="g:basis">2PY</scalar>
+	        <array dataType="xsd:double" size="5" dictRef="cc:eigvec">0.0 -0.32768 -0.12005 0.0 0.0</array>
+	      </list>
+	      <list>
+	        <scalar dataType="xsd:integer" dictRef="cc:serial">5</scalar>
+	        <scalar dataType="xsd:string" dictRef="g:basis">2PZ -</scalar>
+	        <array dataType="xsd:double" size="5" dictRef="cc:eigvec">0.2116 0.0 0.0 -0.09661 0.85201</array>
+	      </list>
+	      <list>
+	        <scalar dataType="xsd:integer" dictRef="cc:serial">6</scalar>
+	        <scalar dataType="xsd:string" dictRef="g:basis">3S</scalar>
+	        <array dataType="xsd:double" size="5" dictRef="cc:eigvec">1.42064 0.0 0.0 1.04248 -1.21488</array>
+	      </list>
+	      <list>
+	        <scalar dataType="xsd:integer" dictRef="cc:serial">7</scalar>
+	        <scalar dataType="xsd:string" dictRef="g:basis">3PX</scalar>
+	        <array dataType="xsd:double" size="5" dictRef="cc:eigvec">0.0 0.0 0.0 0.0 0.0</array>
+	      </list>
+	      <list>
+	        <scalar dataType="xsd:integer" dictRef="cc:serial">8</scalar>
+	        <scalar dataType="xsd:string" dictRef="g:basis">3PY</scalar>
+	        <array dataType="xsd:double" size="5" dictRef="cc:eigvec">0.0 -0.84514 -0.66946 0.0 0.0</array>
+	      </list>
+	      <list>
+	        <scalar dataType="xsd:integer" dictRef="cc:serial">9</scalar>
+	        <scalar dataType="xsd:string" dictRef="g:basis">3PZ -</scalar>
+	        <array dataType="xsd:double" size="5" dictRef="cc:eigvec">0.48764 0.0 0.0 0.53216 -0.62788</array>
+	      </list>
+	      <list>
+	        <scalar dataType="xsd:integer" dictRef="cc:serial">10</scalar>
+	        <scalar dataType="xsd:string" dictRef="g:basis">4XX -</scalar>
+	        <array dataType="xsd:double" size="5" dictRef="cc:eigvec">0.07082 0.0 0.0 -0.33264 0.13191</array>
+	      </list>
+	      <list>
+	        <scalar dataType="xsd:integer" dictRef="cc:serial">11</scalar>
+	        <scalar dataType="xsd:string" dictRef="g:basis">4YY -</scalar>
+	        <array dataType="xsd:double" size="5" dictRef="cc:eigvec">0.05622 0.0 0.0 -0.01023 0.32038</array>
+	      </list>
+	      <list>
+	        <scalar dataType="xsd:integer" dictRef="cc:serial">12</scalar>
+	        <scalar dataType="xsd:string" dictRef="g:basis">4ZZ -</scalar>
+	        <array dataType="xsd:double" size="5" dictRef="cc:eigvec">0.04522 0.0 0.0 -0.23411 0.2124</array>
+	      </list>
+	      <list>
+	        <scalar dataType="xsd:integer" dictRef="cc:serial">13</scalar>
+	        <scalar dataType="xsd:string" dictRef="g:basis">4XY</scalar>
+	        <array dataType="xsd:double" size="5" dictRef="cc:eigvec">0.0 0.0 0.0 0.0 0.0</array>
+	      </list>
+	      <list>
+	        <scalar dataType="xsd:integer" dictRef="cc:serial">14</scalar>
+	        <scalar dataType="xsd:string" dictRef="g:basis">4XZ</scalar>
+	        <array dataType="xsd:double" size="5" dictRef="cc:eigvec">0.0 0.0 0.0 0.0 0.0</array>
+	      </list>
+	      <list>
+	        <scalar dataType="xsd:integer" dictRef="cc:serial">15</scalar>
+	        <scalar dataType="xsd:string" dictRef="g:basis">4YZ</scalar>
+	        <array dataType="xsd:double" size="5" dictRef="cc:eigvec">0.0 0.02295 -0.2091 0.0 0.0</array>
+	      </list>
+	      <list>
+	        <scalar dataType="xsd:integer" dictRef="cc:serial">16</scalar>
+	        <scalar dataType="xsd:string" dictRef="g:basis">2 H 1S</scalar>
+	        <array dataType="xsd:double" size="5" dictRef="cc:eigvec">-0.06031 0.04533 0.8458 0.79378 0.3594</array>
+	      </list>
+	      <list>
+	        <scalar dataType="xsd:integer" dictRef="cc:serial">17</scalar>
+	        <scalar dataType="xsd:string" dictRef="g:basis">2S -</scalar>
+	        <array dataType="xsd:double" size="5" dictRef="cc:eigvec">1.0433 1.3793 -0.43891 -0.54962 -0.09202</array>
+	      </list>
+	      <list>
+	        <scalar dataType="xsd:integer" dictRef="cc:serial">18</scalar>
+	        <scalar dataType="xsd:string" dictRef="g:basis">3 H 1S</scalar>
+	        <array dataType="xsd:double" size="5" dictRef="cc:eigvec">-0.06031 -0.04533 -0.8458 0.79378 0.3594</array>
+	      </list>
+	      <list>
+	        <scalar dataType="xsd:integer" dictRef="cc:serial">19</scalar>
+	        <scalar dataType="xsd:string" dictRef="g:basis">2S -</scalar>
+	        <array dataType="xsd:double" size="5" dictRef="cc:eigvec">1.0433 -1.3793 0.43891 -0.54962 -0.09202</array>
+	      </list>
+	    </list>
+	  </module> Density Matrix: 
+	</module>
+  </comment>
+</template>
+ 
