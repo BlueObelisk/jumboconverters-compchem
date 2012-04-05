@@ -18,7 +18,7 @@ public class NWChemModule extends AbstractConverterModule {
 	public static final MimeType INPUT_TYPE = new MimeType("chemical/x-nwchem-input", ObjectType.TEXT, "inp");
 	public static final MimeType LOG_TYPE = new MimeType("chemical/x-nwchem-log", ObjectType.TEXT, "log");
 	public static final MimeType LOG_XML_TYPE = new MimeType("chemical/x-nwchem-xml", ObjectType.XML, "log.xml");
-	private static final String PREFIX = "prefix";
+	private static final String PREFIX = "nwchem";
 
 	public NWChemModule() {
         super();
