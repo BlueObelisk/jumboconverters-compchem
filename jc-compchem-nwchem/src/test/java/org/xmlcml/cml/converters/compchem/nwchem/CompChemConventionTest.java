@@ -28,16 +28,15 @@ public class CompChemConventionTest {
 	@BeforeClass
 	public static void runConverters() throws Exception {
 		InputStream in = CompChemConventionTest.class.
-			getResourceAsStream("/compchem/nwchem/log/markjohn/fukuilite.log");
+			getResourceAsStream("/compchem/nwchem/log/jens/h2o_sto3g.nwo");
 		
 		NWChemLog2XMLConverter converter1 = NWChemLog2XMLConverter.createDefaultConverter();
 		Element e1 = converter1.convertToXML(in);
 		
 		NWChemLogXML2CompchemConverter converter2 = NWChemLogXML2CompchemConverter.createDefaultConverter();
-		
 		Element e2 = converter2.convertToXML(e1);
 		doc = CMLUtil.ensureDocument(e2);
-		CMLUtil.debug(e2, new FileOutputStream("test/fukuilite.xml"), 1);
+		//CMLUtil.debug(e2, new FileOutputStream("test/h2o_sto3g.xml"), 1);
 	}
 
 	@AfterClass
@@ -57,7 +56,6 @@ xmlns="http://www.xml-cml.org/schema"
 xmlns:cmlx="http://www.xml-cml.org/schema/cmlx" 
 xmlns:conventions="http://www.xml-cml.org/convention/" 
 xmlns:compchem="http://www.xml-cml.org/dictionary/compchem/" 
-xmlns:cc="http://www.xml-cml.org/dictionary/compchem/" 
 xmlns:n="http://www.xml-cml.org/dictionary/nwchem/" 
 xmlns:x="http://www.xml-cml.org/dictionary/cmlx/" 
 xmlns:h="http://www.w3.org/1999/xhtml" 
@@ -77,9 +75,9 @@ xmlns:nonsi="http://www.xml-cml.org/unit/nonSi/">
 	}
 
 	/**
- <module id="jobList1" dictRef="cc:jobList">
-  <module id="job1" dictRef="cc:job">
-   <module id="environment" dictRef="cc:environment">
+ <module id="jobList1" dictRef="compchem:jobList">
+  <module id="job1" dictRef="compchem:job">
+   <module id="environment" dictRef="compchem:environment">
     <parameterList/>
    </module>
   </module>
@@ -87,39 +85,39 @@ xmlns:nonsi="http://www.xml-cml.org/unit/nonSi/">
 	 */
 	@Test
 	public void testFindJobList() {
-		List<Node> nodes = CMLUtil.getQueryNodes(doc, "/cml:*[@convention='convention:compchem']/cml:module[@dictRef='cc:jobList']", CMLConstants.CML_XPATH);
+		List<Node> nodes = CMLUtil.getQueryNodes(doc, "/cml:*[@convention='convention:compchem']/cml:module[@dictRef='compchem:jobList']", CMLConstants.CML_XPATH);
 		assertEquals("Job list", 1, nodes.size());
 		Element e = (Element) nodes.get(0);
-		assertEquals("http://www.xml-cml.org/dictionary/compchem/", e.getNamespaceURI("cc"));
+		assertEquals("http://www.xml-cml.org/dictionary/compchem/", e.getNamespaceURI("compchem"));
 		assertNotNull(e.getAttribute("id"));
 	}
 	
 	@Test
 	public void testFindJob() {
-		List<Node> nodes = CMLUtil.getQueryNodes(doc, "/cml:*[@convention='convention:compchem']/cml:module[@dictRef='cc:jobList']/cml:module[@dictRef='cc:job']", CMLConstants.CML_XPATH);
+		List<Node> nodes = CMLUtil.getQueryNodes(doc, "/cml:*[@convention='convention:compchem']/cml:module[@dictRef='compchem:jobList']/cml:module[@dictRef='compchem:job']", CMLConstants.CML_XPATH);
 		assertEquals("Job", 1, nodes.size());
 		Element e = (Element) nodes.get(0);
-		assertEquals("http://www.xml-cml.org/dictionary/compchem/", e.getNamespaceURI("cc"));
+		assertEquals("http://www.xml-cml.org/dictionary/compchem/", e.getNamespaceURI("compchem"));
 		assertNotNull(e.getAttribute("id"));
 	}
 	
 	@Test
 	public void testFindEnvironmentModule() {
-		List<Node> nodes = CMLUtil.getQueryNodes(doc, "/cml:*[@convention='convention:compchem']/cml:module[@dictRef='cc:jobList']/cml:module[@dictRef='cc:job']/cml:module[@dictRef='cc:environment']", CMLConstants.CML_XPATH);
+		List<Node> nodes = CMLUtil.getQueryNodes(doc, "/cml:*[@convention='convention:compchem']/cml:module[@dictRef='compchem:jobList']/cml:module[@dictRef='compchem:job']/cml:module[@dictRef='compchem:environment']", CMLConstants.CML_XPATH);
 		assertEquals("Environment", 1, nodes.size());
 		Element e = (Element) nodes.get(0);
-		assertEquals("http://www.xml-cml.org/dictionary/compchem/", e.getNamespaceURI("cc"));
+		assertEquals("http://www.xml-cml.org/dictionary/compchem/", e.getNamespaceURI("compchem"));
 	}
 	
 	@Test
 	public void testFindEnvironmentParameterList() {
-		List<Node> nodes = CMLUtil.getQueryNodes(doc, "/cml:*[@convention='convention:compchem']/cml:module[@dictRef='cc:jobList']/cml:module[@dictRef='cc:job']/cml:module[@dictRef='cc:environment']/cml:parameterList", CMLConstants.CML_XPATH);
+		List<Node> nodes = CMLUtil.getQueryNodes(doc, "/cml:*[@convention='convention:compchem']/cml:module[@dictRef='compchem:jobList']/cml:module[@dictRef='compchem:job']/cml:module[@dictRef='compchem:environment']/cml:parameterList", CMLConstants.CML_XPATH);
 		assertEquals("Environment parameter list", 1, nodes.size());
 	}
 
 	@Test
 	public void testFindEnvironmentParameters() {
-		List<Node> nodes = CMLUtil.getQueryNodes(doc, "/cml:*[@convention='convention:compchem']/cml:module[@dictRef='cc:jobList']/cml:module[@dictRef='cc:job']/cml:module[@dictRef='cc:environment']/cml:parameterList/*", CMLConstants.CML_XPATH);
+		List<Node> nodes = CMLUtil.getQueryNodes(doc, "/cml:*[@convention='convention:compchem']/cml:module[@dictRef='compchem:jobList']/cml:module[@dictRef='compchem:job']/cml:module[@dictRef='compchem:environment']/cml:parameterList/*", CMLConstants.CML_XPATH);
 		assertFalse("Environment has parameters", nodes.isEmpty());
 		for (Node node : nodes) {
 			Element e = (Element) node;
@@ -127,49 +125,67 @@ xmlns:nonsi="http://www.xml-cml.org/unit/nonSi/">
 		}
 	}
 	/**
- <module cmlx:lineCount="16" cmlx:templateRef="job">
-  <scalar dataType="xsd:string" dictRef="compchem:hostname" cmlx:templateRef="host">cyclops</scalar>
-  <scalar dataType="xsd:string" dictRef="compchem:executable" cmlx:templateRef="prog">/home/mw529/code/NWChem/nwchem-6.0/bin/LINUX64/nwchem</scalar>
-  <array dataType="xsd:string" dictRef="compchem:date" cmlx:templateRef="date" size="5">Fri May 13 17:54:33 2011</array>
-  <scalar dataType="xsd:string" dictRef="compchem:version" cmlx:templateRef="version">6.0</scalar>
-  <scalar dataType="xsd:string" dictRef="compchem:input" cmlx:templateRef="input">fukui.nw</scalar>
-  <scalar dataType="xsd:string" dictRef="compchem:nproc" cmlx:templateRef="nproc">1</scalar>
- </module>
+    <parameterList>
+     <parameter dictRef="compchem:hostname">
+      <scalar dataType="xsd:string" cmlx:templateRef="host">jmhts-MacBook-Air.local</scalar>
+     </parameter>
+     <parameter dictRef="compchem:executable">
+      <scalar dataType="xsd:string" cmlx:templateRef="prog">nwchem</scalar>
+     </parameter>
+     <parameter dictRef="compchem:date">
+      <scalar dataType="xsd:string" cmlx:templateRef="date">Wed Mar 14 11:38:24 2012</scalar>
+     </parameter>
+     <parameter dictRef="compchem:compileDate">
+      <scalar dataType="xsd:string" cmlx:templateRef="compiled">Sat_Mar_03_17:07:28_2012</scalar>
+     </parameter>
+     <parameter dictRef="compchem:version">
+      <scalar dataType="xsd:string" cmlx:templateRef="version">Development</scalar>
+     </parameter>
+     <parameter dictRef="compchem:nproc">
+      <scalar dataType="xsd:string" cmlx:templateRef="nproc">1</scalar>
+     </parameter>
+    </parameterList>
+
 	 */
 	
 	@Test
 	public void testEnvironmentHostName() {
-		List<Node> nodes = CMLUtil.getQueryNodes(doc, "/cml:*[@convention='convention:compchem']/cml:module[@dictRef='cc:jobList']/cml:module[@dictRef='cc:job']/cml:module[@dictRef='cc:environment']/cml:parameterList/cml:parameter[@dictRef='compchem:hostname']/cml:scalar/text()", CMLConstants.CML_XPATH);
+		List<Node> nodes = CMLUtil.getQueryNodes(doc, "/cml:*[@convention='convention:compchem']/cml:module[@dictRef='compchem:jobList']/cml:module[@dictRef='compchem:job']/cml:module[@dictRef='compchem:environment']/cml:parameterList/cml:parameter[@dictRef='compchem:hostName']/cml:scalar/text()", CMLConstants.CML_XPATH);
 		assertFalse(nodes.isEmpty());
-		assertEquals("cyclops", nodes.get(0).getValue());
+		assertEquals("jmhts-MacBook-Air.local", nodes.get(0).getValue());
+	}
+	
+	@Test
+	public void testEnvironmentProgram() {
+		List<Node> nodes = CMLUtil.getQueryNodes(doc, "/cml:*[@convention='convention:compchem']/cml:module[@dictRef='compchem:jobList']/cml:module[@dictRef='compchem:job']/cml:module[@dictRef='compchem:environment']/cml:parameterList/cml:parameter[@dictRef='compchem:program']/cml:scalar/text()", CMLConstants.CML_XPATH);
+		assertFalse(nodes.isEmpty());
+		assertEquals("NWChem", nodes.get(0).getValue());
 	}
 	
 	@Test
 	public void testEnvironmentVersion() {
-		List<Node> nodes = CMLUtil.getQueryNodes(doc, "/cml:*[@convention='convention:compchem']/cml:module[@dictRef='cc:jobList']/cml:module[@dictRef='cc:job']/cml:module[@dictRef='cc:environment']/cml:parameterList/cml:parameter[@dictRef='compchem:version']/cml:scalar/text()", CMLConstants.CML_XPATH);
-		assertFalse(nodes.isEmpty());
-		assertEquals("6.0", nodes.get(0).getValue());
+	    List<Node> nodes = CMLUtil.getQueryNodes(doc, "/cml:*[@convention='convention:compchem']/cml:module[@dictRef='compchem:jobList']/cml:module[@dictRef='compchem:job']/cml:module[@dictRef='compchem:environment']/cml:parameterList/cml:parameter[@dictRef='compchem:programVersion']/cml:scalar/text()", CMLConstants.CML_XPATH);
+	    assertFalse(nodes.isEmpty());
+	    assertEquals("6.1", nodes.get(0).getValue());
 	}
 
-	
-	
 	@Test
 	public void testFindInitializationModule() {
-		List<Node> nodes = CMLUtil.getQueryNodes(doc, "/cml:*[@convention='convention:compchem']/cml:module[@dictRef='cc:jobList']/cml:module[@dictRef='cc:job']/cml:module[@dictRef='cc:initialization']", CMLConstants.CML_XPATH);
+		List<Node> nodes = CMLUtil.getQueryNodes(doc, "/cml:*[@convention='convention:compchem']/cml:module[@dictRef='compchem:jobList']/cml:module[@dictRef='compchem:job']/cml:module[@dictRef='compchem:initialization']", CMLConstants.CML_XPATH);
 		assertEquals("Initialization", 1, nodes.size());
 		Element e = (Element) nodes.get(0);
-		assertEquals("http://www.xml-cml.org/dictionary/compchem/", e.getNamespaceURI("cc"));
+		assertEquals("http://www.xml-cml.org/dictionary/compchem/", e.getNamespaceURI("compchem"));
 	}
 	
 	@Test
 	public void testFindInitializationParameterList() {
-		List<Node> nodes = CMLUtil.getQueryNodes(doc, "/cml:*[@convention='convention:compchem']/cml:module[@dictRef='cc:jobList']/cml:module[@dictRef='cc:job']/cml:module[@dictRef='cc:initialization']/cml:parameterList", CMLConstants.CML_XPATH);
+		List<Node> nodes = CMLUtil.getQueryNodes(doc, "/cml:*[@convention='convention:compchem']/cml:module[@dictRef='compchem:jobList']/cml:module[@dictRef='compchem:job']/cml:module[@dictRef='compchem:initialization']/cml:parameterList", CMLConstants.CML_XPATH);
 		assertEquals("Initialization parameter list", 1, nodes.size());
 	}
 
 	@Test
 	public void testFindInitializationParameters() {
-		List<Node> nodes = CMLUtil.getQueryNodes(doc, "/cml:*[@convention='convention:compchem']/cml:module[@dictRef='cc:jobList']/cml:module[@dictRef='cc:job']/cml:module[@dictRef='cc:initialization']/cml:parameterList/*", CMLConstants.CML_XPATH);
+		List<Node> nodes = CMLUtil.getQueryNodes(doc, "/cml:*[@convention='convention:compchem']/cml:module[@dictRef='compchem:jobList']/cml:module[@dictRef='compchem:job']/cml:module[@dictRef='compchem:initialization']/cml:parameterList/*", CMLConstants.CML_XPATH);
 		assertFalse("Initialization has parameters", nodes.isEmpty());
 		for (Node node : nodes) {
 			Element e = (Element) node;
@@ -179,22 +195,21 @@ xmlns:nonsi="http://www.xml-cml.org/unit/nonSi/">
 	
 	@Test
 	public void testInitializationSCFType() {
-		List<Node> nodes = CMLUtil.getQueryNodes(doc, "/cml:*[@convention='convention:compchem']/cml:module[@dictRef='cc:jobList']/cml:module[@dictRef='cc:job']/cml:module[@dictRef='cc:initialization']/cml:parameterList/cml:parameter[@dictRef='cc:scf.type']/cml:scalar/text()", CMLConstants.CML_XPATH);
+		List<Node> nodes = CMLUtil.getQueryNodes(doc, "/cml:*[@convention='convention:compchem']/cml:module[@dictRef='compchem:jobList']/cml:module[@dictRef='compchem:job']/cml:module[@dictRef='compchem:initialization']/cml:parameterList/cml:parameter[@dictRef='compchem:method']/cml:scalar/text()", CMLConstants.CML_XPATH);
 		assertFalse(nodes.isEmpty());
-		assertEquals("DFT", nodes.get(0).getValue());
+		assertEquals("scf", nodes.get(0).getValue());
 	}
 	
-	@Ignore
 	@Test
 	public void testInitializationBasis() {
-		List<Node> nodes = CMLUtil.getQueryNodes(doc, "/cml:*[@convention='convention:compchem']/cml:module[@dictRef='cc:jobList']/cml:module[@dictRef='cc:job']/cml:module[@dictRef='cc:initialization']/cml:parameterList/cml:parameter[@dictRef='cc:basis']/cml:scalar/text()", CMLConstants.CML_XPATH);
+		List<Node> nodes = CMLUtil.getQueryNodes(doc, "/cml:*[@convention='convention:compchem']/cml:module[@dictRef='compchem:jobList']/cml:module[@dictRef='compchem:job']/cml:module[@dictRef='compchem:initialization']/cml:list[@dictRef='compchem:basisSet']/cml:scalar[@dictRef='compchem:basisSetLabel']/text()", CMLConstants.CML_XPATH);
 		assertFalse(nodes.isEmpty());
-		assertEquals("6-31G(d)", nodes.get(0).getValue());
+		assertEquals("sto-3g", nodes.get(0).getValue());
 	}
 	
 	@Test
 	public void testInitializationMolecule() {
-		List<Node> nodes = CMLUtil.getQueryNodes(doc, "/cml:*[@convention='convention:compchem']/cml:module[@dictRef='cc:jobList']/cml:module[@dictRef='cc:job']/cml:module[@dictRef='cc:initialization']/cml:molecule", CMLConstants.CML_XPATH);
+		List<Node> nodes = CMLUtil.getQueryNodes(doc, "/cml:*[@convention='convention:compchem']/cml:module[@dictRef='compchem:jobList']/cml:module[@dictRef='compchem:job']/cml:module[@dictRef='compchem:initialization']/cml:molecule", CMLConstants.CML_XPATH);
 		assertEquals(1, nodes.size());
 		
 		Element molecule = (Element) nodes.get(0);
@@ -206,30 +221,29 @@ xmlns:nonsi="http://www.xml-cml.org/unit/nonSi/">
 	
 	@Test
 	public void testFindCalculationModule() {
-		List<Node> nodes = CMLUtil.getQueryNodes(doc, "/cml:*[@convention='convention:compchem']/cml:module[@dictRef='cc:jobList']/cml:module[@dictRef='cc:job']/cml:module[@dictRef='cc:calculation']", CMLConstants.CML_XPATH);
+		List<Node> nodes = CMLUtil.getQueryNodes(doc, "/cml:*[@convention='convention:compchem']/cml:module[@dictRef='compchem:jobList']/cml:module[@dictRef='compchem:job']/cml:module[@dictRef='compchem:calculation']", CMLConstants.CML_XPATH);
 		assertEquals("Calculation", 1, nodes.size());
 		Element e = (Element) nodes.get(0);
-		assertEquals("http://www.xml-cml.org/dictionary/compchem/", e.getNamespaceURI("cc"));
+		assertEquals("http://www.xml-cml.org/dictionary/compchem/", e.getNamespaceURI("compchem"));
 	}
 	
 	@Test
 	public void testFindFinalizationModule() {
-		List<Node> nodes = CMLUtil.getQueryNodes(doc, "/cml:*[@convention='convention:compchem']/cml:module[@dictRef='cc:jobList']/cml:module[@dictRef='cc:job']/cml:module[@dictRef='cc:finalization']", CMLConstants.CML_XPATH);
+		List<Node> nodes = CMLUtil.getQueryNodes(doc, "/cml:*[@convention='convention:compchem']/cml:module[@dictRef='compchem:jobList']/cml:module[@dictRef='compchem:job']/cml:module[@dictRef='compchem:finalization']", CMLConstants.CML_XPATH);
 		assertEquals("Environment", 1, nodes.size());
 		Element e = (Element) nodes.get(0);
-		assertEquals("http://www.xml-cml.org/dictionary/compchem/", e.getNamespaceURI("cc"));
+		assertEquals("http://www.xml-cml.org/dictionary/compchem/", e.getNamespaceURI("compchem"));
 	}
 
 	@Test
 	public void testFindFinalizationPropertyList() {
-		List<Node> nodes = CMLUtil.getQueryNodes(doc, "/cml:*[@convention='convention:compchem']/cml:module[@dictRef='cc:jobList']/cml:module[@dictRef='cc:job']/cml:module[@dictRef='cc:finalization']/cml:propertyList", CMLConstants.CML_XPATH);
+		List<Node> nodes = CMLUtil.getQueryNodes(doc, "/cml:*[@convention='convention:compchem']/cml:module[@dictRef='compchem:jobList']/cml:module[@dictRef='compchem:job']/cml:module[@dictRef='compchem:finalization']/cml:propertyList", CMLConstants.CML_XPATH);
 		assertEquals("Finalization property list", 1, nodes.size());
 	}
 
-	@Ignore
 	@Test
 	public void testFindFinalizationProperties() {
-		List<Node> nodes = CMLUtil.getQueryNodes(doc, "/cml:*[@convention='convention:compchem']/cml:module[@dictRef='cc:jobList']/cml:module[@dictRef='cc:job']/cml:module[@dictRef='cc:finalization']/cml:propertyList/*", CMLConstants.CML_XPATH);
+		List<Node> nodes = CMLUtil.getQueryNodes(doc, "/cml:*[@convention='convention:compchem']/cml:module[@dictRef='compchem:jobList']/cml:module[@dictRef='compchem:job']/cml:module[@dictRef='compchem:finalization']/cml:propertyList/*", CMLConstants.CML_XPATH);
 		assertFalse("Finalization has properties", nodes.isEmpty());
 		for (Node node : nodes) {
 			Element e = (Element) node;
@@ -237,17 +251,17 @@ xmlns:nonsi="http://www.xml-cml.org/unit/nonSi/">
 		}
 	}
 
-	@Ignore
 	@Test
-	public void testFinalizationHFEnergy() {
-		List<Node> nodes = CMLUtil.getQueryNodes(doc, "/cml:*[@convention='convention:compchem']/cml:module[@dictRef='cc:jobList']/cml:module[@dictRef='cc:job']/cml:module[@dictRef='cc:finalization']/cml:propertyList/cml:property[@dictRef='cc:hfenergy']/cml:scalar/text()", CMLConstants.CML_XPATH);
+	public void testFinalizationTotalEnergy() {
+		List<Node> nodes = CMLUtil.getQueryNodes(doc, "/cml:*[@convention='convention:compchem']/cml:module[@dictRef='compchem:jobList']/cml:module[@dictRef='compchem:job']/cml:module[@dictRef='compchem:finalization']/cml:propertyList/cml:property[@dictRef='compchem:totalEnergy']/cml:scalar/text()", CMLConstants.CML_XPATH);
 		assertFalse(nodes.isEmpty());
-		assertEquals("-40.5183892", nodes.get(0).getValue());
+		assertEquals("-74.962985614357", nodes.get(0).getValue());
 	}
 
+	@Ignore
 	@Test
 	public void testFinalizationMolecule() {
-		List<Node> nodes = CMLUtil.getQueryNodes(doc, "/cml:*[@convention='convention:compchem']/cml:module[@dictRef='cc:jobList']/cml:module[@dictRef='cc:job']/cml:module[@dictRef='cc:finalization']/cml:molecule", CMLConstants.CML_XPATH);
+		List<Node> nodes = CMLUtil.getQueryNodes(doc, "/cml:*[@convention='convention:compchem']/cml:module[@dictRef='compchem:jobList']/cml:module[@dictRef='compchem:job']/cml:module[@dictRef='compchem:finalization']/cml:molecule", CMLConstants.CML_XPATH);
 		assertEquals(1, nodes.size());
 		
 		Element molecule = (Element) nodes.get(0);

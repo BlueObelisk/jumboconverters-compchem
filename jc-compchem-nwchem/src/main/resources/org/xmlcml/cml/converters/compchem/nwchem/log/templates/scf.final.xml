@@ -1,0 +1,107 @@
+<template repeat="*"  id="scf.final" name="Final SCF results" 
+  pattern="\s*Final (RHF|UHF|ROHF) \s*results\s*$\s+\-+.*" newline="$" 
+  endPattern="\s*$\s*"
+  >
+
+  <comment class="example.input" id="scf.final">
+       Final RHF  results
+       ------------------
+
+         Total SCF energy =   -134.684334043866
+      One-electron energy =   -233.466922651842
+      Two-electron energy =     98.782588607976
+ Nuclear repulsion energy =       .000000000000
+
+        Time for solution =     81.8s
+
+
+</comment>
+
+<comment class="example.input" id="scf.final.uhf">
+       Final UHF  results 
+       ------------------ 
+
+         Total SCF energy =    -74.962985614676
+      One electron energy =   -122.365858398494
+      Two electron energy =     38.210778115161
+ Nuclear repulsion energy =      9.192094668657
+
+                       Sz =      0.0000
+                 Sz(Sz+1) =      0.0000
+                      S^2 =     -0.0000
+
+        Time for solution =      0.0s
+
+
+</comment>
+
+<record repeat="3"/>
+<record id="totalEnergy" >\s*Total SCF energy\s*=\s*{F,compchem:totalEnergy}\s*</record>
+<record id="e1Energy" >\s*One.?electron energy\s*=\s*{F,compchem:e1Energy}\s*</record>
+<record id="e2Energy" >\s*Two.?electron energy\s*=\s*{F,compchem:e2Energy}\s*</record>
+<record id="nuclearRepulsionEnergy" >\s*Nuclear repulsion energy\s*=\s*{F,compchem:nuclearRepulsionEnergy}\s*</record>
+
+
+<templateList>
+<template id="s2"
+repeat="*"
+pattern="\s*Sz =.*"
+endPattern="\s*"
+>
+<record repeat="1" id="sz">\s*Sz =\s*{F,n:sz}\s*</record>
+<record repeat="1" id="sz2">\s*Sz\(Sz\+1\) =\s*{F,n:sz2}\s*</record>
+<record repeat="1" id="s2">\s*S\^2 =\s*{F,n:s2}\s*</record>
+</template>
+
+<template id="scf_time"
+repeat="*"
+pattern="\s*Time for solution =.*"
+endPattern=".*"
+endPattern2="~"
+>
+<record id="scf_time" >\s*Time for solution =\s*{F,compchem:wallTime}s\s*</record>
+</template>
+</templateList>
+
+
+<transform process="pullupSingleton" xpath=".//cml:list"/>
+<transform process="pullupSingleton" xpath="./cml:module"/>
+<transform process="delete" xpath=".//cml:list[@cmlx:templateRef='missingID']"/>
+
+  <!-- Add Units -->
+  <transform process="addUnits"
+  xpath=".//cml:scalar[@dictRef='compchem:totalEnergy' or @dictRef='compchem:e1Energy' or @dictRef='compchem:e2Energy' or @dictRef='compchem:nuclearRepulsionEnergy']"
+  value="nonsi:hartree"
+  />
+  <transform process="addUnits"
+  xpath=".//cml:scalar[@dictRef='compchem:wallTime']"
+  value="si:s"
+  />
+
+  <comment class="example.output" id="scf.final">
+<module cmlx:templateRef="scf.final" xmlns="http://www.xml-cml.org/schema" xmlns:cmlx="http://www.xml-cml.org/schema/cmlx">
+  <scalar dataType="xsd:double" dictRef="compchem:totalEnergy" cmlx:templateRef="totalEnergy" units="nonsi:hartree">-134.684334043866</scalar>
+  <scalar dataType="xsd:double" dictRef="compchem:e1Energy" cmlx:templateRef="e1Energy" units="nonsi:hartree">-233.466922651842</scalar>
+  <scalar dataType="xsd:double" dictRef="compchem:e2Energy" cmlx:templateRef="e2Energy" units="nonsi:hartree">98.782588607976</scalar>
+  <scalar dataType="xsd:double" dictRef="compchem:nuclearRepulsionEnergy" cmlx:templateRef="nuclearRepulsionEnergy" units="nonsi:hartree">0.0</scalar>
+  <scalar dataType="xsd:double" dictRef="compchem:wallTime" cmlx:templateRef="scf_time" units="si:s">81.8</scalar>
+</module>
+    </comment>
+    
+  <comment class="example.output" id="scf.final.uhf">
+<module cmlx:templateRef="scf.final" xmlns="http://www.xml-cml.org/schema" xmlns:cmlx="http://www.xml-cml.org/schema/cmlx">
+  <scalar dataType="xsd:double" dictRef="compchem:totalEnergy" cmlx:templateRef="totalEnergy" units="nonsi:hartree">-74.962985614676</scalar>
+  <scalar dataType="xsd:double" dictRef="compchem:e1Energy" cmlx:templateRef="e1Energy" units="nonsi:hartree">-122.365858398494</scalar>
+  <scalar dataType="xsd:double" dictRef="compchem:e2Energy" cmlx:templateRef="e2Energy" units="nonsi:hartree">38.210778115161</scalar>
+  <scalar dataType="xsd:double" dictRef="compchem:nuclearRepulsionEnergy" cmlx:templateRef="nuclearRepulsionEnergy" units="nonsi:hartree">9.192094668657</scalar>
+  <module cmlx:lineCount="3" cmlx:templateRef="s2">
+    <scalar dataType="xsd:double" dictRef="n:sz" cmlx:templateRef="sz">0.0</scalar>
+    <scalar dataType="xsd:double" dictRef="n:sz2" cmlx:templateRef="sz2">0.0</scalar>
+    <scalar dataType="xsd:double" dictRef="n:s2" cmlx:templateRef="s2">-0.0</scalar>
+  </module>
+  <scalar dataType="xsd:double" dictRef="compchem:wallTime" cmlx:templateRef="scf_time" units="si:s">0.0</scalar>
+</module>
+  </comment>
+    
+
+</template>

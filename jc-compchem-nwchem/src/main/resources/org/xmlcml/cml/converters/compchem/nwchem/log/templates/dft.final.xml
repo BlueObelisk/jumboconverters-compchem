@@ -1,0 +1,53 @@
+<template repeat="*"  id="dftFinal" name="Final DFT energy" 
+  pattern="\s*Total DFT energy.*" newline="$" endPattern="\s*$\s*">
+
+  <comment class="example.input" id="dftFinal">
+         Total DFT energy =    -1823.680196170071
+      One electron energy =    -4105.874590431184
+           Coulomb energy =     1601.844762163483
+    Exchange-Corr. energy =     -118.145985996560
+ Nuclear repulsion energy =      798.495618094190
+
+ Numeric. integr. density =       95.999997053934
+
+     Total iterative time =      6.9s  
+     
+     
+  </comment>
+  <record id="totalEnergy">\s*Total DFT energy =\s*{F,compchem:totalEnergy}</record>
+  <record id="e1Energy">\s*One electron energy =\s*{F,compchem:e1Energy}</record>
+  <record id="coulombEnergy">\s*Coulomb energy =\s*{F,compchem:coulombEnergy}</record>
+  <record id="xcEnergy">\s*Exchange\-Corr. energy =\s*{F,compchem:xcEnergy}</record>
+  <record id="nuclearRepulsionEnergy">\s*Nuclear repulsion energy =\s*{F,compchem:nuclearRepulsionEnergy}</record>
+  <record/>
+  <record id="numintegdens">\s*Numeric\. integr\. density =\s*{F,n:numintegdens}</record>
+  <record/>
+  <record id="totitertime">\s*Total iterative time =\s*{F,compchem:wallTime}s\s*</record>  
+  <transform process="pullupSingleton" xpath="./cml:list"/>
+  
+  <transform process="delete" xpath=".//cml:list[@cmlx:templateRef='missingID']"/>
+  
+  <!-- Add Units -->
+  <transform process="addUnits"
+  xpath=".//cml:scalar[@dictRef='compchem:totalEnergy' or @dictRef='compchem:e1Energy' or @dictRef='compchem:coulombEnergy' or @dictRef='compchem:xcEnergy' or @dictRef='compchem:nuclearRepulsionEnergy']"
+  value="nonsi:hartree"
+  />
+  <transform process="addUnits"
+  xpath=".//cml:scalar[@dictRef='compchem:wallTime']"
+  value="si:s"
+  />
+  
+  
+  <comment class="example.output" id="dftFinal">
+<module xmlns="http://www.xml-cml.org/schema" xmlns:cmlx="http://www.xml-cml.org/schema/cmlx" cmlx:templateRef="dftFinal">
+<scalar dataType="xsd:double" dictRef="compchem:totalEnergy" cmlx:templateRef="totalEnergy" units="nonsi:hartree">-1823.680196170071</scalar>
+<scalar dataType="xsd:double" dictRef="compchem:e1Energy" cmlx:templateRef="e1Energy" units="nonsi:hartree">-4105.874590431184</scalar>
+<scalar dataType="xsd:double" dictRef="compchem:coulombEnergy" cmlx:templateRef="coulombEnergy" units="nonsi:hartree">1601.844762163483</scalar>
+<scalar dataType="xsd:double" dictRef="compchem:xcEnergy" cmlx:templateRef="xcEnergy" units="nonsi:hartree">-118.14598599656</scalar>
+<scalar dataType="xsd:double" dictRef="compchem:nuclearRepulsionEnergy" cmlx:templateRef="nuclearRepulsionEnergy" units="nonsi:hartree">798.49561809419</scalar>
+<scalar dataType="xsd:double" dictRef="n:numintegdens" cmlx:templateRef="numintegdens">95.999997053934</scalar>
+<scalar dataType="xsd:double" dictRef="compchem:wallTime" cmlx:templateRef="totitertime" units="si:s">6.9</scalar>
+</module>
+    </comment>
+
+</template>

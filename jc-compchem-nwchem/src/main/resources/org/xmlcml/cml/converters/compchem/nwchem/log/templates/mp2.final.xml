@@ -1,0 +1,45 @@
+  <template id="mp2_final" name="MP2 FinalResults"
+  newline="$" repeat="*" 
+  pattern="\s*------+\s*$\s*SCF energy.*" 
+  endPattern="\s*------+\s*"
+  endOffset="1"
+  >
+  <comment class="example.input" id="nwchemmp2">
+          -------------------------------------------
+          SCF energy                 -74.962985614677
+          Correlation energy          -0.035524009511
+          Singlet pairs               -0.032481632032
+          Triplet pairs               -0.003042377479
+          Total MP2 energy           -74.998509624188
+          -------------------------------------------
+</comment>
+
+
+  <record/>
+  <record id="scfEnergy" >\s*SCF energy\s*{F,compchem:scfEnergy}\s*</record>
+  <record id="correlationEnergy" >\s*Correlation energy\s*{F,compchem:correlationEnergy}\s*</record>
+  <record id="singletPairs" >\s*Singlet pairs\s*{F,n:singletPairs}\s*</record>
+  <record id="tripletPairs" >\s*Triplet pairs\s*{F,n:tripletPairs}\s*</record>
+  <record id="totalEnergy" >\s*Total MP2 energy\s*{F,compchem:totalEnergy}\s*</record>
+  <transform process="pullupSingleton" xpath="./cml:list"/>
+  <record/>
+  <transform process="delete" xpath=".//cml:list[@cmlx:templateRef='missingID']"/>
+  
+  <!-- Add Units -->
+  <transform process="addUnits"
+  xpath=".//cml:scalar[@dictRef='compchem:scfEnergy' or @dictRef='compchem:correlationEnergy' or @dictRef='compchem:totalEnergy']"
+  value="nonsi:hartree"
+  />
+  
+
+  <comment class="example.output" id="nwchemmp2">
+<module cmlx:templateRef="mp2_final" xmlns="http://www.xml-cml.org/schema" xmlns:cmlx="http://www.xml-cml.org/schema/cmlx">
+  <scalar dataType="xsd:double" dictRef="compchem:scfEnergy" cmlx:templateRef="scfEnergy" units="nonsi:hartree">-74.962985614677</scalar>
+  <scalar dataType="xsd:double" dictRef="compchem:correlationEnergy" cmlx:templateRef="correlationEnergy" units="nonsi:hartree">-0.035524009511</scalar>
+  <scalar dataType="xsd:double" dictRef="n:singletPairs" cmlx:templateRef="singletPairs">-0.032481632032</scalar>
+  <scalar dataType="xsd:double" dictRef="n:tripletPairs" cmlx:templateRef="tripletPairs">-0.003042377479</scalar>
+  <scalar dataType="xsd:double" dictRef="compchem:totalEnergy" cmlx:templateRef="totalEnergy" units="nonsi:hartree">-74.998509624188</scalar>
+</module>
+</comment>
+
+</template>
