@@ -32,12 +32,10 @@
   <transform process="moveRelative" 
     xpath=".//cml:module[@cmlx:templateRef='job']/cml:scalar[@dictRef='cc:method'][last()]" 
     to="./ancestor::*[@dictRef='cc:job']/cml:module[@id='initialization']/cml:parameterList"/> 
-  <transform process="moveRelative" 
-    xpath=".//cml:module[@cmlx:templateRef='job']/cml:scalar[@dictRef='cc:basis'][last()]" 
-    to="./ancestor::*[@dictRef='cc:job']/cml:module[@id='initialization']/cml:parameterList"/> 
+
 
   <transform process="moveRelative" 
-    xpath=".//cml:module[@id='initialization']//cml:scalar[@dictRef='cc:pointgroup'][last()]" 
+    xpath=".//cml:module[@id='initialization']//cml:scalar[@dictRef='cc:pointGroup'][last()]" 
     to="./ancestor::*[@dictRef='cc:job']/cml:module[@id='initialization']/cml:parameterList" position="1"/> 
   <transform process="moveRelative" xpath=".//cml:module[@id='initialization']//cml:scalar[@dictRef='cc:frameworkgroup'][last()]" 
       to="./ancestor::*[@dictRef='cc:job']/cml:module[@id='initialization']/cml:parameterList" position="1"/> 
@@ -46,8 +44,25 @@
   <transform process="moveRelative" xpath=".//cml:module[@id='initialization']//cml:scalar[@dictRef='cc:degfreedom'][last()]" 
        to="./ancestor::*[@dictRef='cc:job']/cml:module[@id='initialization']/cml:parameterList" position="1"/> 
 
+<!-- Create basis set element -->
+    <transform process="addChild"
+    xpath="//cml:module[@id='initialization']"
+    elementName="cml:list"
+    dictRef="compchem:basisSet"/>
+<!--    <transform process="moveRelative" 
+    xpath=".//cml:module[@cmlx:templateRef='job']/cml:scalar[@dictRef='cc:basisSetLabel'][last()]" 
+    to="./ancestor::*[@dictRef='cc:job']/cml:module[@id='initialization']/cml:parameterList"/>
   <transform process="moveRelative"   to="./ancestor::*[@dictRef='cc:job']/cml:module[@id='initialization']/cml:parameterList" position="1"
-      xpath=".//cml:module[@id='initialization']//cml:module[@cmlx:templateRef='l301.basis']/cml:scalar[@dictRef='cc:basis']" />
+      xpath=".//cml:module[@id='initialization']//cml:module[@cmlx:templateRef='l301.basis']/cml:scalar[@dictRef='cc:basisSetLabel']" />
+ -->   
+   <transform process="moveRelative" 
+    xpath=".//cml:module[@cmlx:templateRef='job']/cml:scalar[@dictRef='cc:basisSetLabel'][last()]" 
+    to="./ancestor::*[@dictRef='cc:job']/cml:module[@id='initialization']/cml:list[@dictRef='compchem:basisSet']"/>
+  <transform process="moveRelative"   to="./ancestor::*[@dictRef='cc:job']/cml:module[@id='initialization']/cml:list[@dictRef='compchem:basisSet']" position="1"
+      xpath=".//cml:module[@id='initialization']//cml:module[@cmlx:templateRef='l301.basis']/cml:scalar[@dictRef='cc:basisSetLabel']" />
+
+      
+      
   <transform process="moveRelative"   to="./ancestor::*[@dictRef='cc:job']/cml:module[@id='initialization']/cml:parameterList" position="1"
       xpath=".//cml:module[@id='initialization']//cml:module[@cmlx:templateRef='l301.basis']/cml:scalar[@dictRef='cc:diffuse']" />
   <transform process="moveRelative"   to="./ancestor::*[@dictRef='cc:job']/cml:module[@id='initialization']/cml:parameterList" position="1"

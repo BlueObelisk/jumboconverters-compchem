@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
@@ -22,7 +23,6 @@ import org.xmlcml.cml.converters.compchem.gaussian.log.GaussianLog2XMLConverter;
 import org.xmlcml.cml.converters.compchem.gaussian.log.GaussianLogXML2CompchemConverter;
 import org.xmlcml.cml.element.CMLModule;
 
-@Ignore
 public class CompChemConventionTest {
 
 	private static Document doc;
@@ -36,10 +36,12 @@ public class CompChemConventionTest {
 		
 		GaussianLog2XMLConverter converter1 = GaussianLog2XMLConverter.createDefaultConverter();
 		e1 = converter1.convertToXML(in);
+		//CMLUtil.debug(e1, new FileOutputStream("debug1.xml"), 1);
 		
 		GaussianLogXML2CompchemConverter converter2 = GaussianLogXML2CompchemConverter.createDefaultConverter();
 		
 		Element e2 = converter2.convertToXML(e1);
+		//CMLUtil.debug(e2, new FileOutputStream("debug2.xml"), 1);
 		doc = CMLUtil.ensureDocument(e2);
 		
 		List<Node> nodes = CMLUtil.getQueryNodes(doc, "/cml:*[@convention='convention:compchem']/cml:module[@dictRef='cc:jobList']/cml:module[@dictRef='cc:job']", CMLConstants.CML_XPATH);
@@ -115,7 +117,7 @@ public class CompChemConventionTest {
 	//@Ignore
 	@Test
 	public void testEnvironmentHostName() {
-		List<Node> nodes = CMLUtil.getQueryNodes(job1, "./cml:module[@dictRef='cc:environment']/cml:parameterList/cml:parameter[@dictRef='cc:hostname']/cml:scalar/text()", CMLConstants.CML_XPATH);
+		List<Node> nodes = CMLUtil.getQueryNodes(job1, "./cml:module[@dictRef='cc:environment']/cml:parameterList/cml:parameter[@dictRef='cc:hostName']/cml:scalar/text()", CMLConstants.CML_XPATH);
 //		job1.debug("JOB1");
 		assertFalse("should have hostName", nodes.isEmpty());
 		assertEquals("GINC-DEEPTHOUGHT", nodes.get(0).getValue());
@@ -123,7 +125,7 @@ public class CompChemConventionTest {
 	
 	@Test
 	public void testEnvironmentVersion() {
-		List<Node> nodes = CMLUtil.getQueryNodes(job1, "./cml:module[@dictRef='cc:environment']/cml:parameterList/cml:parameter[@dictRef='cc:version']/cml:scalar/text()", CMLConstants.CML_XPATH);
+		List<Node> nodes = CMLUtil.getQueryNodes(job1, "./cml:module[@dictRef='cc:environment']/cml:parameterList/cml:parameter[@dictRef='cc:programVersion']/cml:scalar/text()", CMLConstants.CML_XPATH);
 		assertFalse(nodes.isEmpty());
 		assertEquals("x86-Linux-G03RevB.04", nodes.get(0).getValue());
 	}
@@ -164,7 +166,7 @@ public class CompChemConventionTest {
 	
 	@Test
 	public void testInitializationBasis() {
-		List<Node> nodes = CMLUtil.getQueryNodes(job1, "./cml:module[@dictRef='cc:initialization']/cml:parameterList/cml:parameter[@dictRef='cc:basis']/cml:scalar/text()", CMLConstants.CML_XPATH);
+		List<Node> nodes = CMLUtil.getQueryNodes(job1, "./cml:module[@dictRef='cc:initialization']/cml:list[@dictRef='compchem:basisSet']/cml:scalar[@dictRef='cc:basisSetLabel']/text()", CMLConstants.CML_XPATH);
 		assertFalse(nodes.isEmpty());
 		assertEquals("6-31G(d)", nodes.get(0).getValue());
 	}
@@ -214,9 +216,9 @@ public class CompChemConventionTest {
 	}
 	
 	@Test
-	public void testFinalizationHFEnergy() {
+	public void testFinalizationTotalEnergy() {
 		List<Node> propertyNodes = CMLUtil.getQueryNodes(job1, "./cml:module[@dictRef='cc:finalization']/cml:propertyList", CMLConstants.CML_XPATH);
-		List<Node> nodes = CMLUtil.getQueryNodes(job1, "./cml:module[@dictRef='cc:finalization']/cml:propertyList/cml:property[@dictRef='cc:hfenergy']/cml:scalar/text()", CMLConstants.CML_XPATH);
+		List<Node> nodes = CMLUtil.getQueryNodes(job1, "./cml:module[@dictRef='cc:finalization']/cml:propertyList/cml:property[@dictRef='cc:totalEnergy']/cml:scalar/text()", CMLConstants.CML_XPATH);
 		assertFalse("should find hfenergy node", nodes.isEmpty());
 		assertEquals("-40.5183892", nodes.get(0).getValue());
 	}
