@@ -17,7 +17,7 @@
   <transform process="addDictRef" xpath=".//cml:list[@dictRef='cc:fukui.nnplus']/cml:array[@dictRef='g:fukui']"
     value="cc:fukui.nnplus"/>
   <transform process="split" xpath=".//cml:list[@dictRef='cc:fukui.nnplus']/cml:array[@dictRef='cc:fukui.nnplus']"/>
-  <transform process="copy" xpath=".//cml:list[@dictRef='cc:fukui.nnplus']/cml:list/cml:scalar"
+  <transform process="copyRelative" xpath=".//cml:list[@dictRef='cc:fukui.nnplus']/cml:list/cml:scalar"
    to="//cml:molecule[@id='molgeom.copy']/cml:atomArray/cml:atom" />
   <transform process="createWrapperProperty" 
       xpath="//cml:molecule[@id='molgeom.copy']/cml:atomArray/cml:atom/cml:scalar[@dictRef='cc:fukui.nnplus']" />
@@ -25,7 +25,7 @@
   <transform process="addDictRef" xpath=".//cml:list[@dictRef='cc:fukui.nnminus']/cml:array[@dictRef='g:fukui']"
     value="cc:fukui.nnminus"/>
   <transform process="split" xpath=".//cml:list[@dictRef='cc:fukui.nnminus']/cml:array[@dictRef='cc:fukui.nnminus']"/>
-  <transform process="copy" xpath=".//cml:list[@dictRef='cc:fukui.nnminus']/cml:list/cml:scalar"
+  <transform process="copyRelative" xpath=".//cml:list[@dictRef='cc:fukui.nnminus']/cml:list/cml:scalar"
    to="//cml:molecule[@id='molgeom.copy']/cml:atomArray/cml:atom" />
   <transform process="createWrapperProperty" 
       xpath="//cml:molecule[@id='molgeom.copy']/cml:atomArray/cml:atom/cml:scalar[@dictRef='cc:fukui.nnminus']" />
@@ -33,7 +33,7 @@
   <transform process="addDictRef" xpath=".//cml:list[@dictRef='cc:fukui.snplus']/cml:array[@dictRef='g:fukui']"
     value="cc:fukui.snplus"/>
   <transform process="split" xpath=".//cml:list[@dictRef='cc:fukui.snplus']/cml:array[@dictRef='cc:fukui.snplus']"/>
-  <transform process="copy" xpath=".//cml:list[@dictRef='cc:fukui.snplus']/cml:list/cml:scalar"
+  <transform process="copyRelative" xpath=".//cml:list[@dictRef='cc:fukui.snplus']/cml:list/cml:scalar"
    to="//cml:molecule[@id='molgeom.copy']/cml:atomArray/cml:atom" />
   <transform process="createWrapperProperty" 
       xpath="//cml:molecule[@id='molgeom.copy']/cml:atomArray/cml:atom/cml:scalar[@dictRef='cc:fukui.snplus']" />
@@ -41,7 +41,7 @@
   <transform process="addDictRef" xpath=".//cml:list[@dictRef='cc:fukui.ssplus']/cml:array[@dictRef='g:fukui']"
     value="cc:fukui.ssplus"/>
   <transform process="split" xpath=".//cml:list[@dictRef='cc:fukui.ssplus']/cml:array[@dictRef='cc:fukui.ssplus']"/>
-  <transform process="copy" xpath=".//cml:list[@dictRef='cc:fukui.ssplus']/cml:list/cml:scalar"
+  <transform process="copyRelative" xpath=".//cml:list[@dictRef='cc:fukui.ssplus']/cml:list/cml:scalar"
    to="//cml:molecule[@id='molgeom.copy']/cml:atomArray/cml:atom" />
   <transform process="createWrapperProperty" 
       xpath="//cml:molecule[@id='molgeom.copy']/cml:atomArray/cml:atom/cml:scalar[@dictRef='cc:fukui.ssplus']" />
@@ -49,7 +49,7 @@
   <transform process="addDictRef" xpath=".//cml:list[@dictRef='cc:fukui.nsplus']/cml:array[@dictRef='g:fukui']"
     value="cc:fukui.nsplus"/>
   <transform process="split" xpath=".//cml:list[@dictRef='cc:fukui.nsplus']/cml:array[@dictRef='cc:fukui.nsplus']"/>
-  <transform process="copy" xpath=".//cml:list[@dictRef='cc:fukui.nsplus']/cml:list/cml:scalar"
+  <transform process="copyRelative" xpath=".//cml:list[@dictRef='cc:fukui.nsplus']/cml:list/cml:scalar"
    to="//cml:molecule[@id='molgeom.copy']/cml:atomArray/cml:atom" />
   <transform process="createWrapperProperty" 
       xpath="//cml:molecule[@id='molgeom.copy']/cml:atomArray/cml:atom/cml:scalar[@dictRef='cc:fukui.nsplus']" />
@@ -57,7 +57,7 @@
   <transform process="addDictRef" xpath=".//cml:list[@dictRef='cc:fukui.ssminus']/cml:array[@dictRef='g:fukui']"
     value="cc:fukui.ssminus"/>
   <transform process="split" xpath=".//cml:list[@dictRef='cc:fukui.ssminus']/cml:array[@dictRef='cc:fukui.ssminus']"/>
-  <transform process="copy" xpath=".//cml:list[@dictRef='cc:fukui.ssminus']/cml:list/cml:scalar"
+  <transform process="copyRelative" xpath=".//cml:list[@dictRef='cc:fukui.ssminus']/cml:list/cml:scalar"
    to="//cml:molecule[@id='molgeom.copy']/cml:atomArray/cml:atom" />
   <transform process="createWrapperProperty" 
       xpath="//cml:molecule[@id='molgeom.copy']/cml:atomArray/cml:atom/cml:scalar[@dictRef='cc:fukui.ssminus']" />
@@ -65,7 +65,7 @@
   <transform process="addDictRef" xpath=".//cml:list[@dictRef='cc:fukui.nsminus']/cml:array[@dictRef='g:fukui']"
     value="cc:fukui.nsminus"/>
   <transform process="split" xpath=".//cml:list[@dictRef='cc:fukui.nsminus']/cml:array[@dictRef='cc:fukui.nsminus']"/>
-  <transform process="copy" xpath=".//cml:list[@dictRef='cc:fukui.nsminus']/cml:list/cml:scalar"
+  <transform process="copyRelative" xpath=".//cml:list[@dictRef='cc:fukui.nsminus']/cml:list/cml:scalar"
    to="//cml:molecule[@id='molgeom.copy']/cml:atomArray/cml:atom" />
   <transform process="createWrapperProperty" 
       xpath="//cml:molecule[@id='molgeom.copy']/cml:atomArray/cml:atom/cml:scalar[@dictRef='cc:fukui.nsminus']" />

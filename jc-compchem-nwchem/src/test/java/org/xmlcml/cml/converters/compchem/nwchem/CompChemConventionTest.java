@@ -36,7 +36,7 @@ public class CompChemConventionTest {
 		NWChemLogXML2CompchemConverter converter2 = NWChemLogXML2CompchemConverter.createDefaultConverter();
 		Element e2 = converter2.convertToXML(e1);
 		doc = CMLUtil.ensureDocument(e2);
-		//CMLUtil.debug(e2, new FileOutputStream("test/h2o_sto3g.xml"), 1);
+		CMLUtil.debug(e2, new FileOutputStream("test/h2o_sto3g.xml"), 1);
 	}
 
 	@AfterClass

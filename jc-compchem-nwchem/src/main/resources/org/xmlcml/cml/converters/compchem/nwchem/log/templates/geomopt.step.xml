@@ -556,9 +556,13 @@ HF SCF optimisation  on water with STO-3G basis
   <!-- Copy first calculation initialization module and then just change the task -->
   <transform process="copy"
   xpath="./cml:module[@cmlx:templateRef='nwchemModule'][position()=1]/cml:module[@dictRef='compchem:calculation']/cml:module[@dictRef='compchem:initialization']"  
-  to="../../.."
+  to="."
+  position="1"
   />
-  <transform process="delete"
+<!-- 
+    to="../../.."
+ -->
+   <transform process="delete"
   xpath="./cml:module[@dictRef='compchem:initialization']/cml:parameterList/cml:parameter[@dictRef='compchem:task']"
   />
   <transform process="addChild"
@@ -570,33 +574,62 @@ HF SCF optimisation  on water with STO-3G basis
   <transform process="createWrapperParameter"
   xpath="./cml:module[@dictRef='compchem:initialization']/cml:parameterList/cml:scalar"
   />
-  
-     <!-- FILTHY HACK! -->
-  <!-- Move over the mp2 method - move not copy as we need to put at top of list _shudder_ 
-  Will fix when we can do tests and proper copies
-  -->
-  <transform process="moveRelative"
-  xpath="./cml:module[@cmlx:templateRef='nwchemModule'][position()=2]/cml:module[@dictRef='compchem:calculation']/cml:module[@dictRef='compchem:initialization']/cml:parameterList/cml:parameter[@dictRef='compchem:method']/cml:scalar[text()='mp2']"        
-  to="../../../../../../cml:module[@dictRef='compchem:initialization']/cml:parameterList"
-  position="1"
-  /> 
-  <transform process="addDictRef"
-  xpath="./cml:module[@dictRef='compchem:initialization']/cml:parameterList/cml:scalar[text()='mp2']"
-  value="compchem:method"
+  <!--  Copy MP2 method across (see transform.intial.xml) -->
+  <transform process="addAttribute"
+   xpath="./cml:module[@cmlx:templateRef='nwchemModule'][position()=2]/cml:module[@dictRef='compchem:calculation']/cml:module[@dictRef='compchem:initialization']/cml:parameterList/cml:parameter[@dictRef='compchem:method' and ./cml:scalar[text()='mp2']]"        
+   name="flag"
+   value="move"
+   />
+   
+  <transform process="copyRelative"
+  xpath="./cml:module[@cmlx:templateRef='nwchemModule']/cml:module[@dictRef='compchem:calculation']/cml:module[@dictRef='compchem:initialization']/cml:parameterList/cml:parameter[@flag]"
+  to="../../../../../cml:module[@dictRef='compchem:initialization']/cml:parameterList"
   />
-  <transform process="createWrapperParameter"
-  xpath="./cml:module[@dictRef='compchem:initialization']/cml:parameterList/cml:scalar[text()='mp2']"
+   
+  <transform process="delete"
+  xpath="./cml:module[@dictRef='compchem:initialization']/cml:parameterList/cml:parameter[@dictRef='compchem:method' and not(@flag) and following-sibling::cml:parameter[@dictRef='compchem:method' and @flag]]"
   />
   
+  <!--  remove flag -->
+  <transform process="delete"
+  xpath=".//@flag"
+  />
   
   <!-- Copy finalization module from last calculation module to be our finalization --> 
     <transform process="copy"
     xpath="./cml:module[@cmlx:templateRef='nwchemModule'][position()=last()]/cml:module[@dictRef='compchem:calculation']/cml:module[@dictRef='compchem:finalization']"   
-    to="../../.."
+    to="."
     />
   
+<!--     to="../../.." -->
+
   <comment class="example.output" id="step">
 <module xmlns="http://www.xml-cml.org/schema" xmlns:cmlx="http://www.xml-cml.org/schema/cmlx" cmlx:templateRef="step" dictRef="compchem:calculation" id="step">
+<module dictRef="compchem:initialization" id="copy.0">
+<parameterList>
+<parameter dictRef="compchem:method">
+<scalar dataType="xsd:string">scf</scalar>
+</parameter>
+<parameter dictRef="compchem:title">
+<scalar dataType="xsd:string" cmlx:templateRef="title">HF SCF optimisation  on water with STO-3G basis</scalar>
+</parameter>
+<parameter dictRef="compchem:numClosedShells">
+<scalar dataType="xsd:integer" cmlx:templateRef="numClosedShells">5</scalar>
+</parameter>
+<parameter dictRef="compchem:numOpenShells">
+<scalar dataType="xsd:integer" cmlx:templateRef="numOpenShells">0</scalar>
+</parameter>
+<parameter dictRef="compchem:charge">
+<scalar dataType="xsd:double" cmlx:templateRef="charge" units="nonsi:elementary_charge">0.0</scalar>
+</parameter>
+<parameter dictRef="compchem:wavefunctionType">
+<scalar dataType="xsd:string" cmlx:templateRef="wavefunctionType">RHF</scalar>
+</parameter>
+<parameter dictRef="compchem:task">
+<scalar dataType="xsd:string">step</scalar>
+</parameter>
+</parameterList>
+</module>
 <list cmlx:templateRef="skip">
 <scalar dataType="xsd:integer" dictRef="cc:step">0</scalar>
 </list>
@@ -1319,31 +1352,6 @@ HF SCF optimisation  on water with STO-3G basis
 </propertyList>
 </module>
 </module>
-</module>
-<module dictRef="compchem:initialization" id="copy.0">
-<parameterList>
-<parameter dictRef="compchem:method">
-<scalar dataType="xsd:string">scf</scalar>
-</parameter>
-<parameter dictRef="compchem:title">
-<scalar dataType="xsd:string" cmlx:templateRef="title">HF SCF optimisation  on water with STO-3G basis</scalar>
-</parameter>
-<parameter dictRef="compchem:numClosedShells">
-<scalar dataType="xsd:integer" cmlx:templateRef="numClosedShells">5</scalar>
-</parameter>
-<parameter dictRef="compchem:numOpenShells">
-<scalar dataType="xsd:integer" cmlx:templateRef="numOpenShells">0</scalar>
-</parameter>
-<parameter dictRef="compchem:charge">
-<scalar dataType="xsd:double" cmlx:templateRef="charge" units="nonsi:elementary_charge">0.0</scalar>
-</parameter>
-<parameter dictRef="compchem:wavefunctionType">
-<scalar dataType="xsd:string" cmlx:templateRef="wavefunctionType">RHF</scalar>
-</parameter>
-<parameter dictRef="compchem:task">
-<scalar dataType="xsd:string">step</scalar>
-</parameter>
-</parameterList>
 </module>
 <module dictRef="compchem:finalization" id="finalization.copy">
 <propertyList>

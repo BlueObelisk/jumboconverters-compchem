@@ -68,8 +68,8 @@
   <!-- Copy over the first step's initialization module and just change the task -->
   <transform process="copy"
   xpath="./cml:module[@dictRef='compchem:calculation' and @id='step'][position()=1]/cml:module[@dictRef='compchem:initialization']"  
-  to="../.."
-  position="0"
+  to="."
+  position="1"
   />
   <transform process="delete"
   xpath="./cml:module[@dictRef='compchem:initialization']/cml:parameterList/cml:parameter[@dictRef='compchem:task']"

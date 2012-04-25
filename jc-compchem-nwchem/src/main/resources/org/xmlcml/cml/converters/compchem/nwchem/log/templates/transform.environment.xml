@@ -54,7 +54,7 @@
   position="1"/>
   
   <!-- This should be fixed when we have copy and copyRelative as it should be a true copy -->
-  <transform process="copy"
+  <transform process="copyRelative"
   xpath="./cml:module[@cmlx:templateRef='nwchem_job'][position() = 1]/cml:module[@id='environment']" 
   to="../../cml:module[@cmlx:templateRef='nwchem_job'][position() &gt; 1]"
   />

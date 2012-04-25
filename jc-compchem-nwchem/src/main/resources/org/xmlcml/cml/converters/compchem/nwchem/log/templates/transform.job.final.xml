@@ -13,7 +13,7 @@
    name="flag"
    value="move"
    />
-   <transform process="copy"
+   <transform process="copyRelative"
    xpath="./cml:module[@id='jobList1']/cml:module[@id='job' and @flag]/cml:module[@dictRef='compchem:finalization']/cml:molecule"
    to="../../following-sibling::cml:module[@dictRef='compchem:job' and position()=1]/cml:module[@dictRef='compchem:initialization']"
    />   
@@ -33,7 +33,7 @@
    name="flag"
    value="move"
    />
-   <transform process="copy"
+   <transform process="copyRelative"
    xpath="./cml:module[@id='jobList1']/cml:module[@id='job' and @flag]/cml:module[@dictRef='compchem:initialization']/cml:molecule"
    to="../../following-sibling::cml:module[@dictRef='compchem:job' and position()=1]/cml:module[@dictRef='compchem:initialization']"
    />   
@@ -47,7 +47,7 @@
    name="flag"
    value="move"
    />
-   <transform process="copy"
+   <transform process="copyRelative"
    xpath="./cml:module[@id='jobList1']/cml:module[@id='job' and @flag]/cml:module[@dictRef='compchem:initialization']/cml:molecule"
    to="../../following-sibling::cml:module[@dictRef='compchem:job' and position()=1]/cml:module[@dictRef='compchem:initialization']"
    />   
@@ -61,7 +61,7 @@
    name="flag"
    value="move"
    />
-   <transform process="copy"
+   <transform process="copyRelative"
    xpath="./cml:module[@id='jobList1']/cml:module[@id='job' and @flag]/cml:module[@dictRef='compchem:initialization']/cml:molecule"
    to="../../following-sibling::cml:module[@dictRef='compchem:job' and position()=1]/cml:module[@dictRef='compchem:initialization']"
    />   
@@ -77,7 +77,7 @@
    name="flag"
    value="move"
    />
-   <transform process="copy"
+   <transform process="copyRelative"
    xpath="./cml:module[@id='jobList1']/cml:module[@id='job' and @flag]/cml:module[@dictRef='compchem:initialization']/cml:list[@dictRef='compchem:basisSet']"
    to="../../following-sibling::cml:module[@dictRef='compchem:job' and position()=1]/cml:module[@dictRef='compchem:initialization']"
    />   
@@ -90,7 +90,7 @@
    name="flag"
    value="move"
    />
-   <transform process="copy"
+   <transform process="copyRelative"
    xpath="./cml:module[@id='jobList1']/cml:module[@id='job' and @flag]/cml:module[@dictRef='compchem:initialization']/cml:list[@dictRef='compchem:basisSet']"
    to="../../following-sibling::cml:module[@dictRef='compchem:job' and position()=1]/cml:module[@dictRef='compchem:initialization']"
    />   
@@ -103,7 +103,7 @@
    name="flag"
    value="move"
    />
-   <transform process="copy"
+   <transform process="copyRelative"
    xpath="./cml:module[@id='jobList1']/cml:module[@id='job' and @flag]/cml:module[@dictRef='compchem:initialization']/cml:list[@dictRef='compchem:basisSet']"
    to="../../following-sibling::cml:module[@dictRef='compchem:job' and position()=1]/cml:module[@dictRef='compchem:initialization']"
    />   
