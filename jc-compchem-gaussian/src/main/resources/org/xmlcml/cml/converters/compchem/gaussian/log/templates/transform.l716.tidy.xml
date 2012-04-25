@@ -34,7 +34,7 @@
     value="cc:vibrations"/>
   <transform process="split" xpath="//cml:property[@dictRef='cc:vibrations']/cml:module/cml:array[@dictRef='cc:displacement']"
     rows="$number(../cml:array[@dictRef='cc:atomicNumber']/@size)"/>
-  <transform process="copy" xpath="//cml:property[@dictRef='cc:vibrations']//cml:array[@dictRef='cc:displacement']"
+  <transform process="copyRelative" xpath="//cml:property[@dictRef='cc:vibrations']//cml:array[@dictRef='cc:displacement']"
     to="./ancestor::cml:module[@dictRef='cc:finalization']/cml:molecule[@id='mol9999']/cml:atomArray/cml:atom" />
   <transform process="split" xpath=".//cml:array[@dictRef='cc:displacement']" cols="3"/>
   <transform process="delete" xpath=".//cml:property[@dictRef='cc:vibrations']/cml:*"/>
@@ -46,7 +46,7 @@
 <!--  tidy forces -->
   <transform process="addDictRef" xpath="//cml:property[cml:module[@cmlx:templateRef='l716.forces']]"
     value="cc:forces"/>
-  <transform process="copy" xpath="//cml:property[@dictRef='cc:forces']//cml:array[@dictRef='cc:force']"
+  <transform process="copyRelative" xpath="//cml:property[@dictRef='cc:forces']//cml:array[@dictRef='cc:force']"
     to="./ancestor::cml:module[@dictRef='cc:finalization']/cml:molecule[@id='mol9999']/cml:atomArray/cml:atom"/>
   <transform process="delete" xpath=".//cml:property[.//@dictRef='cc:forces']/cml:*"/>
   <transform process="addChild" xpath=".//cml:property[@dictRef='cc:forces']" elementName="cml:scalar" dictRef="cc:linkToAtoms" 
