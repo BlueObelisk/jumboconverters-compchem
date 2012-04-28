@@ -2,9 +2,9 @@
   pattern="\s*\w+\s*\(\w+\)\s*"
   newline="$"
   endPattern="\s*$\s*|(\s*\w+\s*\(\w+\)\s*)"
-  endOffset="1"
+  endPattern2="~"
+  endOffset="0"
   >
-  
 <!--     pattern="\s*\d+\s*\S+.*" newline="$" endPattern="\s*"
  -->  
   <comment>
@@ -49,8 +49,12 @@
   <record/>
   
   <templateList id="contractions">
-    <template repeat="*" name="contraction_tmp" id="contraction_tmp" pattern="\s*\d+\s*\S+.*" 
-      endPattern="\s*" endOffset="0">
+    <template repeat="*" 
+    name="contraction_tmp" id="contraction_tmp" 
+    pattern="\s*\d+\s*\S+.*" 
+    endPattern="\s*"
+    endPattern2="~"
+    endOffset="0">
       <record repeat="*" makeArray="true" id="contraction">{I,n:basisSetShellnum}{A,n:basisSetShell}{E,compchem:basisSetExponent}{F,compchem:basisSetCoefficient}</record>
       <!--  move list up out of module -->
         <transform process="pullup" xpath="./cml:list"/>

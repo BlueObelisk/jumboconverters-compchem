@@ -42,6 +42,8 @@ public class TemplateUnitTests {
    @Test public void testBasisSummary()                          {runTemplateTest("basis.summary");}
    @Test public void testCaching()                               {runTemplateTest("caching");}
    @Test public void testCitation()                              {runTemplateTest("citation");}
+   @Test public void testCphfModule()                            {runTemplateTest("cphf.module");}
+   @Test public void testCphfParameters()                        {runTemplateTest("cphf.parameters");}
    @Test public void testDftConvergeinfo()                       {runTemplateTest("dft.convergeinfo");}
    @Test public void testDftInfo()                               {runTemplateTest("dft.info");}
    @Test public void testDftIter()                               {runTemplateTest("dft.iter");}
@@ -52,6 +54,7 @@ public class TemplateUnitTests {
    @Test public void testDftScreentol()                          {runTemplateTest("dft.screentol");}
    @Test public void testDftXcInfo()                             {runTemplateTest("dft.xcinfo");}
    @Test public void testDftWarningDensity()                     {runTemplateTest("dft.warn.density");}
+   @Test public void testDipole()                                {runTemplateTest("dipole");}
    @Test public void testDirinfo()                               {runTemplateTest("dirinfo");}
    @Test public void testEffnucrep()                             {runTemplateTest("effnucrep");}
    @Test public void testEnviroment()                            {runTemplateTest("environment");}
@@ -91,11 +94,14 @@ public class TemplateUnitTests {
    @Test public void testMp2DirectModule()                       {runTemplateTest("mp2.direct.module");}
    @Test public void testNccp()                                  {runTemplateTest("nccp");}
    @Test public void testNucdipole()                             {runTemplateTest("nucdipole");}
+   @Ignore @Test public void testPropertyModule()                        {runTemplateTest("property.module");}
    @Test public void testQuartets()                              {runTemplateTest("quartets");}
+   @Test public void testQuadrupole()                            {runTemplateTest("quadrupole");}
    @Test public void testRimp2()                                 {runTemplateTest("rimp2.module");}
    @Test public void testScfFinal()                              {runTemplateTest("scf.final");}
    @Test public void testScfIter()                               {runTemplateTest("scf.iter");}
    @Test public void testScfModule()                             {runTemplateTest("scf.module");}
+   @Test public void testShielding ()                            {runTemplateTest("shielding");}
    @Test public void testSuperposatomguess()                     {runTemplateTest("superposatomguess");}
    @Test public void testSymbas()                                {runTemplateTest("symbas");}
    @Test public void testSymminfo()                              {runTemplateTest("symminfo");}
@@ -134,7 +140,6 @@ public class TemplateUnitTests {
    @Ignore @Test public void testCondfukuiOK()                           {runTemplateTest("condfukui");}
    @Ignore @Test public void testCondfukuimuOK()                         {runTemplateTest("condfukuimu");}
    @Ignore @Test public void testConverged()                             {runTemplateTest("converged");}
-   @Ignore @Test public void testCphfOK()                                {runTemplateTest("cphf");}
    @Ignore @Test public void testCrystaldipoleOK()                       {runTemplateTest("crystaldipole");}
    @Ignore @Test public void testDamping()                               {runTemplateTest("damping");}
    @Ignore @Test public void testDftenergradOK()                         {runTemplateTest("dftenergrad");}
@@ -220,7 +225,6 @@ public class TemplateUnitTests {
    @Ignore @Test public void testOrbitalsymOK()                          {runTemplateTest("orbitalsym");}
    @Ignore @Test public void testParallelOK()                            {runTemplateTest("parallel");}
    @Ignore @Test public void testPrincipalcomponentsOK()                 {runTemplateTest("principalcomponents");}
-   @Ignore @Test public void testPropertyOK()                            {runTemplateTest("property");}
    @Ignore @Test public void testQuadrohfOK()                            {runTemplateTest("quadrohf");}
    @Ignore @Test public void testReadmolorbOK()                          {runTemplateTest("readmolorb");}
    @Ignore @Test public void testRecordsizeOK()                          {runTemplateTest("recordsize");}
@@ -232,7 +236,6 @@ public class TemplateUnitTests {
    @Ignore @Test public void testSchwarzOK()                             {runTemplateTest("schwarz");}
    @Ignore @Test public void testSegmentedOK()                           {runTemplateTest("segmented");}
    @Ignore @Test public void testSemidirectOK()                          {runTemplateTest("semidirect");}
-   @Ignore @Test public void testShieldingFIX()                      {runTemplateTest("shielding");}
    @Ignore @Test public void testSpincontamOK()                          {runTemplateTest("spincontam");}
    @Ignore @Test public void testStepTEXT()                                  {runTemplateTest("step");}
    @Ignore @Test public void testStepLastTEXT()                              {runTemplateTest("steplast");}

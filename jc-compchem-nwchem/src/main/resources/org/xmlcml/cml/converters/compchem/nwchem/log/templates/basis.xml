@@ -2,7 +2,8 @@
   pattern='\s*Basis \".*\" -> \".*\" \(.*\)\s*$\s+\-+.*'
   newline="$"
   endPattern="\s*$\s*$\s*"
-  endOffset="2"
+  endPattern2="~"
+  endOffset="0"
   xmlns:xi="http://www.w3.org/2001/XInclude"
   >
   <comment class="example.input" id="basis">

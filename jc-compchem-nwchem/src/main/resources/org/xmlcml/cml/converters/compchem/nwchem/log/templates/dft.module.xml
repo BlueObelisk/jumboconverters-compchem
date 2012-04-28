@@ -3,6 +3,8 @@
   name="NWChem DFT Module"
   repeat="*"
   pattern="\s*NWChem DFT Module\s*$\s+\-+.*"
+  endPattern="~"
+  endPattern2="\s*Parallel integral file used.*"
   newline="$"
   >
   <comment class="example.input" id="dft">

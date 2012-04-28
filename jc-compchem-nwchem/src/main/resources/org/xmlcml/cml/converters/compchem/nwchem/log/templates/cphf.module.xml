@@ -1,0 +1,179 @@
+<template repeat="*"
+  id="cphf"
+  name="NWChem CPHF Module" 
+  newline="$"
+  pattern="\s*NWChem CPHF Module\s*$\s+\-+\s*$\s*$\s*" 
+   endPattern="\s*Parallel integral file used .*">
+  
+  <comment class="example.input" id="cphf">
+                                NWChem CPHF Module
+                                ------------------
+
+
+  scftype          =     RHF 
+  nclosed          =        5
+  nopen            =        0
+  variables        =      100
+  # of vectors     =        3
+  tolerance        = 0.10D-03
+  level shift      = 0.00D+00
+  max iterations   =       50
+  max subspace     =       30
+
+
+ #quartets = 3.081D+03 #integrals = 2.937D+04 #direct =  0.0% #cached =100.0%
+
+
+ Integral file          = ./prop_h2o.aoints.0
+ Record size in doubles =  65536        No. of integs per rec  =  43688
+ Max. records in memory =      3        Max. records in file   = 146586
+ No. of bits per label  =      8        No. of bits per value  =     64
+
+ SCF residual:   4.67529396023953250E-006
+
+
+Iterative solution of linear equations
+  No. of variables      100
+  No. of equations        3
+  Maximum subspace       30
+        Iterations       50
+       Convergence  1.0D-04
+        Start time      1.1
+
+
+   iter   nsub   residual    time
+   ----  ------  --------  ---------
+     1      3    4.40D-01       1.2
+     2      6    1.35D-01       1.4
+     3      9    1.67D-02       1.5
+     4     12    2.00D-03       1.7
+     5     15    2.26D-04       1.8
+     6     18    2.19D-05       1.9
+
+ Parallel integral file used       1 records with       0 large values
+ 
+</comment>
+
+  <templateList xmlns:xi="http://www.w3.org/2001/XInclude">
+    <xi:include href="cphf.parameters.xml"/>
+    <xi:include href="integralfile.xml"/>
+    <xi:include href="quartets.xml"/>
+    <xi:include href="filebalance.xml"/>
+    <xi:include href="itersol.xml"/>
+    <xi:include href="iternsub.xml"/>
+    <xi:include href="parallel.xml"/>
+  </templateList>
+
+  <comment class="example.output" id="cphf">
+<module xmlns="http://www.xml-cml.org/schema" xmlns:cmlx="http://www.xml-cml.org/schema/cmlx" cmlx:templateRef="cphf">
+<module cmlx:lineCount="13" cmlx:templateRef="cphf">
+<list cmlx:templateRef="r1">
+<list>
+<scalar dataType="xsd:string" dictRef="n:nnname">scftype</scalar>
+<scalar dataType="xsd:string" dictRef="n:vvvalue">RHF</scalar>
+</list>
+<list>
+<scalar dataType="xsd:string" dictRef="n:nnname">nclosed</scalar>
+<scalar dataType="xsd:string" dictRef="n:vvvalue">5</scalar>
+</list>
+<list>
+<scalar dataType="xsd:string" dictRef="n:nnname">nopen</scalar>
+<scalar dataType="xsd:string" dictRef="n:vvvalue">0</scalar>
+</list>
+<list>
+<scalar dataType="xsd:string" dictRef="n:nnname">variables</scalar>
+<scalar dataType="xsd:string" dictRef="n:vvvalue">100</scalar>
+</list>
+<list>
+<scalar dataType="xsd:string" dictRef="n:nnname"># of vectors</scalar>
+<scalar dataType="xsd:string" dictRef="n:vvvalue">3</scalar>
+</list>
+<list>
+<scalar dataType="xsd:string" dictRef="n:nnname">tolerance</scalar>
+<scalar dataType="xsd:string" dictRef="n:vvvalue">0.10D-03</scalar>
+</list>
+<list>
+<scalar dataType="xsd:string" dictRef="n:nnname">level shift</scalar>
+<scalar dataType="xsd:string" dictRef="n:vvvalue">0.00D+00</scalar>
+</list>
+<list>
+<scalar dataType="xsd:string" dictRef="n:nnname">max iterations</scalar>
+<scalar dataType="xsd:string" dictRef="n:vvvalue">50</scalar>
+</list>
+<list>
+<scalar dataType="xsd:string" dictRef="n:nnname">max subspace</scalar>
+<scalar dataType="xsd:string" dictRef="n:vvvalue">30</scalar>
+</list>
+</list>
+</module>
+<module cmlx:lineCount="1" cmlx:templateRef="quartets">
+<list cmlx:templateRef="quartets">
+<list>
+<scalar dataType="xsd:double" dictRef="n:quartet">3081.0</scalar>
+<scalar dataType="xsd:double" dictRef="n:integrals">29370.0</scalar>
+<scalar dataType="xsd:double" dictRef="n:direct">0.0</scalar>
+<scalar dataType="xsd:double" dictRef="n:cached">100.0</scalar>
+</list>
+</list>
+</module>
+<module cmlx:lineCount="4" cmlx:templateRef="integralfile">
+<list cmlx:templateRef="integral">
+<scalar dataType="xsd:string" dictRef="n:integralfile">./prop_h2o.aoints.0</scalar>
+</list>
+</module> SCF residual:   4.67529396023953250E-006
+<module cmlx:lineCount="7" cmlx:templateRef="itersol">
+<list cmlx:templateRef="missingID">
+<list />
+</list>
+<list cmlx:templateRef="iter">
+<list>
+<scalar dataType="xsd:string" dictRef="x:name">No. of variables</scalar>
+<scalar dataType="xsd:string" dictRef="x:value">100</scalar>
+</list>
+<list>
+<scalar dataType="xsd:string" dictRef="x:name">No. of equations</scalar>
+<scalar dataType="xsd:string" dictRef="x:value">3</scalar>
+</list>
+<list>
+<scalar dataType="xsd:string" dictRef="x:name">Maximum subspace</scalar>
+<scalar dataType="xsd:string" dictRef="x:value">30</scalar>
+</list>
+<list>
+<scalar dataType="xsd:string" dictRef="x:name">Iterations</scalar>
+<scalar dataType="xsd:string" dictRef="x:value">50</scalar>
+</list>
+<list>
+<scalar dataType="xsd:string" dictRef="x:name">Convergence</scalar>
+<scalar dataType="xsd:string" dictRef="x:value">1.0D-04</scalar>
+</list>
+<list>
+<scalar dataType="xsd:string" dictRef="x:name">Start time</scalar>
+<scalar dataType="xsd:string" dictRef="x:value">1.1</scalar>
+</list>
+</list>
+</module>
+<module cmlx:lineCount="8" cmlx:templateRef="iternsub">
+<list cmlx:templateRef="missingID">
+<list />
+</list>
+<list cmlx:templateRef="missingID">
+<list />
+</list>
+<list cmlx:lineCount="6" cmlx:templateRef="iter">
+<array dataType="xsd:integer" dictRef="x:serial" size="6">1 2 3 4 5 6</array>
+<array dataType="xsd:integer" dictRef="n:nsub" size="6">3 6 9 12 15 18</array>
+<array dataType="xsd:double" dictRef="n:resid" size="6">0.44 0.135 0.0167 0.0020 2.26E-4 2.19E-5</array>
+<array dataType="xsd:double" dictRef="cc:time" size="6">1.2 1.4 1.5 1.7 1.8 1.9</array>
+</list>
+</module>
+<module cmlx:lineCount="1" cmlx:templateRef="parallel">
+<list cmlx:lineCount="1" cmlx:templateRef="parallel">
+<array dataType="xsd:string" dictRef="cc:filetype" size="1">integral</array>
+<array dataType="xsd:integer" dictRef="n:nrec" size="1">1</array>
+<array dataType="xsd:integer" dictRef="n:large" size="1">0</array>
+</list>
+</module>
+</module>
+    </comment>
+
+</template>

@@ -1,0 +1,59 @@
+<template
+ repeat="*"
+ id="dipole" name="Dipole Moment Info" 
+  pattern="\s+\-+\s*$\s+Dipole Moment\s*$\s+\-+\s*"
+  newline="$"
+  endPattern="\s+\-+\s*$\s+.*\s*$\s+\-+\s*"
+  >
+  
+  <comment class="example.input" id="dipole">
+          -------------
+          Dipole Moment
+          -------------
+
+ Center of charge (in au) is the expansion point
+         X =      -0.0927695 Y =       0.0000000 Z =       0.0000000
+
+   Dipole moment        0.7411989710 A.U.
+             DMX       -0.7411989710 DMXEFC        0.0000000000
+             DMY       -0.0000000000 DMYEFC        0.0000000000
+             DMZ       -0.0000000000 DMZEFC        0.0000000000
+   -EFC- dipole         0.0000000000 A.U.
+   Total dipole         0.7411989710 A.U.
+
+   Dipole moment        1.8839541065 Debye(s)
+             DMX       -1.8839541065 DMXEFC        0.0000000000
+             DMY       -0.0000000000 DMYEFC        0.0000000000
+             DMZ       -0.0000000000 DMZEFC        0.0000000000
+   -EFC- dipole         0.0000000000 DEBYE(S)
+   Total dipole         1.8839541065 DEBYE(S)
+
+ 1 a.u. = 2.541766 Debyes 
+  </comment>
+  
+  <transform process="delete" xpath=".//cml:list[@cmlx:templateRef='missingID']"/>
+  
+
+  <comment class="example.output" id="dipole">
+<module xmlns="http://www.xml-cml.org/schema" xmlns:cmlx="http://www.xml-cml.org/schema/cmlx" cmlx:templateRef="dipole">          -------------
+          Dipole Moment
+          -------------
+ Center of charge (in au) is the expansion point
+         X =      -0.0927695 Y =       0.0000000 Z =       0.0000000
+   Dipole moment        0.7411989710 A.U.
+             DMX       -0.7411989710 DMXEFC        0.0000000000
+             DMY       -0.0000000000 DMYEFC        0.0000000000
+             DMZ       -0.0000000000 DMZEFC        0.0000000000
+   -EFC- dipole         0.0000000000 A.U.
+   Total dipole         0.7411989710 A.U.
+   Dipole moment        1.8839541065 Debye(s)
+             DMX       -1.8839541065 DMXEFC        0.0000000000
+             DMY       -0.0000000000 DMYEFC        0.0000000000
+             DMZ       -0.0000000000 DMZEFC        0.0000000000
+   -EFC- dipole         0.0000000000 DEBYE(S)
+   Total dipole         1.8839541065 DEBYE(S)
+ 1 a.u. = 2.541766 Debyes 
+</module>
+  </comment>
+
+</template>

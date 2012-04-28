@@ -3,6 +3,8 @@
   name="NWChem SCF Module" 
   repeat="*"
   pattern="\s*NWChem SCF Module\s*$\s+\-+.*"
+  endPattern="~"
+  endPattern2="\s*Parallel integral file used.*"
   newline="$"
   offset="0"
   >

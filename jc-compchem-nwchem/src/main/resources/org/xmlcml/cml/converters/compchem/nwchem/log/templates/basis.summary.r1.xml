@@ -1,10 +1,16 @@
 <template id="basisSummary" name="Basis set summary" 
-  repeat="*"
+  repeat="1"
   offset="0"
   endOffset="0"
   pattern='\s*Summary of \".*\" -> \".*\" \(.*\)\s*$\s+\-+.*'
   endPattern="\s*"
   endPattern2="~">
+  
+  <!-- 
+  This File is required for property.module.xml where we need a basis.summary module
+  that is only included once at the start - otherwise it screws things up with pulling
+  out the basis.summary needed by the SCF module
+   -->
 
   <comment class="example.input" id="basisSummary">
  Summary of "ao basis" -> "" (cartesian)
