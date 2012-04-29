@@ -1,4 +1,6 @@
-<template id="propertyModule" name="NWChem Property Module" 
+<template 
+xmlns:xi="http://www.w3.org/2001/XInclude"
+id="propertyModule" name="NWChem Property Module" 
 repeat="*" newline="$"
   pattern="\s*NWChem Property Module\s*$\s*\-+\s*" 
   endPattern="\s*Task  times  cpu:.*"
@@ -796,11 +798,37 @@ Iterative solution of linear equations
     
     <xi:include href="dipole.xml"/>
     <xi:include href="quadrupole.xml"/>
+    <xi:include href="electrostatic.potential.xml"/>
     <xi:include href="shielding.xml"/>
     
   </templateList>
   
     <transform process="delete" xpath=".//cml:list[@cmlx:templateRef='missingID']"/>
+    
+    <!-- Copy in calc init module and change task -->
+    <transform process="copy"
+    xpath="./cml:module[@dictRef='compchem:calculation']/cml:module[@dictRef='compchem:initialization']"
+    to="."
+    position="1"
+    />
+    
+   <transform process="setValue"
+   xpath="./cml:module[@dictRef='compchem:initialization']/cml:parameterList/cml:parameter[@dictRef='compchem:task']/cml:scalar"
+   value="property"
+   />
+   <!--  Join up basis and basis summary information -->
+    <xi:include href="transform.basis.xml"/>
+    
+    <!-- move basis into init module -->
+    <transform process="move"
+    xpath="./cml:list[@id='basisSet']"
+    to="./cml:module[@dictRef='compchem:initialization']"
+    />
+    <!--  Delete basisSummary module -->
+    <transform process="delete"
+    xpath="./cml:module[@cmlx:templateRef='basisSummary']"
+    />
+    
   
   <comment class="example.output" id="propertyModule">
 <module/>

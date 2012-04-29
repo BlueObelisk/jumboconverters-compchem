@@ -71,17 +71,9 @@
   to="."
   position="1"
   />
-  <transform process="delete"
-  xpath="./cml:module[@dictRef='compchem:initialization']/cml:parameterList/cml:parameter[@dictRef='compchem:task']"
-  />
-  <transform process="addChild"
-  xpath="./cml:module[@dictRef='compchem:initialization']/cml:parameterList"
-  elementName="cml:scalar"
-  dictRef="compchem:task"
+  <transform process="setValue"
+  xpath="./cml:module[@dictRef='compchem:initialization']/cml:parameterList/cml:parameter[@dictRef='compchem:task']/cml:scalar"
   value="geometry_optimization"
-  />
-  <transform process="createWrapperParameter"
-  xpath="./cml:module[@dictRef='compchem:initialization']/cml:parameterList/cml:scalar"
   />
   
 <!--   <transform process="copy"

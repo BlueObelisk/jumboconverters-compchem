@@ -395,74 +395,9 @@ template.
 
 <!-- Title to scalar -->
 <transform process="pullupSingleton" xpath="./cml:module[@cmlx:templateRef='title']"/>
-        
-<!-- Join up basis and basis.summary information -->
 
- <!--  Move basis module to cml:list -->
- <transform process="rename" 
-xpath=".//cml:module[@cmlx:templateRef='basis']"
-elementName="cml:list"
-id="basisSet" 
-dictRef="compchem:basisSet"
-/> 
-
-<!-- Use title, harmonic_type and label (description?) from summary 
-NB: This assume the same basis on all atoms! Need to add code
-to check if these are different.
--->
-<transform process="addChild"
-xpath=".//cml:list[@dictRef='compchem:basisSet']"
-elementName="cml:scalar"
-id="basisSetLabel"
-dictRef="compchem:basisSetLabel"
-position="0"
-value="$string(../../cml:module[@cmlx:templateRef='basisSummary']/cml:list[@cmlx:templateRef='basisContractions']//cml:scalar[@dictRef='compchem:basisSetLabel'])"
-/>
-
-<!-- basis_set_type is hard-wired for the time being -->
-<transform process="addChild"
-xpath=".//cml:list[@dictRef='compchem:basisSet']"
-elementName="cml:scalar"
-id="basisSetType"
-dictRef="compchem:basisSetType"
-position="1"
-value="orbital"
-/>
-
-<!-- Set harmonic_type from summary -->
-<transform process="addChild"
-xpath=".//cml:list[@dictRef='compchem:basisSet']"
-elementName="cml:scalar"
-id="basisSetHarmonicType"
-dictRef="compchem:basisSetHarmonicType"
-position="2"
-value="$string(../../cml:module[@cmlx:templateRef='basisSummary']/cml:list[@cmlx:templateRef='basisSummary']//cml:scalar[@dictRef='compchem:basisSetHarmonicType'])"
-/>
-
-<!-- basisSetContraction_type hard-wired to segmented for the time being -->
-<transform process="addChild"
-xpath=".//cml:list[@dictRef='compchem:basisSet']"
-elementName="cml:scalar"
-id="basisSetContractionType"
-dictRef="compchem:basisSetContractionType"
-position="3"
-value="segmented"
-/>
-
-<!-- Use nwchem basis type as description -->
-<transform process="addChild"
-xpath=".//cml:list[@dictRef='compchem:basisSet']"
-elementName="cml:scalar"
-id="basisSetDescription"
-dictRef="compchem:basisSetDescription"
-position="4"
-value="$string(../cml:list[@cmlx:templateRef='basisTitle']/cml:scalar[@dictRef='n:basisSetLabel'])"
-/>
- 
- <!-- Can now delete the basisTitle module -->
- <transform process="delete" 
- xpath=".//cml:list[@dictRef='compchem:basisSet']/cml:list[@cmlx:templateRef='basisTitle']"
- />
+<!-- Join up basis and basis summary information -->
+<xi:include href="transform.basis.xml"/>
 
   <comment class="example.output" id="nwcheminput">
 <module xmlns="http://www.xml-cml.org/schema" xmlns:cmlx="http://www.xml-cml.org/schema/cmlx" cmlx:templateRef="input_module">

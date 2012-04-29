@@ -1,0 +1,76 @@
+<template
+ repeat="*"
+ id="electrostaticPotential" name="Electrostatic Potential" 
+  pattern="\s+\-+\s*$\s+Electrostatic potential/diamagnetic shielding\s*$\s+\-+\s*$\s*"
+  newline="$"
+  endPattern="\s*"
+  >
+  
+  <comment class="example.input" id="dipole">
+          ---------------------------------------------
+          Electrostatic potential/diamagnetic shielding
+          ---------------------------------------------
+
+ 1 a.u. = 9.07618 esu/cm ( or statvolts ) 
+   Point      X         Y         Z     Total Potential(a.u.)   Diamagnetic shielding(a.u.)
+    1 O    0.11787   0.00000   0.00000     -22.322227            23.265124
+    2 H   -0.93531  -1.84119   0.00000      -0.960147             5.003298
+    3 H   -0.93531   1.84119   0.00000      -0.960147             5.003298
+
+  </comment>
+  
+  <record repeat="4"/>
+  <record id="conversionFactor">\s*1 a.u. = {F,n:au2esu} esu/cm \( or statvolts \)\s*</record>
+  <record/>
+  <record 
+  repeat="*" 
+  makeArray="false"
+  id="electPot"
+  >\s*{I,n:atomIndex}\s*{A,n:atomLabel}\s*{F,n:x3}\s*{F,n:y3}\s*{F,n:z3}\s*{F,n:totalPotential}\s*{F,n:diamagneticShielding}\s*</record>
+  
+  
+  <!-- Turn lists of coordinates into array -->
+<!--   <transform process="createVector3"
+  xpath="."
+  from="./cml:list[@cmlx:templateRef='electPot']/cml:list/cml:scalar[@dictRef='n:x3' or @dictRef='n:y3' or @dictRef='n:z3']"
+  dictRef="n:foo"
+  /> -->
+  
+  <transform process="delete" xpath=".//cml:list[@cmlx:templateRef='missingID']"/>
+  <!-- add dictRef to lists to identifiy as electrostatic potentials, then copy to create
+  list for diamagnetic shieldings and delete uneeded data from each -->
+  
+  <!-- dictRef -->
+  <transform process="addDictRef"
+  xpath="./cml:list[@cmlx:templateRef='electPot']/cml:list"
+  value="compchem:electrostaticPotential"
+  />
+  <!-- Copy lists - one for pot & one for shielding -->
+  <transform process="copyRelative"
+  xpath="./cml:list[@cmlx:templateRef='electPot']/cml:list"
+  to=".."
+  />
+  
+  <!-- Change dictRef for diamagnetic shielding -->
+  <transform process="addDictRef"
+  xpath="./cml:list[@cmlx:templateRef='electPot']/cml:list[starts-with(@id,'copy')]"
+  value="compchem:diamagneticShielding"
+  />
+  
+  <transform process="delete" xpath="./cml:list[@cmlx:templateRef='electPot']/cml:list/@id"/>
+  <transform process="delete"
+   xpath="./cml:list[@cmlx:templateRef='electPot']/cml:list[@dictRef='compchem:electrostaticPotential']/cml:scalar[@dictRef='n:diamagneticShielding']"   
+   />
+  <transform process="delete"
+   xpath="./cml:list[@cmlx:templateRef='electPot']/cml:list[@dictRef='compchem:diamagneticShielding']/cml:scalar[@dictRef='n:totalPotential']"   
+   />
+  
+  
+
+  <comment class="example.output" id="dipole">
+<module xmlns="http://www.xml-cml.org/schema" xmlns:cmlx="http://www.xml-cml.org/schema/cmlx" cmlx:templateRef="dipole">          -------------
+<module/>
+</module>
+  </comment>
+
+</template>

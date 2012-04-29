@@ -57,6 +57,7 @@ public class TemplateUnitTests {
    @Test public void testDipole()                                {runTemplateTest("dipole");}
    @Test public void testDirinfo()                               {runTemplateTest("dirinfo");}
    @Test public void testEffnucrep()                             {runTemplateTest("effnucrep");}
+   @Test public void testElectPot()                              {runTemplateTest("electrostatic.potential");}
    @Test public void testEnviroment()                            {runTemplateTest("environment");}
    @Test public void testErrorcurrent()                          {runTemplateTest("error.current");}
    @Test public void testErrormult()                             {runTemplateTest("error.mult");}
@@ -94,7 +95,7 @@ public class TemplateUnitTests {
    @Test public void testMp2DirectModule()                       {runTemplateTest("mp2.direct.module");}
    @Test public void testNccp()                                  {runTemplateTest("nccp");}
    @Test public void testNucdipole()                             {runTemplateTest("nucdipole");}
-   @Ignore @Test public void testPropertyModule()                        {runTemplateTest("property.module");}
+   @Test public void testPropertyModule()                        {runTemplateTest("property.module");}
    @Test public void testQuartets()                              {runTemplateTest("quartets");}
    @Test public void testQuadrupole()                            {runTemplateTest("quadrupole");}
    @Test public void testRimp2()                                 {runTemplateTest("rimp2.module");}
