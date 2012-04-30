@@ -107,8 +107,9 @@
   xpath=".//@flag"
   />
    
-   <!-- FIXME - when we can do a test for the geometry optimisation, we can do this better. For now we just
-   assume the above failed and do our own -->
+   <!-- Geometry optimisations and property calculations are different as not contained within nwchemModule -->
+   
+   <!-- Geometry optimisation -->
    <!--  parameters -->
    <transform process="copyRelative"
   xpath="./cml:module[@id='jobList1']/cml:module[@id='job']/cml:module[@cmlx:templateRef='geomopt']/cml:module[@dictRef='compchem:initialization']/cml:parameterList/cml:parameter"        
@@ -118,6 +119,22 @@
    <transform process="copyRelative"
   xpath="./cml:module[@id='jobList1']/cml:module[@id='job']/cml:module[@cmlx:templateRef='geomopt']/cml:module[@dictRef='compchem:initialization']/cml:list[@dictRef='compchem:dftFunctional']"        
   to="../../../cml:module[@id='jobInitialization']"
+  />
+  
+  <!-- Property Calculation -->
+   <!--  parameters -->
+   <transform process="copyRelative"
+  xpath="./cml:module[@id='jobList1']/cml:module[@id='job']/cml:module[@cmlx:templateRef='propertyModule']/cml:module[@dictRef='compchem:initialization']/cml:parameterList/cml:parameter"        
+  to="../../../../cml:module[@id='jobInitialization']/cml:parameterList"
   /> 
-
+  <!--  basisSet -->
+   <transform process="copyRelative"
+  xpath="./cml:module[@id='jobList1']/cml:module[@id='job']/cml:module[@cmlx:templateRef='propertyModule']/cml:module[@dictRef='compchem:initialization']/cml:list[@dictRef='compchem:basisSet']"        
+  to="../../../cml:module[@id='jobInitialization']"
+  />
+  <!--  dftFunctional -->
+   <transform process="copyRelative"
+  xpath="./cml:module[@id='jobList1']/cml:module[@id='job']/cml:module[@cmlx:templateRef='propertyModule']/cml:module[@dictRef='compchem:initialization']/cml:list[@dictRef='compchem:dftFunctional']"        
+  to="../../../cml:module[@id='jobInitialization']"
+  />
 </transformList>

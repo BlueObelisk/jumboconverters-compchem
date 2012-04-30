@@ -57,6 +57,7 @@
   <transform process="copyRelative"
   xpath="./cml:module[@cmlx:templateRef='nwchem_job'][position() = 1]/cml:module[@id='environment']" 
   to="../../cml:module[@cmlx:templateRef='nwchem_job'][position() &gt; 1]"
+  position="1"
   />
      
 </transformList>  

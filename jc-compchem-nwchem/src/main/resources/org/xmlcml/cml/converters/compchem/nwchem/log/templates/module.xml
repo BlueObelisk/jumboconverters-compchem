@@ -3,7 +3,7 @@
   name="NWChem Module" 
   repeat="*"
   pattern     = "\s*NWChem .* Module\s*"
-  pattern2     = "\s*Direct MP2\s*$\s*------+\s*"
+  pattern2    = "\s*Direct MP2\s*$\s*------+\s*"
   endPattern  = "\s*((NWChem Geometry Optimization)|(NWChem .* Module))\s*"
   endPattern2 = "\s*.\sStep\s+Energy\s+Delta\sE.*"
   endPattern3 = "\s*Direct MP2\s*"

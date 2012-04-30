@@ -5,7 +5,9 @@ name="Geometry"
 newline="$"
 pattern='\s*Geometry \".*\" -> \".*\"\s*$\s+\-+.*'
 endOffset="0"
-endPattern="(\s*library name resolved from:.*)|(\s*Scaling coordinates for geometry.*)|(\s*Basis.*)|(\s*NWChem.*)|(\s*Task  times  cpu:.*)|(\s*\*\*\*\*\*\*\*\*\*.*)|(\s*@.*)|(\s*Total number of active.*)|(\s* angular momentum value.*)">
+endPattern="(\s*library name resolved from:.*)|(\s*Scaling coordinates for geometry.*)|(\s*Basis.*)|(\s*NWChem.*)|(\s*Task  times  cpu:.*)|(\s*\*\*\*\*\*\*\*\*\*.*)|(\s*@.*)|(\s*Total number of active.*)|(\s* angular momentum value.*)"
+endPattern2='\s*Summary of \".*\" -> \".*\" \(.*\)\s*$\s+\-+.*'
+>
 
 <!-- Printed by nwchem/src/geom/geom.F:geom_print -->
 

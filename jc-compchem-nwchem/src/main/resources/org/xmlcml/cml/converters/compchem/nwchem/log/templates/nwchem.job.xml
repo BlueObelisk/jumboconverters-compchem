@@ -21,6 +21,7 @@
 
     <templateList xmlns:xi="http://www.w3.org/2001/XInclude">
        <xi:include href="geomopt.xml"/>
+       <xi:include href="property.module.xml"/>
        <xi:include href="module.xml"/>
     </templateList>
 

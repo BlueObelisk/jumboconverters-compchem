@@ -782,9 +782,18 @@ Iterative solution of linear equations
                                 -------------------
 
   </comment>
- 
+  
   <record repeat="4"/>
   <record id="title">\s*{X,compchem:title}\s*</record>
+  
+  <!-- Can delete title as get it from calc 
+  <transform process="pullupSingleton"
+  xpath="./cml:list[@cmlx:templateRef='title']"
+  />
+  -->
+  <transform process="delete"
+  xpath="./cml:list[@cmlx:templateRef='title']"
+  />
   
   <templateList xmlns:xi="http://www.w3.org/2001/XInclude">
   
@@ -804,6 +813,16 @@ Iterative solution of linear equations
   </templateList>
   
     <transform process="delete" xpath=".//cml:list[@cmlx:templateRef='missingID']"/>
+    
+   <!--  Identify as a calculation -->
+   <transform process="addDictRef" 
+   xpath="."
+   value="compchem:calculation"
+   />
+   <transform process="addId" 
+   xpath="."
+   value="propertyCalculation"
+   />
     
     <!-- Copy in calc init module and change task -->
     <transform process="copy"
@@ -829,6 +848,12 @@ Iterative solution of linear equations
     xpath="./cml:module[@cmlx:templateRef='basisSummary']"
     />
     
+    
+    <!-- Copy in calc final module -->
+    <transform process="copy"
+    xpath="./cml:module[@dictRef='compchem:calculation']/cml:module[@dictRef='compchem:finalization']"
+    to="."
+    />
   
   <comment class="example.output" id="propertyModule">
 <module/>
