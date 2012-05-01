@@ -34,7 +34,7 @@ public class NWChemLog2CompchemConverterTest {
 //        CMLUtil.debug(e1, new FileOutputStream("debug1.xml"), 1);
         NWChemLogXML2CompchemConverter converter2 = NWChemLogXML2CompchemConverter.createDefaultConverter();
         Element e2 = converter2.convertToXML(e1);
-//        CMLUtil.debug(e2, new FileOutputStream("debug2.xml"), 1);
+        CMLUtil.debug(e2, new FileOutputStream("debug2.xml"), 1);
         Document doc = CMLUtil.ensureDocument(e2);
         return doc;
     }

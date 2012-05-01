@@ -30,7 +30,7 @@ repeat="*" newline="$"
 
   2 S  1.17200000E+04 -0.000160
   2 S  1.75900000E+03 -0.001263
-  2 S  4.00800000E+02 -0.006267
+  2 S  4.00800000E+02 -0.006267§
   2 S  1.13700000E+02 -0.025716
   2 S  3.70300000E+01 -0.070924
   2 S  1.32700000E+01 -0.165411
@@ -813,6 +813,8 @@ Iterative solution of linear equations
   </templateList>
   
     <transform process="delete" xpath=".//cml:list[@cmlx:templateRef='missingID']"/>
+    <transform process="delete" xpath=".//cml:list[count(*)=0]"/>
+    
     
    <!--  Identify as a calculation -->
    <transform process="addDictRef" 
@@ -854,9 +856,1037 @@ Iterative solution of linear equations
     xpath="./cml:module[@dictRef='compchem:calculation']/cml:module[@dictRef='compchem:finalization']"
     to="."
     />
+    
+    <!-- Move properties into finalization module -->
+    <transform process="move"
+    xpath="./cml:module[@cmlx:templateRef='electPotDiamagShield']/cml:list[@dictRef='compchem:electrostaticPotentialList']"
+    to="./cml:module[@dictRef='compchem:finalization']"
+    /> 
+    <transform process="move"
+    xpath="./cml:module[@cmlx:templateRef='electPotDiamagShield']/cml:list[@dictRef='compchem:diamagneticShieldingList']"
+    to="./cml:module[@dictRef='compchem:finalization']"
+    /> 
   
   <comment class="example.output" id="propertyModule">
-<module/>
+<module xmlns="http://www.xml-cml.org/schema" xmlns:cmlx="http://www.xml-cml.org/schema/cmlx" cmlx:templateRef="propertyModule" dictRef="compchem:calculation" id="propertyCalculation">
+<module dictRef="compchem:initialization" id="copy.0">
+<parameterList>
+<parameter dictRef="compchem:method">
+<scalar dataType="xsd:string">scf</scalar>
+</parameter>
+<parameter dictRef="compchem:task">
+<scalar dataType="xsd:string">property</scalar>
+</parameter>
+<parameter dictRef="compchem:title">
+<scalar dataType="xsd:string" cmlx:templateRef="title">h2o</scalar>
+</parameter>
+<parameter dictRef="compchem:numClosedShells">
+<scalar dataType="xsd:integer" cmlx:templateRef="numClosedShells">5</scalar>
+</parameter>
+<parameter dictRef="compchem:numOpenShells">
+<scalar dataType="xsd:integer" cmlx:templateRef="numOpenShells">0</scalar>
+</parameter>
+<parameter dictRef="compchem:charge">
+<scalar dataType="xsd:double" cmlx:templateRef="charge" units="nonsi:elementary_charge">0.0</scalar>
+</parameter>
+<parameter dictRef="compchem:wavefunctionType">
+<scalar dataType="xsd:string" cmlx:templateRef="wavefunctionType">RHF</scalar>
+</parameter>
+</parameterList>
+<list id="basisSet" dictRef="compchem:basisSet">
+<scalar id="basisSetLabel" dictRef="compchem:basisSetLabel" dataType="xsd:string">cc-pvdz</scalar>
+<scalar id="basisSetType" dictRef="compchem:basisSetType" dataType="xsd:string">orbital</scalar>
+<scalar id="basisSetHarmonicType" dictRef="compchem:basisSetHarmonicType" dataType="xsd:string">cartesian</scalar>
+<scalar id="basisSetContractionType" dictRef="compchem:basisSetContractionType" dataType="xsd:string">segmented</scalar>
+<scalar id="basisSetDescription" dictRef="compchem:basisSetDescription" dataType="xsd:string">ao basis</scalar>
+<list id="basisSetContractions" dictRef="compchem:basisSetContractions">
+<scalar dataType="xsd:string" dictRef="compchem:atomLabel">o</scalar>
+<scalar dataType="xsd:string" dictRef="n:elementLongname">Oxygen</scalar>
+<scalar dictRef="compchem:basisSetHarmonicType" dataType="xsd:string">cartesian</scalar>
+<list cmlx:lineCount="8" cmlx:templateRef="contraction" dictRef="compchem:basisSetContraction">
+<scalar dictRef="compchem:basisSetShell" dataType="xsd:string">S</scalar>
+<array dataType="xsd:double" dictRef="compchem:basisSetExponent" size="8">11720.0 1759.0 400.8 113.7 37.03 13.27 5.025 1.013</array>
+<array dataType="xsd:double" dictRef="compchem:basisSetCoefficient" size="8">7.1E-4 0.00547 0.027837 0.1048 0.283062 0.448719 0.270952 0.015458</array>
+</list>
+<list cmlx:lineCount="2" cmlx:templateRef="contraction" dictRef="compchem:basisSetContraction">
+<scalar dictRef="compchem:basisSetShell" dataType="xsd:string">S</scalar>
+<array dataType="xsd:double" dictRef="compchem:basisSetExponent" size="2">11720.0 1759.0</array>
+<array dataType="xsd:double" dictRef="compchem:basisSetCoefficient" size="2">-1.6E-4 -0.001263</array>
+</list>
+<list cmlx:lineCount="1" cmlx:templateRef="contraction" dictRef="compchem:basisSetContraction">
+<scalar dictRef="compchem:basisSetShell" dataType="xsd:string">S</scalar>
+<array dataType="xsd:double" dictRef="compchem:basisSetExponent" size="1">0.3023</array>
+<array dataType="xsd:double" dictRef="compchem:basisSetCoefficient" size="1">1.0</array>
+</list>
+<list cmlx:lineCount="3" cmlx:templateRef="contraction" dictRef="compchem:basisSetContraction">
+<scalar dictRef="compchem:basisSetShell" dataType="xsd:string">P</scalar>
+<array dataType="xsd:double" dictRef="compchem:basisSetExponent" size="3">17.7 3.854 1.046</array>
+<array dataType="xsd:double" dictRef="compchem:basisSetCoefficient" size="3">0.043018 0.228913 0.508728</array>
+</list>
+<list cmlx:lineCount="1" cmlx:templateRef="contraction" dictRef="compchem:basisSetContraction">
+<scalar dictRef="compchem:basisSetShell" dataType="xsd:string">P</scalar>
+<array dataType="xsd:double" dictRef="compchem:basisSetExponent" size="1">0.2753</array>
+<array dataType="xsd:double" dictRef="compchem:basisSetCoefficient" size="1">1.0</array>
+</list>
+<list cmlx:lineCount="1" cmlx:templateRef="contraction" dictRef="compchem:basisSetContraction">
+<scalar dictRef="compchem:basisSetShell" dataType="xsd:string">D</scalar>
+<array dataType="xsd:double" dictRef="compchem:basisSetExponent" size="1">1.185</array>
+<array dataType="xsd:double" dictRef="compchem:basisSetCoefficient" size="1">1.0</array>
+</list>
+</list>
+<list id="basisSetContractions" dictRef="compchem:basisSetContractions">
+<scalar dataType="xsd:string" dictRef="compchem:atomLabel">h1</scalar>
+<scalar dataType="xsd:string" dictRef="n:elementLongname">Hydrogen</scalar>
+<scalar dictRef="compchem:basisSetHarmonicType" dataType="xsd:string">cartesian</scalar>
+<list cmlx:lineCount="3" cmlx:templateRef="contraction" dictRef="compchem:basisSetContraction">
+<scalar dictRef="compchem:basisSetShell" dataType="xsd:string">S</scalar>
+<array dataType="xsd:double" dictRef="compchem:basisSetExponent" size="3">13.01 1.962 0.4446</array>
+<array dataType="xsd:double" dictRef="compchem:basisSetCoefficient" size="3">0.019685 0.137977 0.478148</array>
+</list>
+<list cmlx:lineCount="1" cmlx:templateRef="contraction" dictRef="compchem:basisSetContraction">
+<scalar dictRef="compchem:basisSetShell" dataType="xsd:string">S</scalar>
+<array dataType="xsd:double" dictRef="compchem:basisSetExponent" size="1">0.122</array>
+<array dataType="xsd:double" dictRef="compchem:basisSetCoefficient" size="1">1.0</array>
+</list>
+<list cmlx:lineCount="1" cmlx:templateRef="contraction" dictRef="compchem:basisSetContraction">
+<scalar dictRef="compchem:basisSetShell" dataType="xsd:string">P</scalar>
+<array dataType="xsd:double" dictRef="compchem:basisSetExponent" size="1">0.727</array>
+<array dataType="xsd:double" dictRef="compchem:basisSetCoefficient" size="1">1.0</array>
+</list>
+</list>
+<list id="basisSetContractions" dictRef="compchem:basisSetContractions">
+<scalar dataType="xsd:string" dictRef="compchem:atomLabel">h2</scalar>
+<scalar dataType="xsd:string" dictRef="n:elementLongname">Hydrogen</scalar>
+<scalar dictRef="compchem:basisSetHarmonicType" dataType="xsd:string">cartesian</scalar>
+<list cmlx:lineCount="3" cmlx:templateRef="contraction" dictRef="compchem:basisSetContraction">
+<scalar dictRef="compchem:basisSetShell" dataType="xsd:string">S</scalar>
+<array dataType="xsd:double" dictRef="compchem:basisSetExponent" size="3">13.01 1.962 0.4446</array>
+<array dataType="xsd:double" dictRef="compchem:basisSetCoefficient" size="3">0.019685 0.137977 0.478148</array>
+</list>
+<list cmlx:lineCount="1" cmlx:templateRef="contraction" dictRef="compchem:basisSetContraction">
+<scalar dictRef="compchem:basisSetShell" dataType="xsd:string">S</scalar>
+<array dataType="xsd:double" dictRef="compchem:basisSetExponent" size="1">0.122</array>
+<array dataType="xsd:double" dictRef="compchem:basisSetCoefficient" size="1">1.0</array>
+</list>
+<list cmlx:lineCount="1" cmlx:templateRef="contraction" dictRef="compchem:basisSetContraction">
+<scalar dictRef="compchem:basisSetShell" dataType="xsd:string">P</scalar>
+<array dataType="xsd:double" dictRef="compchem:basisSetExponent" size="1">0.727</array>
+<array dataType="xsd:double" dictRef="compchem:basisSetCoefficient" size="1">1.0</array>
+</list>
+</list>
+</list>
+</module>
+<module cmlx:lineCount="262" cmlx:templateRef="scf_module" dictRef="compchem:calculation" id="scfEnergy">
+<module dictRef="compchem:initialization">
+<parameterList>
+<parameter dictRef="compchem:method">
+<scalar dataType="xsd:string">scf</scalar>
+</parameter>
+<parameter dictRef="compchem:task">
+<scalar dataType="xsd:string">energy</scalar>
+</parameter>
+<parameter dictRef="compchem:title">
+<scalar dataType="xsd:string" cmlx:templateRef="title">h2o</scalar>
+</parameter>
+<parameter dictRef="compchem:numClosedShells">
+<scalar dataType="xsd:integer" cmlx:templateRef="numClosedShells">5</scalar>
+</parameter>
+<parameter dictRef="compchem:numOpenShells">
+<scalar dataType="xsd:integer" cmlx:templateRef="numOpenShells">0</scalar>
+</parameter>
+<parameter dictRef="compchem:charge">
+<scalar dataType="xsd:double" cmlx:templateRef="charge" units="nonsi:elementary_charge">0.0</scalar>
+</parameter>
+<parameter dictRef="compchem:wavefunctionType">
+<scalar dataType="xsd:string" cmlx:templateRef="wavefunctionType">RHF</scalar>
+</parameter>
+</parameterList>
+</module>
+<scalar dataType="xsd:string" dictRef="n:basisSetLabel" cmlx:templateRef="basisSetLabel">"ao basis"</scalar>
+<scalar dataType="xsd:string" dictRef="n:inputVectors" cmlx:templateRef="inputVectors">atomic</scalar>
+<scalar dataType="xsd:string" dictRef="n:outputVectors" cmlx:templateRef="outputVectors">./prop_h2o.movecs</scalar>
+<scalar dataType="xsd:string" dictRef="n:useSymmetry" cmlx:templateRef="useSymmetry">F</scalar>
+<module cmlx:lineCount="7" cmlx:templateRef="basisSummary">
+<list cmlx:templateRef="basisSummary">
+<scalar dataType="xsd:string" dictRef="n:basisSetLabel">ao basis</scalar>
+<scalar dataType="xsd:string" dictRef="n:basisSetDescription">ao basis</scalar>
+<scalar dataType="xsd:string" dictRef="compchem:basisSetHarmonicType">cartesian</scalar>
+</list>
+<list cmlx:templateRef="basisContractions">
+<list>
+<scalar dataType="xsd:string" dictRef="compchem:atomLabel">o</scalar>
+<scalar dataType="xsd:string" dictRef="compchem:basisSetLabel">cc-pvdz</scalar>
+<scalar dataType="xsd:integer" dictRef="n:contractionNshell">6</scalar>
+<scalar dataType="xsd:integer" dictRef="n:contractionNfunc">15</scalar>
+<scalar dataType="xsd:string" dictRef="n:contractionDesc">3s2p1d</scalar>
+</list>
+<list>
+<scalar dataType="xsd:string" dictRef="compchem:atomLabel">h1</scalar>
+<scalar dataType="xsd:string" dictRef="compchem:basisSetLabel">cc-pvdz</scalar>
+<scalar dataType="xsd:integer" dictRef="n:contractionNshell">3</scalar>
+<scalar dataType="xsd:integer" dictRef="n:contractionNfunc">5</scalar>
+<scalar dataType="xsd:string" dictRef="n:contractionDesc">2s1p</scalar>
+</list>
+<list>
+<scalar dataType="xsd:string" dictRef="compchem:atomLabel">h2</scalar>
+<scalar dataType="xsd:string" dictRef="compchem:basisSetLabel">cc-pvdz</scalar>
+<scalar dataType="xsd:integer" dictRef="n:contractionNshell">3</scalar>
+<scalar dataType="xsd:integer" dictRef="n:contractionNfunc">5</scalar>
+<scalar dataType="xsd:string" dictRef="n:contractionDesc">2s1p</scalar>
+</list>
+</list>
+</module>
+<module cmlx:templateRef="guess" dictRef="compchem:calculation" id="initialGuess"> Forming initial guess at       0.1s
+<module dictRef="compchem:initialization">
+<parameterList>
+<parameter dictRef="compchem:task">
+<scalar dataType="xsd:string">initialGuess</scalar>
+</parameter>
+</parameterList>
+</module>
+<module cmlx:lineCount="4" cmlx:templateRef="superposatomguess">
+<scalar dataType="xsd:double" dictRef="n:sumatomener" cmlx:templateRef="sumatomener">-75.7622291</scalar>
+</module>
+<module cmlx:lineCount="8" cmlx:templateRef="nonvarinitener">
+<scalar dataType="xsd:double" dictRef="n:homo" cmlx:templateRef="homo">-0.427234</scalar>
+<scalar dataType="xsd:double" dictRef="n:lumo" cmlx:templateRef="homo">0.030612</scalar>
+</module> Starting SCF solution at       0.2s
+<module dictRef="compchem:finalization">
+<propertyList>
+<property dictRef="compchem:totalEnergy">
+<scalar dataType="xsd:double" cmlx:templateRef="totalEnergy" units="nonsi:hartree">-75.617583</scalar>
+</property>
+<property dictRef="compchem:e1Energy">
+<scalar dataType="xsd:double" cmlx:templateRef="e1Energy" units="nonsi:hartree">-119.460405</scalar>
+</property>
+<property dictRef="compchem:e2Energy">
+<scalar dataType="xsd:double" cmlx:templateRef="e2Energy" units="nonsi:hartree">36.028084</scalar>
+</property>
+</propertyList>
+</module>
+</module> ----------------------------------------------
+         Quadratically convergent ROHF
+ Convergence threshold     :          1.000E-04
+ Maximum no. of iterations :           30
+ Final Fock-matrix accuracy:          1.000E-07
+ ----------------------------------------------
+ #quartets = 3.081D+03 #integrals = 2.937D+04 #direct =  0.0% #cached =100.0%
+ Integral file          = ./prop_h2o.aoints.0
+ Record size in doubles =  65536        No. of integs per rec  =  43688
+ Max. records in memory =      3        Max. records in file   = 146586
+ No. of bits per label  =      8        No. of bits per value  =     64
+<module id="iteration" dictRef="compchem:calculation">
+<module id="initialization" dictRef="compchem:initialization">
+<parameterList>
+<parameter dictRef="compchem:method">
+<scalar dataType="xsd:string">scf</scalar>
+</parameter>
+<parameter dictRef="compchem:task">
+<scalar dataType="xsd:string">iteration</scalar>
+</parameter>
+<parameter dictRef="compchem:iterationIndex">
+<scalar dataType="xsd:integer">1</scalar>
+</parameter>
+</parameterList>
+</module>
+<scalar dataType="xsd:double" dictRef="n:gnorm">0.86</scalar>
+<scalar dataType="xsd:double" dictRef="n:gmax">0.352</scalar>
+<module id="finalization" dictRef="compchem:finalization">
+<propertyList>
+<property dictRef="compchem:totalEnergy">
+<scalar dataType="xsd:double" units="nonsi:hartree">-75.9292665837</scalar>
+</property>
+<property dictRef="compchem:wallTime">
+<scalar dataType="xsd:double" units="si:s">0.2</scalar>
+</property>
+</propertyList>
+</module>
+</module>
+<module id="iteration" dictRef="compchem:calculation">
+<module id="initialization" dictRef="compchem:initialization">
+<parameterList>
+<parameter dictRef="compchem:method">
+<scalar dataType="xsd:string">scf</scalar>
+</parameter>
+<parameter dictRef="compchem:task">
+<scalar dataType="xsd:string">iteration</scalar>
+</parameter>
+<parameter dictRef="compchem:iterationIndex">
+<scalar dataType="xsd:integer">2</scalar>
+</parameter>
+</parameterList>
+</module>
+<scalar dataType="xsd:double" dictRef="n:gnorm">0.214</scalar>
+<scalar dataType="xsd:double" dictRef="n:gmax">0.103</scalar>
+<module id="finalization" dictRef="compchem:finalization">
+<propertyList>
+<property dictRef="compchem:totalEnergy">
+<scalar dataType="xsd:double" units="nonsi:hartree">-75.9673931815</scalar>
+</property>
+<property dictRef="compchem:wallTime">
+<scalar dataType="xsd:double" units="si:s">0.2</scalar>
+</property>
+</propertyList>
+</module>
+</module>
+<module id="iteration" dictRef="compchem:calculation">
+<module id="initialization" dictRef="compchem:initialization">
+<parameterList>
+<parameter dictRef="compchem:method">
+<scalar dataType="xsd:string">scf</scalar>
+</parameter>
+<parameter dictRef="compchem:task">
+<scalar dataType="xsd:string">iteration</scalar>
+</parameter>
+<parameter dictRef="compchem:iterationIndex">
+<scalar dataType="xsd:integer">3</scalar>
+</parameter>
+</parameterList>
+</module>
+<scalar dataType="xsd:double" dictRef="n:gnorm">0.0508</scalar>
+<scalar dataType="xsd:double" dictRef="n:gmax">0.0265</scalar>
+<module id="finalization" dictRef="compchem:finalization">
+<propertyList>
+<property dictRef="compchem:totalEnergy">
+<scalar dataType="xsd:double" units="nonsi:hartree">-75.9706433167</scalar>
+</property>
+<property dictRef="compchem:wallTime">
+<scalar dataType="xsd:double" units="si:s">0.2</scalar>
+</property>
+</propertyList>
+</module>
+</module>
+<module id="iteration" dictRef="compchem:calculation">
+<module id="initialization" dictRef="compchem:initialization">
+<parameterList>
+<parameter dictRef="compchem:method">
+<scalar dataType="xsd:string">scf</scalar>
+</parameter>
+<parameter dictRef="compchem:task">
+<scalar dataType="xsd:string">iteration</scalar>
+</parameter>
+<parameter dictRef="compchem:iterationIndex">
+<scalar dataType="xsd:integer">4</scalar>
+</parameter>
+</parameterList>
+</module>
+<scalar dataType="xsd:double" dictRef="n:gnorm">0.00102</scalar>
+<scalar dataType="xsd:double" dictRef="n:gmax">5.51E-4</scalar>
+<module id="finalization" dictRef="compchem:finalization">
+<propertyList>
+<property dictRef="compchem:totalEnergy">
+<scalar dataType="xsd:double" units="nonsi:hartree">-75.970917004</scalar>
+</property>
+<property dictRef="compchem:wallTime">
+<scalar dataType="xsd:double" units="si:s">0.2</scalar>
+</property>
+</propertyList>
+</module>
+</module>
+<module id="iteration" dictRef="compchem:calculation">
+<module id="initialization" dictRef="compchem:initialization">
+<parameterList>
+<parameter dictRef="compchem:method">
+<scalar dataType="xsd:string">scf</scalar>
+</parameter>
+<parameter dictRef="compchem:task">
+<scalar dataType="xsd:string">iteration</scalar>
+</parameter>
+<parameter dictRef="compchem:iterationIndex">
+<scalar dataType="xsd:integer">5</scalar>
+</parameter>
+</parameterList>
+</module>
+<scalar dataType="xsd:double" dictRef="n:gnorm">4.68E-6</scalar>
+<scalar dataType="xsd:double" dictRef="n:gmax">2.26E-6</scalar>
+<module id="finalization" dictRef="compchem:finalization">
+<propertyList>
+<property dictRef="compchem:totalEnergy">
+<scalar dataType="xsd:double" units="nonsi:hartree">-75.9709171975</scalar>
+</property>
+<property dictRef="compchem:wallTime">
+<scalar dataType="xsd:double" units="si:s">0.2</scalar>
+</property>
+</propertyList>
+</module>
+</module>
+<module cmlx:lineCount="7" cmlx:templateRef="scfIter" />
+<module cmlx:lineCount="9" cmlx:templateRef="scf.final" />             Final eigenvalues
+             -----------------
+              1      
+    1  -20.5661
+    2   -1.2593
+    3   -0.6388
+    4   -0.5080
+    5   -0.4774
+    6    0.1451
+    7    0.2282
+    8    0.6738
+    9    0.7436
+   10    1.1708
+   11    1.1908
+   12    1.2519
+   13    1.4190
+   14    1.5093
+   15    1.7039
+                       ROHF Final Molecular Orbital Analysis
+                       -------------------------------------
+ Vector    2  Occ=2.000000D+00  E=-1.259342D+00
+              MO Center= -4.2D-02,  1.1D-15, -5.6D-17, r^2= 5.3D-01
+   Bfn.  Coefficient  Atom+Function         Bfn.  Coefficient  Atom+Function  
+  ----- ------------  ---------------      ----- ------------  ---------------
+     3      0.475190  1 O  s                  2      0.455401  1 O  s          
+ Vector    3  Occ=2.000000D+00  E=-6.388327D-01
+              MO Center= -1.6D-01,  3.5D-15,  4.6D-17, r^2= 9.6D-01
+   Bfn.  Coefficient  Atom+Function         Bfn.  Coefficient  Atom+Function  
+  ----- ------------  ---------------      ----- ------------  ---------------
+     5      0.462774  1 O  py                16     -0.302792  2 H  s          
+    21      0.302792  3 H  s                  8      0.247499  1 O  py         
+ Vector    4  Occ=2.000000D+00  E=-5.079510D-01
+              MO Center=  4.7D-02, -2.5D-15,  3.0D-16, r^2= 7.9D-01
+   Bfn.  Coefficient  Atom+Function         Bfn.  Coefficient  Atom+Function  
+  ----- ------------  ---------------      ----- ------------  ---------------
+     4      0.548989  1 O  px                 7      0.415584  1 O  px         
+     3      0.273968  1 O  s                 16     -0.184524  2 H  s          
+    21     -0.184524  3 H  s          
+ Vector    5  Occ=2.000000D+00  E=-4.774245D-01
+              MO Center=  4.7D-02,  3.2D-17, -2.6D-16, r^2= 6.0D-01
+   Bfn.  Coefficient  Atom+Function         Bfn.  Coefficient  Atom+Function  
+  ----- ------------  ---------------      ----- ------------  ---------------
+     6      0.635100  1 O  pz                 9      0.502944  1 O  pz         
+ Vector    6  Occ=0.000000D+00  E= 1.451279D-01
+              MO Center= -5.3D-01,  2.6D-14, -1.3D-17, r^2= 3.0D+00
+   Bfn.  Coefficient  Atom+Function         Bfn.  Coefficient  Atom+Function  
+  ----- ------------  ---------------      ----- ------------  ---------------
+     3      0.911016  1 O  s                 17     -0.748887  2 H  s          
+    22     -0.748887  3 H  s                  7     -0.351189  1 O  px         
+     4     -0.231711  1 O  px         
+ Vector    7  Occ=0.000000D+00  E= 2.281625D-01
+              MO Center= -5.7D-01, -3.1D-14, -8.7D-19, r^2= 3.6D+00
+   Bfn.  Coefficient  Atom+Function         Bfn.  Coefficient  Atom+Function  
+  ----- ------------  ---------------      ----- ------------  ---------------
+    17      1.122886  2 H  s                 22     -1.122886  3 H  s          
+     8      0.675721  1 O  py                 5      0.325921  1 O  py         
+ Vector    8  Occ=0.000000D+00  E= 6.737701D-01
+              MO Center= -5.5D-01, -1.2D-13,  5.3D-17, r^2= 2.2D+00
+   Bfn.  Coefficient  Atom+Function         Bfn.  Coefficient  Atom+Function  
+  ----- ------------  ---------------      ----- ------------  ---------------
+    16      0.898667  2 H  s                 21      0.898667  3 H  s          
+    17     -0.678277  2 H  s                 22     -0.678277  3 H  s          
+     3      0.301004  1 O  s                  4      0.217743  1 O  px         
+     2     -0.202059  1 O  s          
+ Vector    9  Occ=0.000000D+00  E= 7.436148D-01
+              MO Center= -3.7D-01,  1.2D-13,  1.1D-16, r^2= 2.3D+00
+   Bfn.  Coefficient  Atom+Function         Bfn.  Coefficient  Atom+Function  
+  ----- ------------  ---------------      ----- ------------  ---------------
+    16     -0.924034  2 H  s                 21      0.924034  3 H  s          
+    17      0.828634  2 H  s                 22     -0.828634  3 H  s          
+     5     -0.348785  1 O  py                 8     -0.173688  1 O  py         
+    11     -0.152814  1 O  dxy        
+ Vector   10  Occ=0.000000D+00  E= 1.170773D+00
+              MO Center=  4.8D-02,  8.2D-15,  4.1D-16, r^2= 1.2D+00
+   Bfn.  Coefficient  Atom+Function         Bfn.  Coefficient  Atom+Function  
+  ----- ------------  ---------------      ----- ------------  ---------------
+     7      1.008117  1 O  px                 4     -0.839290  1 O  px         
+     3     -0.280982  1 O  s                 18      0.270875  2 H  px         
+    23      0.270875  3 H  px                16      0.202854  2 H  s          
+    21      0.202854  3 H  s          
+ Vector   11  Occ=0.000000D+00  E= 1.190809D+00
+              MO Center= -6.7D-03,  2.7D-16, -5.1D-16, r^2= 1.1D+00
+   Bfn.  Coefficient  Atom+Function         Bfn.  Coefficient  Atom+Function  
+  ----- ------------  ---------------      ----- ------------  ---------------
+     6      0.941867  1 O  pz                 9     -0.924915  1 O  pz         
+ Vector   12  Occ=0.000000D+00  E= 1.251923D+00
+              MO Center=  4.3D-02, -9.5D-15, -3.2D-18, r^2= 1.6D+00
+   Bfn.  Coefficient  Atom+Function         Bfn.  Coefficient  Atom+Function  
+  ----- ------------  ---------------      ----- ------------  ---------------
+     8      1.527892  1 O  py                 5     -0.696879  1 O  py         
+    17      0.535156  2 H  s                 22     -0.535156  3 H  s          
+    19      0.416541  2 H  py                24      0.416541  3 H  py         
+    16      0.329059  2 H  s                 21     -0.329059  3 H  s          
+ Vector   13  Occ=0.000000D+00  E= 1.419045D+00
+              MO Center= -4.6D-01,  8.9D-15,  4.4D-18, r^2= 1.4D+00
+   Bfn.  Coefficient  Atom+Function         Bfn.  Coefficient  Atom+Function  
+  ----- ------------  ---------------      ----- ------------  ---------------
+    20     -0.674529  2 H  pz                25      0.674529  3 H  pz         
+    14      0.256878  1 O  dyz        
+ Vector   14  Occ=0.000000D+00  E= 1.509282D+00
+              MO Center=  1.9D-02,  5.6D-16,  7.7D-17, r^2= 1.6D+00
+   Bfn.  Coefficient  Atom+Function         Bfn.  Coefficient  Atom+Function  
+  ----- ------------  ---------------      ----- ------------  ---------------
+     3      1.929581  1 O  s                  2     -1.042676  1 O  s          
+     1     -0.498635  1 O  s                 18     -0.442966  2 H  px         
+    23     -0.442966  3 H  px                17     -0.340118  2 H  s          
+    22     -0.340118  3 H  s                 13     -0.306529  1 O  dyy        
+     7      0.262577  1 O  px                15     -0.213422  1 O  dzz        
+ Vector   15  Occ=0.000000D+00  E= 1.703919D+00
+              MO Center= -3.2D-01, -9.3D-15, -2.7D-17, r^2= 1.6D+00
+   Bfn.  Coefficient  Atom+Function         Bfn.  Coefficient  Atom+Function  
+  ----- ------------  ---------------      ----- ------------  ---------------
+    20      0.745248  2 H  pz                25      0.745248  3 H  pz         
+     9     -0.691827  1 O  pz                12     -0.243434  1 O  dxz        
+     6      0.224011  1 O  pz         
+ center of mass
+ --------------
+ x =   0.00000000 y =   0.00000000 z =   0.00000000
+ moments of inertia (a.u.)
+ ------------------
+           6.833002404577           0.000000000000           0.000000000000
+           0.000000000000           1.985523714464           0.000000000000
+           0.000000000000           0.000000000000           8.818526119040
+  Mulliken analysis of the total density
+  --------------------------------------
+    Atom       Charge   Shell Charges
+ -----------   ------   -------------------------------------------------------
+    1 O    8     8.50   2.00  0.84  0.95  2.72  1.98  0.01
+    2 H    1     0.75   0.57  0.13  0.06
+    3 H    1     0.75   0.57  0.13  0.06
+       Multipole analysis of the density wrt the origin
+       ------------------------------------------------
+     L   x y z        total         open         nuclear
+     -   - - -        -----         ----         -------
+     0   0 0 0     -0.000000      0.000000     10.000000
+     1   1 0 0     -0.741199      0.000000     -0.927695
+     1   0 1 0     -0.000000      0.000000      0.000000
+     1   0 0 1     -0.000000      0.000000      0.000000
+     2   2 0 0     -4.646337      0.000000      1.860763
+     2   1 1 0      0.000000      0.000000      0.000000
+     2   1 0 1      0.000000      0.000000      0.000000
+     2   0 2 0     -2.122383      0.000000      6.779949
+     2   0 1 1      0.000000      0.000000      0.000000
+     2   0 0 2     -5.512468      0.000000      0.000000
+<module id="finalization" dictRef="compchem:finalization">
+<propertyList>
+<property dictRef="compchem:totalEnergy">
+<scalar dataType="xsd:double" cmlx:templateRef="totalEnergy" units="nonsi:hartree">-75.970917197508</scalar>
+</property>
+<property dictRef="compchem:e1Energy">
+<scalar dataType="xsd:double" cmlx:templateRef="e1Energy" units="nonsi:hartree">-120.67204419471</scalar>
+</property>
+<property dictRef="compchem:e2Energy">
+<scalar dataType="xsd:double" cmlx:templateRef="e2Energy" units="nonsi:hartree">36.886389532631</scalar>
+</property>
+<property dictRef="compchem:nuclearRepulsionEnergy">
+<scalar dataType="xsd:double" cmlx:templateRef="nuclearRepulsionEnergy" units="nonsi:hartree">7.814737464571</scalar>
+</property>
+<property dictRef="compchem:wallTime">
+<scalar dataType="xsd:double" cmlx:templateRef="scf_time" units="si:s">0.1</scalar>
+</property>
+</propertyList>
+</module>
+</module> Parallel integral file used       1 records with       0 large values
+<module cmlx:lineCount="23" cmlx:templateRef="dipole">          -------------
+          Dipole Moment
+          -------------
+ Center of charge (in au) is the expansion point
+         X =      -0.0927695 Y =       0.0000000 Z =       0.0000000
+   Dipole moment        0.7411989710 A.U.
+             DMX       -0.7411989710 DMXEFC        0.0000000000
+             DMY       -0.0000000000 DMYEFC        0.0000000000
+             DMZ       -0.0000000000 DMZEFC        0.0000000000
+   -EFC- dipole         0.0000000000 A.U.
+   Total dipole         0.7411989710 A.U.
+   Dipole moment        1.8839541065 Debye(s)
+             DMX       -1.8839541065 DMXEFC        0.0000000000
+             DMY       -0.0000000000 DMYEFC        0.0000000000
+             DMZ       -0.0000000000 DMZEFC        0.0000000000
+   -EFC- dipole         0.0000000000 DEBYE(S)
+   Total dipole         1.8839541065 DEBYE(S)
+ 1 a.u. = 2.541766 Debyes 
+</module>
+<module cmlx:lineCount="56" cmlx:templateRef="quadrupole">          -----------------
+          Quadrupole Moment
+          -----------------
+ Center of charge (in au) is the expansion point
+         X =      -0.0927695 Y =       0.0000000 Z =       0.0000000
+ &lt; R**2 &gt; =  20.973360 a.u.  ( 1 a.u. = 0.280023 10**(-16) cm**2 ) 
+ ( also called diamagnetic susceptibility ) 
+   Second moments in atomic units
+   Component  Electronic+nuclear     Point charges             Total
+  --------------------------------------------------------------------------
+      XX           -4.7838582509          0.0000000000         -4.7838582509
+      YY           -2.1223832495          0.0000000000         -2.1223832495
+      ZZ           -5.5124675437          0.0000000000         -5.5124675437
+      XY            0.0000000000          0.0000000000          0.0000000000
+      XZ            0.0000000000          0.0000000000          0.0000000000
+      YZ            0.0000000000          0.0000000000          0.0000000000
+   Second moments in buckingham(s)
+   Component  Electronic+nuclear     Point charges             Total
+  --------------------------------------------------------------------------
+      XX           -6.4338635840          0.0000000000         -6.4338635840
+      YY           -2.8544165785          0.0000000000         -2.8544165785
+      ZZ           -7.4137782367          0.0000000000         -7.4137782367
+      XY            0.0000000000          0.0000000000          0.0000000000
+      XZ            0.0000000000          0.0000000000          0.0000000000
+      YZ            0.0000000000          0.0000000000          0.0000000000
+   Quadrupole moments in atomic units
+   Component  Electronic+nuclear     Point charges             Total
+  --------------------------------------------------------------------------
+      XX           -0.9664328543          0.0000000000         -0.9664328543
+      YY            3.0257796478          0.0000000000          3.0257796478
+      ZZ           -2.0593467935          0.0000000000         -2.0593467935
+      XY            0.0000000000          0.0000000000          0.0000000000
+      XZ            0.0000000000          0.0000000000          0.0000000000
+      YZ            0.0000000000          0.0000000000          0.0000000000
+   Quadrupole moments in buckingham(s)
+   Component  Electronic+nuclear     Point charges             Total
+  --------------------------------------------------------------------------
+      XX           -1.2997661764          0.0000000000         -1.2997661764
+      YY            4.0694043319          0.0000000000          4.0694043319
+      ZZ           -2.7696381554          0.0000000000         -2.7696381554
+      XY            0.0000000000          0.0000000000          0.0000000000
+      XZ            0.0000000000          0.0000000000          0.0000000000
+      YZ            0.0000000000          0.0000000000          0.0000000000
+ 1 a.u. = 1.344911 Buckinghams = 1.344911 10**(-26) esu*cm**2 
+</module>          ---------------
+          Octupole Moment
+          ---------------
+ Center of charge (in au) is the expansion point
+         X =      -0.0927695 Y =       0.0000000 Z =       0.0000000
+   Third moments in atomic units
+   Component  Electronic+nuclear     Point charges             Total
+  --------------------------------------------------------------------------
+      XXX          -1.0048493611          0.0000000000         -1.0048493611
+      YYY          -0.0000000000          0.0000000000         -0.0000000000
+      ZZZ           0.0000000000          0.0000000000          0.0000000000
+      XXY           0.0000000000          0.0000000000          0.0000000000
+      XXZ           0.0000000000          0.0000000000          0.0000000000
+      YYX          -2.6127360984          0.0000000000         -2.6127360984
+      YYZ           0.0000000000          0.0000000000          0.0000000000
+      ZZX          -0.2080191075          0.0000000000         -0.2080191075
+      ZZY           0.0000000000          0.0000000000          0.0000000000
+      XYZ           0.0000000000          0.0000000000          0.0000000000
+   Third moments in 10**(-34) esu*cm**3
+   Component  Electronic+nuclear     Point charges             Total
+  --------------------------------------------------------------------------
+      XXX          -0.7151392321          0.0000000000         -0.7151392321
+      YYY          -0.0000000000          0.0000000000         -0.0000000000
+      ZZZ           0.0000000000          0.0000000000          0.0000000000
+      XXY           0.0000000000          0.0000000000          0.0000000000
+      XXZ           0.0000000000          0.0000000000          0.0000000000
+      YYX          -1.8594529284          0.0000000000         -1.8594529284
+      YYZ           0.0000000000          0.0000000000          0.0000000000
+      ZZX          -0.1480447025          0.0000000000         -0.1480447025
+      ZZY           0.0000000000          0.0000000000          0.0000000000
+      XYZ           0.0000000000          0.0000000000          0.0000000000
+   Octupole moments in atomic units
+   Component  Electronic+nuclear     Point charges             Total
+  --------------------------------------------------------------------------
+      XXX           3.2262834476          0.0000000000          3.2262834476
+      YYY          -0.0000000000          0.0000000000         -0.0000000000
+      ZZZ          -0.0000000000          0.0000000000         -0.0000000000
+      XXY           0.0000000000          0.0000000000          0.0000000000
+      XXZ           0.0000000000          0.0000000000          0.0000000000
+      YYX          -4.6190379625          0.0000000000         -4.6190379625
+      YYZ          -0.0000000000          0.0000000000         -0.0000000000
+      ZZX           1.3927545148          0.0000000000          1.3927545148
+      ZZY           0.0000000000          0.0000000000          0.0000000000
+      XYZ           0.0000000000          0.0000000000          0.0000000000
+   Octupole moments in 10**(-34) esu*cm**3
+   Component  Electronic+nuclear     Point charges             Total
+  --------------------------------------------------------------------------
+      XXX           2.2961072143          0.0000000000          2.2961072143
+      YYY          -0.0000000000          0.0000000000         -0.0000000000
+      ZZZ          -0.0000000000          0.0000000000         -0.0000000000
+      XXY           0.0000000000          0.0000000000          0.0000000000
+      XXZ           0.0000000000          0.0000000000          0.0000000000
+      YYX          -3.2873138894          0.0000000000         -3.2873138894
+      YYZ          -0.0000000000          0.0000000000         -0.0000000000
+      ZZX           0.9912066752          0.0000000000          0.9912066752
+      ZZY           0.0000000000          0.0000000000          0.0000000000
+      XYZ           0.0000000000          0.0000000000          0.0000000000
+ 1 a.u. = 0.711688 10**(-34) esu*cm**3 
+          ----------------------------
+          Mulliken population analysis
+          ----------------------------
+ Total      S,P,D,... shell population
+ --------------------------------
+    Atom          S        P        D
+ --------------------------------------------------------------------------------------
+     1 O      3.78833   4.70276   0.00831
+     2 H      0.69340   0.05691   0.00000
+     3 H      0.69340   0.05691   0.00000
+          ----- Total      gross population on atoms ----
+              1  O    8.0     8.49939
+              2  H    1.0     0.75031
+              3  H    1.0     0.75031
+          ----- Bond indices -----
+  1- 1   0.00000  1- 2   0.93718  1- 3   0.93718
+  2- 1   0.93718  2- 2   0.00000  2- 3   0.01926
+  3- 1   0.93718  3- 2   0.01926  3- 3   0.00000
+ Large bond indices
+ ------------------
+  1   O -  2   H    0.93718
+  1   O -  3   H    0.93718
+                                                                Free electrons             Valency
+                              Number of         Sum of          + Bond indices         - Bond indices    
+                Valency     Free electrons    Bond indices     =Mulliken charge     = Net spin population
+     1  O       1.87436        6.62503          1.87436           8.49939                 0.00000
+     2  H       0.95644       -0.20614          0.95644           0.75031                 0.00000
+     3  H       0.95644       -0.20614          0.95644           0.75031                 0.00000
+<module cmlx:lineCount="9" cmlx:templateRef="electPotDiamagShield">
+<list cmlx:templateRef="conversionFactor">
+<scalar dataType="xsd:double" dictRef="n:au2esu">9.07618</scalar>
+</list>
+</module>          --------------
+          Electric field
+          --------------
+ 1 a.u. = 0.171524 10**(-8) dyn/esu 
+   Atom       X         Y         Z                        Electric field (a.u.)
+                                              X              Y              Z           Field
+  ------------------------------------------------------------------------------------------------
+    1 O    0.11787   0.00000   0.00000       0.097190       0.000000       0.000000       0.097190
+    2 H   -0.93531  -1.84119   0.00000       0.033580       0.100469       0.000000       0.105933
+    3 H   -0.93531   1.84119   0.00000       0.033580      -0.100469       0.000000       0.105933
+          -----------------------
+          Electric field gradient
+          -----------------------
+ 1 a.u. = 0.324123 10**(16) esu/cm**3  ( or statvolts/cm**2 ) = 0.97174 10**(22) v/m**2 
+ ------------------------------------------------------------
+   Atom      X         Y         Z
+ ------------------------------------------------------------
+    1 O    0.11787   0.00000   0.00000
+ ------------------------------------------------------------
+ Electric field gradient in molecular frame (a.u.)
+         XX             YY             ZZ             XY             XZ             YZ
+ ------------------------------------------------------------------------------------------
+       -0.059746      -2.204286       2.264031       0.000000       0.000000       0.000000
+ Principal components (a.u.) and orientation 
+ of principal axis w.r.t. absolute frame                      Asymmetry parameter eta
+ --------------------------------------------------------------------------------------
+        2.264031      -2.204286      -0.059746                       0.947222
+        0.000000       0.000000       1.000000
+        0.000000       1.000000       0.000000
+        1.000000       0.000000       0.000000
+ ------------------------------------------------------------
+   Atom      X         Y         Z
+ ------------------------------------------------------------
+    2 H   -0.93531  -1.84119   0.00000
+ ------------------------------------------------------------
+ Electric field gradient in molecular frame (a.u.)
+         XX             YY             ZZ             XY             XZ             YZ
+ ------------------------------------------------------------------------------------------
+       -0.001500      -0.097186       0.098686      -0.103660      -0.000000      -0.000000
+ Principal components (a.u.) and orientation 
+ of principal axis w.r.t. absolute frame                      Asymmetry parameter eta
+ --------------------------------------------------------------------------------------
+       -0.163511       0.098686       0.064825                       0.207089
+        0.538954       0.000000       0.842335
+        0.842335       0.000000      -0.538954
+        0.000000       1.000000       0.000000
+ ------------------------------------------------------------
+   Atom      X         Y         Z
+ ------------------------------------------------------------
+    3 H   -0.93531   1.84119   0.00000
+ ------------------------------------------------------------
+ Electric field gradient in molecular frame (a.u.)
+         XX             YY             ZZ             XY             XZ             YZ
+ ------------------------------------------------------------------------------------------
+       -0.001500      -0.097186       0.098686       0.103660      -0.000000      -0.000000
+ Principal components (a.u.) and orientation 
+ of principal axis w.r.t. absolute frame                      Asymmetry parameter eta
+ --------------------------------------------------------------------------------------
+       -0.163511       0.098686       0.064825                       0.207089
+       -0.538954       0.000000       0.842335
+        0.842335       0.000000       0.538954
+        0.000000       1.000000       0.000000
+          ---------------------
+          Electron/spin density
+          ---------------------
+ 1 a.u. = 4.80286 10**(-10) esu 
+ Total electron density 
+ ---------------------- 
+   Point      X         Y         Z      Density (a.u.)
+    1 O    0.11787   0.00000   0.00000     297.124629
+    2 H   -0.93531  -1.84119   0.00000       0.268392
+    3 H   -0.93531   1.84119   0.00000       0.268392
+<module cmlx:lineCount="138" cmlx:templateRef="shielding">
+<module cmlx:lineCount="18" cmlx:templateRef="cphf">
+<module cmlx:lineCount="13" cmlx:templateRef="cphf">
+<list cmlx:templateRef="r1">
+<list>
+<scalar dataType="xsd:string" dictRef="n:nnname">scftype</scalar>
+<scalar dataType="xsd:string" dictRef="n:vvvalue">RHF</scalar>
+</list>
+<list>
+<scalar dataType="xsd:string" dictRef="n:nnname">nclosed</scalar>
+<scalar dataType="xsd:string" dictRef="n:vvvalue">5</scalar>
+</list>
+<list>
+<scalar dataType="xsd:string" dictRef="n:nnname">nopen</scalar>
+<scalar dataType="xsd:string" dictRef="n:vvvalue">0</scalar>
+</list>
+<list>
+<scalar dataType="xsd:string" dictRef="n:nnname">variables</scalar>
+<scalar dataType="xsd:string" dictRef="n:vvvalue">100</scalar>
+</list>
+<list>
+<scalar dataType="xsd:string" dictRef="n:nnname"># of vectors</scalar>
+<scalar dataType="xsd:string" dictRef="n:vvvalue">3</scalar>
+</list>
+<list>
+<scalar dataType="xsd:string" dictRef="n:nnname">tolerance</scalar>
+<scalar dataType="xsd:string" dictRef="n:vvvalue">0.10D-03</scalar>
+</list>
+<list>
+<scalar dataType="xsd:string" dictRef="n:nnname">level shift</scalar>
+<scalar dataType="xsd:string" dictRef="n:vvvalue">0.00D+00</scalar>
+</list>
+<list>
+<scalar dataType="xsd:string" dictRef="n:nnname">max iterations</scalar>
+<scalar dataType="xsd:string" dictRef="n:vvvalue">50</scalar>
+</list>
+<list>
+<scalar dataType="xsd:string" dictRef="n:nnname">max subspace</scalar>
+<scalar dataType="xsd:string" dictRef="n:vvvalue">30</scalar>
+</list>
+</list>
+</module>
+<module cmlx:lineCount="1" cmlx:templateRef="quartets">
+<list cmlx:templateRef="quartets">
+<list>
+<scalar dataType="xsd:double" dictRef="n:quartet">3081.0</scalar>
+<scalar dataType="xsd:double" dictRef="n:integrals">29370.0</scalar>
+<scalar dataType="xsd:double" dictRef="n:direct">0.0</scalar>
+<scalar dataType="xsd:double" dictRef="n:cached">100.0</scalar>
+</list>
+</list>
+</module>
+</module>
+<module cmlx:lineCount="4" cmlx:templateRef="integralfile">
+<list cmlx:templateRef="integral">
+<scalar dataType="xsd:string" dictRef="n:integralfile">./prop_h2o.aoints.0</scalar>
+</list>
+</module> SCF residual:   4.67529396023953250E-006
+<module cmlx:lineCount="7" cmlx:templateRef="itersol">
+<list cmlx:templateRef="iter">
+<list>
+<scalar dataType="xsd:string" dictRef="x:name">No. of variables</scalar>
+<scalar dataType="xsd:string" dictRef="x:value">100</scalar>
+</list>
+<list>
+<scalar dataType="xsd:string" dictRef="x:name">No. of equations</scalar>
+<scalar dataType="xsd:string" dictRef="x:value">3</scalar>
+</list>
+<list>
+<scalar dataType="xsd:string" dictRef="x:name">Maximum subspace</scalar>
+<scalar dataType="xsd:string" dictRef="x:value">30</scalar>
+</list>
+<list>
+<scalar dataType="xsd:string" dictRef="x:name">Iterations</scalar>
+<scalar dataType="xsd:string" dictRef="x:value">50</scalar>
+</list>
+<list>
+<scalar dataType="xsd:string" dictRef="x:name">Convergence</scalar>
+<scalar dataType="xsd:string" dictRef="x:value">1.0D-04</scalar>
+</list>
+<list>
+<scalar dataType="xsd:string" dictRef="x:name">Start time</scalar>
+<scalar dataType="xsd:string" dictRef="x:value">1.1</scalar>
+</list>
+</list>
+</module>
+<module cmlx:lineCount="8" cmlx:templateRef="iternsub">
+<list cmlx:lineCount="6" cmlx:templateRef="iter">
+<array dataType="xsd:integer" dictRef="x:serial" size="6">1 2 3 4 5 6</array>
+<array dataType="xsd:integer" dictRef="n:nsub" size="6">3 6 9 12 15 18</array>
+<array dataType="xsd:double" dictRef="n:resid" size="6">0.44 0.135 0.0167 0.0020 2.26E-4 2.19E-5</array>
+<array dataType="xsd:double" dictRef="cc:time" size="6">1.2 1.4 1.5 1.7 1.8 1.9</array>
+</list>
+</module>
+<module cmlx:lineCount="1" cmlx:templateRef="parallel">
+<list cmlx:lineCount="1" cmlx:templateRef="parallel">
+<array dataType="xsd:string" dictRef="cc:filetype" size="1">integral</array>
+<array dataType="xsd:integer" dictRef="n:nrec" size="1">1</array>
+<array dataType="xsd:integer" dictRef="n:large" size="1">0</array>
+</list>
+</module>
+<module cmlx:lineCount="28" cmlx:templateRef="magneticatom">
+<list cmlx:templateRef="atomid">
+<list>
+<scalar dataType="xsd:integer" dictRef="cc:serial">1</scalar>
+<scalar dataType="xsd:string" dictRef="x:elementType">O</scalar>
+</list>
+</list>
+<module cmlx:lineCount="4" cmlx:templateRef="namedtensor">
+<scalar dataType="xsd:string" dictRef="cc:tensorname">Diamagnetic</scalar>
+<matrix rows="3" columns="3" dataType="xsd:double" dictRef="cc:tensor">383.3383 0.0 0.0 0.0 399.613 0.0 0.0 0.0 368.4548</matrix>
+</module>
+<module cmlx:lineCount="4" cmlx:templateRef="namedtensor">
+<scalar dataType="xsd:string" dictRef="cc:tensorname">Paramagnetic</scalar>
+<matrix rows="3" columns="3" dataType="xsd:double" dictRef="cc:tensor">-144.0886 0.0 -0.0 0.0 -155.6629 -0.0 -0.0 -0.0 -173.6024</matrix>
+</module>
+<module cmlx:lineCount="4" cmlx:templateRef="namedtensor">
+<scalar dataType="xsd:string" dictRef="cc:tensorname">Total Shielding Tensor</scalar>
+<matrix rows="3" columns="3" dataType="xsd:double" dictRef="cc:tensor">239.2496 0.0 -0.0 0.0 243.9501 -0.0 -0.0 -0.0 194.8524</matrix>
+</module>
+<list cmlx:templateRef="s">
+<scalar dataType="xsd:string" dictRef="x:xxx" />
+</list>
+<module cmlx:lineCount="2" cmlx:templateRef="isotrop">
+<list cmlx:templateRef="isotrop">
+<scalar dataType="xsd:double" dictRef="n:isotropic">226.0174</scalar>
+</list>
+<list cmlx:templateRef="anisotrop">
+<scalar dataType="xsd:double" dictRef="n:anisotropy">26.8991</scalar>
+</list>
+</module>
+<array dataType="xsd:double" size="3" dictRef="cc:principalcomp">243.9501 239.2496 194.8524</array>
+<module cmlx:lineCount="7" cmlx:templateRef="principalcomponents">
+<list cmlx:templateRef="skip" />
+<matrix rows="3" columns="3" dataType="xsd:double" dictRef="cc:principalaxes">0.0 1.0 0.0 1.0 0.0 0.0 0.0 0.0 1.0</matrix>
+<list cmlx:templateRef="rows" />
+</module>
+</module>
+<module cmlx:lineCount="28" cmlx:templateRef="magneticatom">
+<list cmlx:templateRef="atomid">
+<list>
+<scalar dataType="xsd:integer" dictRef="cc:serial">2</scalar>
+<scalar dataType="xsd:string" dictRef="x:elementType">H</scalar>
+</list>
+</list>
+<module cmlx:lineCount="4" cmlx:templateRef="namedtensor">
+<scalar dataType="xsd:string" dictRef="cc:tensorname">Diamagnetic</scalar>
+<matrix rows="3" columns="3" dataType="xsd:double" dictRef="cc:tensor">22.7548 5.8098 0.0 5.8098 31.6903 0.0 0.0 0.0 18.485</matrix>
+</module>
+<module cmlx:lineCount="4" cmlx:templateRef="namedtensor">
+<scalar dataType="xsd:string" dictRef="cc:tensorname">Paramagnetic</scalar>
+<matrix rows="3" columns="3" dataType="xsd:double" dictRef="cc:tensor">0.2202 -2.5085 0.0 -2.5085 0.2293 -0.0 0.0 -0.0 1.8598</matrix>
+</module>
+<module cmlx:lineCount="4" cmlx:templateRef="namedtensor">
+<scalar dataType="xsd:string" dictRef="cc:tensorname">Total Shielding Tensor</scalar>
+<matrix rows="3" columns="3" dataType="xsd:double" dictRef="cc:tensor">22.975 3.3013 0.0 3.3013 31.9196 -0.0 0.0 -0.0 20.3448</matrix>
+</module>
+<list cmlx:templateRef="s">
+<scalar dataType="xsd:string" dictRef="x:xxx" />
+</list>
+<module cmlx:lineCount="2" cmlx:templateRef="isotrop">
+<list cmlx:templateRef="isotrop">
+<scalar dataType="xsd:double" dictRef="n:isotropic">25.0798</scalar>
+</list>
+<list cmlx:templateRef="anisotrop">
+<scalar dataType="xsd:double" dictRef="n:anisotropy">11.8893</scalar>
+</list>
+</module>
+<array dataType="xsd:double" size="3" dictRef="cc:principalcomp">33.006 21.8886 20.3448</array>
+<module cmlx:lineCount="7" cmlx:templateRef="principalcomponents">
+<list cmlx:templateRef="skip" />
+<matrix rows="3" columns="3" dataType="xsd:double" dictRef="cc:principalaxes">0.3126 0.9499 0.0 0.9499 -0.3126 0.0 0.0 0.0 1.0</matrix>
+<list cmlx:templateRef="rows" />
+</module>
+</module>
+<module cmlx:lineCount="28" cmlx:templateRef="magneticatom">
+<list cmlx:templateRef="atomid">
+<list>
+<scalar dataType="xsd:integer" dictRef="cc:serial">3</scalar>
+<scalar dataType="xsd:string" dictRef="x:elementType">H</scalar>
+</list>
+</list>
+<module cmlx:lineCount="4" cmlx:templateRef="namedtensor">
+<scalar dataType="xsd:string" dictRef="cc:tensorname">Diamagnetic</scalar>
+<matrix rows="3" columns="3" dataType="xsd:double" dictRef="cc:tensor">22.7548 -5.8098 0.0 -5.8098 31.6903 -0.0 0.0 -0.0 18.485</matrix>
+</module>
+<module cmlx:lineCount="4" cmlx:templateRef="namedtensor">
+<scalar dataType="xsd:string" dictRef="cc:tensorname">Paramagnetic</scalar>
+<matrix rows="3" columns="3" dataType="xsd:double" dictRef="cc:tensor">0.2202 2.5085 0.0 2.5085 0.2293 -0.0 0.0 -0.0 1.8598</matrix>
+</module>
+<module cmlx:lineCount="4" cmlx:templateRef="namedtensor">
+<scalar dataType="xsd:string" dictRef="cc:tensorname">Total Shielding Tensor</scalar>
+<matrix rows="3" columns="3" dataType="xsd:double" dictRef="cc:tensor">22.975 -3.3013 0.0 -3.3013 31.9196 -0.0 0.0 -0.0 20.3448</matrix>
+</module>
+<list cmlx:templateRef="s">
+<scalar dataType="xsd:string" dictRef="x:xxx" />
+</list>
+<module cmlx:lineCount="2" cmlx:templateRef="isotrop">
+<list cmlx:templateRef="isotrop">
+<scalar dataType="xsd:double" dictRef="n:isotropic">25.0798</scalar>
+</list>
+<list cmlx:templateRef="anisotrop">
+<scalar dataType="xsd:double" dictRef="n:anisotropy">11.8893</scalar>
+</list>
+</module>
+<array dataType="xsd:double" size="3" dictRef="cc:principalcomp">33.006 21.8886 20.3448</array>
+<module cmlx:lineCount="7" cmlx:templateRef="principalcomponents">
+<list cmlx:templateRef="skip" />
+<matrix rows="3" columns="3" dataType="xsd:double" dictRef="cc:principalaxes">-0.3126 0.9499 0.0 0.9499 0.3126 0.0 0.0 0.0 1.0</matrix>
+<list cmlx:templateRef="rows" />
+</module>
+</module>
+</module> Task  times  cpu:        1.7s     wall:        1.9s
+                                NWChem Input Module
+                                -------------------
+<module dictRef="compchem:finalization" id="finalization.copy">
+<propertyList>
+<property dictRef="compchem:totalEnergy">
+<scalar dataType="xsd:double" cmlx:templateRef="totalEnergy" units="nonsi:hartree">-75.970917197508</scalar>
+</property>
+<property dictRef="compchem:e1Energy">
+<scalar dataType="xsd:double" cmlx:templateRef="e1Energy" units="nonsi:hartree">-120.67204419471</scalar>
+</property>
+<property dictRef="compchem:e2Energy">
+<scalar dataType="xsd:double" cmlx:templateRef="e2Energy" units="nonsi:hartree">36.886389532631</scalar>
+</property>
+<property dictRef="compchem:nuclearRepulsionEnergy">
+<scalar dataType="xsd:double" cmlx:templateRef="nuclearRepulsionEnergy" units="nonsi:hartree">7.814737464571</scalar>
+</property>
+<property dictRef="compchem:wallTime">
+<scalar dataType="xsd:double" cmlx:templateRef="scf_time" units="si:s">0.1</scalar>
+</property>
+</propertyList>
+<list dictRef="compchem:electrostaticPotentialList">
+<list dictRef="compchem:atomElectrostaticPotential">
+<scalar dataType="xsd:integer" dictRef="compchem:atomIndex">1</scalar>
+<scalar dataType="xsd:string" dictRef="compchem:atomLabel">O</scalar>
+<scalar dataType="xsd:double" dictRef="compchem:x3">0.11787</scalar>
+<scalar dataType="xsd:double" dictRef="compchem:y3">0.0</scalar>
+<scalar dataType="xsd:double" dictRef="compchem:z3">0.0</scalar>
+<scalar dataType="xsd:double" dictRef="compchem:electrostaticPotential">-22.322227</scalar>
+</list>
+<list dictRef="compchem:atomElectrostaticPotential">
+<scalar dataType="xsd:integer" dictRef="compchem:atomIndex">2</scalar>
+<scalar dataType="xsd:string" dictRef="compchem:atomLabel">H</scalar>
+<scalar dataType="xsd:double" dictRef="compchem:x3">-0.93531</scalar>
+<scalar dataType="xsd:double" dictRef="compchem:y3">-1.84119</scalar>
+<scalar dataType="xsd:double" dictRef="compchem:z3">0.0</scalar>
+<scalar dataType="xsd:double" dictRef="compchem:electrostaticPotential">-0.960147</scalar>
+</list>
+<list dictRef="compchem:atomElectrostaticPotential">
+<scalar dataType="xsd:integer" dictRef="compchem:atomIndex">3</scalar>
+<scalar dataType="xsd:string" dictRef="compchem:atomLabel">H</scalar>
+<scalar dataType="xsd:double" dictRef="compchem:x3">-0.93531</scalar>
+<scalar dataType="xsd:double" dictRef="compchem:y3">1.84119</scalar>
+<scalar dataType="xsd:double" dictRef="compchem:z3">0.0</scalar>
+<scalar dataType="xsd:double" dictRef="compchem:electrostaticPotential">-0.960147</scalar>
+</list>
+</list>
+<list dictRef="compchem:diamagneticShieldingList">
+<list dictRef="compchem:atomDiamagneticShielding">
+<scalar dataType="xsd:integer" dictRef="compchem:atomIndex">1</scalar>
+<scalar dataType="xsd:string" dictRef="compchem:atomLabel">O</scalar>
+<scalar dataType="xsd:double" dictRef="compchem:x3">0.11787</scalar>
+<scalar dataType="xsd:double" dictRef="compchem:y3">0.0</scalar>
+<scalar dataType="xsd:double" dictRef="compchem:z3">0.0</scalar>
+<scalar dataType="xsd:double" dictRef="compchem:diamagneticShielding">23.265124</scalar>
+</list>
+<list dictRef="compchem:atomDiamagneticShielding">
+<scalar dataType="xsd:integer" dictRef="compchem:atomIndex">2</scalar>
+<scalar dataType="xsd:string" dictRef="compchem:atomLabel">H</scalar>
+<scalar dataType="xsd:double" dictRef="compchem:x3">-0.93531</scalar>
+<scalar dataType="xsd:double" dictRef="compchem:y3">-1.84119</scalar>
+<scalar dataType="xsd:double" dictRef="compchem:z3">0.0</scalar>
+<scalar dataType="xsd:double" dictRef="compchem:diamagneticShielding">5.003298</scalar>
+</list>
+<list dictRef="compchem:atomDiamagneticShielding">
+<scalar dataType="xsd:integer" dictRef="compchem:atomIndex">3</scalar>
+<scalar dataType="xsd:string" dictRef="compchem:atomLabel">H</scalar>
+<scalar dataType="xsd:double" dictRef="compchem:x3">-0.93531</scalar>
+<scalar dataType="xsd:double" dictRef="compchem:y3">1.84119</scalar>
+<scalar dataType="xsd:double" dictRef="compchem:z3">0.0</scalar>
+<scalar dataType="xsd:double" dictRef="compchem:diamagneticShielding">5.003298</scalar>
+</list>
+</list>
+</module>
+</module>
   </comment>
 
 </template>

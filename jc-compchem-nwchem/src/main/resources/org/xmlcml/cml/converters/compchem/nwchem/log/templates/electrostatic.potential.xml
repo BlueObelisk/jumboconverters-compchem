@@ -1,6 +1,6 @@
 <template
  repeat="*"
- id="electrostaticPotential" name="Electrostatic Potential" 
+ id="electPotDiamagShield" name="Electrostatic Potential and Diamagnetic Shieldings" 
   pattern="\s+\-+\s*$\s+Electrostatic potential/diamagnetic shielding\s*$\s+\-+\s*$\s*"
   newline="$"
   endPattern="\s*"
@@ -26,7 +26,7 @@
   repeat="*" 
   makeArray="false"
   id="electPot"
-  >\s*{I,n:atomIndex}\s*{A,n:atomLabel}\s*{F,n:x3}\s*{F,n:y3}\s*{F,n:z3}\s*{F,n:totalPotential}\s*{F,n:diamagneticShielding}\s*</record>
+  >\s*{I,compchem:atomIndex}\s*{A,compchem:atomLabel}\s*{F,compchem:x3}\s*{F,compchem:y3}\s*{F,compchem:z3}\s*{F,compchem:electrostaticPotential}\s*{F,compchem:diamagneticShielding}\s*</record>
   
   
   <!-- Turn lists of coordinates into array -->
@@ -37,13 +37,22 @@
   /> -->
   
   <transform process="delete" xpath=".//cml:list[@cmlx:templateRef='missingID']"/>
+  
+  <!-- Make array from coords -->
+<!--   <transform process="createArray"
+  xpath="./cml:list[@cmlx:templateRef='electPot']/cml:list"
+  from="./cml:scalar[@dictRef='compchem:x3' or @dictRef='compchem:y3' or @dictRef='compchem:z3']"
+  /> -->
+  
+  
+  
   <!-- add dictRef to lists to identifiy as electrostatic potentials, then copy to create
   list for diamagnetic shieldings and delete uneeded data from each -->
   
   <!-- dictRef -->
   <transform process="addDictRef"
   xpath="./cml:list[@cmlx:templateRef='electPot']/cml:list"
-  value="compchem:electrostaticPotential"
+  value="compchem:atomElectrostaticPotential"
   />
   <!-- Copy lists - one for pot & one for shielding -->
   <transform process="copyRelative"
@@ -54,22 +63,99 @@
   <!-- Change dictRef for diamagnetic shielding -->
   <transform process="addDictRef"
   xpath="./cml:list[@cmlx:templateRef='electPot']/cml:list[starts-with(@id,'copy')]"
-  value="compchem:diamagneticShielding"
+  value="compchem:atomDiamagneticShielding"
   />
   
   <transform process="delete" xpath="./cml:list[@cmlx:templateRef='electPot']/cml:list/@id"/>
   <transform process="delete"
-   xpath="./cml:list[@cmlx:templateRef='electPot']/cml:list[@dictRef='compchem:electrostaticPotential']/cml:scalar[@dictRef='n:diamagneticShielding']"   
+   xpath="./cml:list[@cmlx:templateRef='electPot']/cml:list[@dictRef='compchem:atomElectrostaticPotential']/cml:scalar[@dictRef='compchem:diamagneticShielding']"   
    />
   <transform process="delete"
-   xpath="./cml:list[@cmlx:templateRef='electPot']/cml:list[@dictRef='compchem:diamagneticShielding']/cml:scalar[@dictRef='n:totalPotential']"   
+   xpath="./cml:list[@cmlx:templateRef='electPot']/cml:list[@dictRef='compchem:atomDiamagneticShielding']/cml:scalar[@dictRef='compchem:electrostaticPotential']"   
+   />
+   
+   <!-- Add dictref to potential list and delete templateref -->
+   <transform process="addDictRef"
+   xpath="./cml:list[@cmlx:templateRef='electPot']"
+   value="compchem:electrostaticPotentialList"
+   />
+   <transform process="delete"
+   xpath="./cml:list[@dictRef='compchem:electrostaticPotentialList']/@cmlx:templateRef"
    />
   
-  
+  <!--  Group diagmagnetic Shieldings and pots -->
+     <transform process="pullup"
+   xpath="./cml:list[@dictRef='compchem:atomElectrostaticPotential']/cml:list[@dictRef='compchem:atomDiamagneticShielding']"   
+   />
+   
+   <transform process="addChild"
+   xpath="."
+   elementName="cml:list"
+   dictRef="compchem:diamagneticShieldingList"
+   />
+   
+   <transform process="move"
+   xpath="./cml:list[@dictRef='compchem:electrostaticPotentialList']/cml:list[@dictRef='compchem:atomDiamagneticShielding']"
+   to="./cml:list[@dictRef='compchem:diamagneticShieldingList']"
+   />
 
   <comment class="example.output" id="dipole">
-<module xmlns="http://www.xml-cml.org/schema" xmlns:cmlx="http://www.xml-cml.org/schema/cmlx" cmlx:templateRef="dipole">          -------------
-<module/>
+<module xmlns="http://www.xml-cml.org/schema" xmlns:cmlx="http://www.xml-cml.org/schema/cmlx" cmlx:templateRef="electPotDiamagShield">
+<list cmlx:templateRef="conversionFactor">
+<scalar dataType="xsd:double" dictRef="n:au2esu">9.07618</scalar>
+</list>
+<list dictRef="compchem:electrostaticPotentialList">
+<list dictRef="compchem:atomElectrostaticPotential">
+<scalar dataType="xsd:integer" dictRef="compchem:atomIndex">1</scalar>
+<scalar dataType="xsd:string" dictRef="compchem:atomLabel">O</scalar>
+<scalar dataType="xsd:double" dictRef="compchem:x3">0.11787</scalar>
+<scalar dataType="xsd:double" dictRef="compchem:y3">0.0</scalar>
+<scalar dataType="xsd:double" dictRef="compchem:z3">0.0</scalar>
+<scalar dataType="xsd:double" dictRef="compchem:electrostaticPotential">-22.322227</scalar>
+</list>
+<list dictRef="compchem:atomElectrostaticPotential">
+<scalar dataType="xsd:integer" dictRef="compchem:atomIndex">2</scalar>
+<scalar dataType="xsd:string" dictRef="compchem:atomLabel">H</scalar>
+<scalar dataType="xsd:double" dictRef="compchem:x3">-0.93531</scalar>
+<scalar dataType="xsd:double" dictRef="compchem:y3">-1.84119</scalar>
+<scalar dataType="xsd:double" dictRef="compchem:z3">0.0</scalar>
+<scalar dataType="xsd:double" dictRef="compchem:electrostaticPotential">-0.960147</scalar>
+</list>
+<list dictRef="compchem:atomElectrostaticPotential">
+<scalar dataType="xsd:integer" dictRef="compchem:atomIndex">3</scalar>
+<scalar dataType="xsd:string" dictRef="compchem:atomLabel">H</scalar>
+<scalar dataType="xsd:double" dictRef="compchem:x3">-0.93531</scalar>
+<scalar dataType="xsd:double" dictRef="compchem:y3">1.84119</scalar>
+<scalar dataType="xsd:double" dictRef="compchem:z3">0.0</scalar>
+<scalar dataType="xsd:double" dictRef="compchem:electrostaticPotential">-0.960147</scalar>
+</list>
+</list>
+<list dictRef="compchem:diamagneticShieldingList">
+<list dictRef="compchem:atomDiamagneticShielding">
+<scalar dataType="xsd:integer" dictRef="compchem:atomIndex">1</scalar>
+<scalar dataType="xsd:string" dictRef="compchem:atomLabel">O</scalar>
+<scalar dataType="xsd:double" dictRef="compchem:x3">0.11787</scalar>
+<scalar dataType="xsd:double" dictRef="compchem:y3">0.0</scalar>
+<scalar dataType="xsd:double" dictRef="compchem:z3">0.0</scalar>
+<scalar dataType="xsd:double" dictRef="compchem:diamagneticShielding">23.265124</scalar>
+</list>
+<list dictRef="compchem:atomDiamagneticShielding">
+<scalar dataType="xsd:integer" dictRef="compchem:atomIndex">2</scalar>
+<scalar dataType="xsd:string" dictRef="compchem:atomLabel">H</scalar>
+<scalar dataType="xsd:double" dictRef="compchem:x3">-0.93531</scalar>
+<scalar dataType="xsd:double" dictRef="compchem:y3">-1.84119</scalar>
+<scalar dataType="xsd:double" dictRef="compchem:z3">0.0</scalar>
+<scalar dataType="xsd:double" dictRef="compchem:diamagneticShielding">5.003298</scalar>
+</list>
+<list dictRef="compchem:atomDiamagneticShielding">
+<scalar dataType="xsd:integer" dictRef="compchem:atomIndex">3</scalar>
+<scalar dataType="xsd:string" dictRef="compchem:atomLabel">H</scalar>
+<scalar dataType="xsd:double" dictRef="compchem:x3">-0.93531</scalar>
+<scalar dataType="xsd:double" dictRef="compchem:y3">1.84119</scalar>
+<scalar dataType="xsd:double" dictRef="compchem:z3">0.0</scalar>
+<scalar dataType="xsd:double" dictRef="compchem:diamagneticShielding">5.003298</scalar>
+</list>
+</list>
 </module>
   </comment>
 

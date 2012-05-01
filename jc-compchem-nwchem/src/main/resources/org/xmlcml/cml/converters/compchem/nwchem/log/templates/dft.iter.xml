@@ -37,7 +37,7 @@
   
   <templateList>
     <template pattern="\s*d\=.*" endPattern=".*" repeat="*" id="cycle">
-      <record id="converge" repeat="*">\s*d\=\s*{I,n:d}\,ls={F,n:ls}\,diis\s*{I,compchem:iterationIndex}\s*{F,compchem:totalEnergy}\s*{E,n:deltae}\s*{E,n:rms}\s*{E,n:diserr}\s*{F,compchem:wallTime}</record>
+      <record id="converge" repeat="*">\s*d\=\s*{I,n:d}\,ls={F,n:ls}\,diis\s*{I,compchem:iterationIndex}\s*{F,compchem:totalEnergy}\s*{E,compchem:iterativeTotalEnergyDifference}\s*{E,compchem:iterativeTotalDensityDifference}\s*{E,n:diserr}\s*{F,compchem:wallTime}</record>
     </template>
     <xi:include href="dft.warn.density.xml"/>
   </templateList>
@@ -53,6 +53,11 @@
   <!-- Add Units -->
   <transform process="addUnits"
   xpath=".//cml:scalar[@dictRef='compchem:totalEnergy']"
+  value="nonsi:hartree"
+  />
+  
+  <transform process="addUnits"
+  xpath=".//cml:scalar[@dictRef='compchem:iterativeTotalEnergyDifference']"
   value="nonsi:hartree"
   />
   <transform process="addUnits"
@@ -156,13 +161,17 @@
 </parameterList>
 </module>
 <scalar dataType="xsd:double" dictRef="n:ls">0.0</scalar>
-<scalar dataType="xsd:double" dictRef="n:deltae">-2620.0</scalar>
-<scalar dataType="xsd:double" dictRef="n:rms">0.062</scalar>
 <scalar dataType="xsd:double" dictRef="n:diserr">9.95</scalar>
 <module id="finalization" dictRef="compchem:finalization">
 <propertyList>
 <property dictRef="compchem:totalEnergy">
 <scalar dataType="xsd:double" units="nonsi:hartree">-1822.8247493675</scalar>
+</property>
+<property dictRef="compchem:iterativeTotalEnergyDifference">
+<scalar dataType="xsd:double" units="nonsi:hartree">-2620.0</scalar>
+</property>
+<property dictRef="compchem:iterativeTotalDensityDifference">
+<scalar dataType="xsd:double">0.062</scalar>
 </property>
 <property dictRef="compchem:wallTime">
 <scalar dataType="xsd:double" units="si:s">1.9</scalar>
@@ -186,13 +195,17 @@
 </parameterList>
 </module>
 <scalar dataType="xsd:double" dictRef="n:ls">0.0</scalar>
-<scalar dataType="xsd:double" dictRef="n:deltae">11.6</scalar>
-<scalar dataType="xsd:double" dictRef="n:rms">0.0718</scalar>
 <scalar dataType="xsd:double" dictRef="n:diserr">67.8</scalar>
 <module id="finalization" dictRef="compchem:finalization">
 <propertyList>
 <property dictRef="compchem:totalEnergy">
 <scalar dataType="xsd:double" units="nonsi:hartree">-1811.2270745263</scalar>
+</property>
+<property dictRef="compchem:iterativeTotalEnergyDifference">
+<scalar dataType="xsd:double" units="nonsi:hartree">11.6</scalar>
+</property>
+<property dictRef="compchem:iterativeTotalDensityDifference">
+<scalar dataType="xsd:double">0.0718</scalar>
 </property>
 <property dictRef="compchem:wallTime">
 <scalar dataType="xsd:double" units="si:s">2.3</scalar>
@@ -216,13 +229,17 @@
 </parameterList>
 </module>
 <scalar dataType="xsd:double" dictRef="n:ls">0.0</scalar>
-<scalar dataType="xsd:double" dictRef="n:deltae">-2.41E-7</scalar>
-<scalar dataType="xsd:double" dictRef="n:rms">9.79E-7</scalar>
 <scalar dataType="xsd:double" dictRef="n:diserr">1.05E-7</scalar>
 <module id="finalization" dictRef="compchem:finalization">
 <propertyList>
 <property dictRef="compchem:totalEnergy">
 <scalar dataType="xsd:double" units="nonsi:hartree">-1823.6801961701</scalar>
+</property>
+<property dictRef="compchem:iterativeTotalEnergyDifference">
+<scalar dataType="xsd:double" units="nonsi:hartree">-2.41E-7</scalar>
+</property>
+<property dictRef="compchem:iterativeTotalDensityDifference">
+<scalar dataType="xsd:double">9.79E-7</scalar>
 </property>
 <property dictRef="compchem:wallTime">
 <scalar dataType="xsd:double" units="si:s">8.4</scalar>
@@ -251,8 +268,6 @@
 </parameterList>
 </module>
 <scalar dataType="xsd:double" dictRef="n:ls">0.0</scalar>
-<scalar dataType="xsd:double" dictRef="n:deltae">-640.0</scalar>
-<scalar dataType="xsd:double" dictRef="n:rms">5.05E-4</scalar>
 <scalar dataType="xsd:double" dictRef="n:diserr">0.00221</scalar>
 <module cmlx:lineCount="2" cmlx:templateRef="warning.density">
 <scalar dataType="xsd:double" dictRef="n:error.density">1.3E-6</scalar>
@@ -262,6 +277,12 @@
 <propertyList>
 <property dictRef="compchem:totalEnergy">
 <scalar dataType="xsd:double" units="nonsi:hartree">-311.0881921353</scalar>
+</property>
+<property dictRef="compchem:iterativeTotalEnergyDifference">
+<scalar dataType="xsd:double" units="nonsi:hartree">-640.0</scalar>
+</property>
+<property dictRef="compchem:iterativeTotalDensityDifference">
+<scalar dataType="xsd:double">5.05E-4</scalar>
 </property>
 <property dictRef="compchem:wallTime">
 <scalar dataType="xsd:double" units="si:s">110.6</scalar>
@@ -285,8 +306,6 @@
 </parameterList>
 </module>
 <scalar dataType="xsd:double" dictRef="n:ls">0.0</scalar>
-<scalar dataType="xsd:double" dictRef="n:deltae">-3.83E-4</scalar>
-<scalar dataType="xsd:double" dictRef="n:rms">2.01E-4</scalar>
 <scalar dataType="xsd:double" dictRef="n:diserr">3.37E-4</scalar>
 <module cmlx:lineCount="2" cmlx:templateRef="warning.density">
 <scalar dataType="xsd:double" dictRef="n:error.density">1.3E-6</scalar>
@@ -296,6 +315,12 @@
 <propertyList>
 <property dictRef="compchem:totalEnergy">
 <scalar dataType="xsd:double" units="nonsi:hartree">-311.0885755592</scalar>
+</property>
+<property dictRef="compchem:iterativeTotalEnergyDifference">
+<scalar dataType="xsd:double" units="nonsi:hartree">-3.83E-4</scalar>
+</property>
+<property dictRef="compchem:iterativeTotalDensityDifference">
+<scalar dataType="xsd:double">2.01E-4</scalar>
 </property>
 <property dictRef="compchem:wallTime">
 <scalar dataType="xsd:double" units="si:s">116.3</scalar>
@@ -319,8 +344,6 @@
 </parameterList>
 </module>
 <scalar dataType="xsd:double" dictRef="n:ls">0.0</scalar>
-<scalar dataType="xsd:double" dictRef="n:deltae">2.78E-6</scalar>
-<scalar dataType="xsd:double" dictRef="n:rms">1.07E-4</scalar>
 <scalar dataType="xsd:double" dictRef="n:diserr">4.0E-4</scalar>
 <module cmlx:lineCount="2" cmlx:templateRef="warning.density">
 <scalar dataType="xsd:double" dictRef="n:error.density">1.3E-6</scalar>
@@ -330,6 +353,12 @@
 <propertyList>
 <property dictRef="compchem:totalEnergy">
 <scalar dataType="xsd:double" units="nonsi:hartree">-311.0885727791</scalar>
+</property>
+<property dictRef="compchem:iterativeTotalEnergyDifference">
+<scalar dataType="xsd:double" units="nonsi:hartree">2.78E-6</scalar>
+</property>
+<property dictRef="compchem:iterativeTotalDensityDifference">
+<scalar dataType="xsd:double">1.07E-4</scalar>
 </property>
 <property dictRef="compchem:wallTime">
 <scalar dataType="xsd:double" units="si:s">121.9</scalar>
@@ -353,8 +382,6 @@
 </parameterList>
 </module>
 <scalar dataType="xsd:double" dictRef="n:ls">0.0</scalar>
-<scalar dataType="xsd:double" dictRef="n:deltae">-4.08E-5</scalar>
-<scalar dataType="xsd:double" dictRef="n:rms">1.16E-5</scalar>
 <scalar dataType="xsd:double" dictRef="n:diserr">3.35E-6</scalar>
 <module cmlx:lineCount="2" cmlx:templateRef="warning.density">
 <scalar dataType="xsd:double" dictRef="n:error.density">1.3E-6</scalar>
@@ -364,6 +391,12 @@
 <propertyList>
 <property dictRef="compchem:totalEnergy">
 <scalar dataType="xsd:double" units="nonsi:hartree">-311.0886135492</scalar>
+</property>
+<property dictRef="compchem:iterativeTotalEnergyDifference">
+<scalar dataType="xsd:double" units="nonsi:hartree">-4.08E-5</scalar>
+</property>
+<property dictRef="compchem:iterativeTotalDensityDifference">
+<scalar dataType="xsd:double">1.16E-5</scalar>
 </property>
 <property dictRef="compchem:wallTime">
 <scalar dataType="xsd:double" units="si:s">127.7</scalar>
@@ -387,13 +420,17 @@
 </parameterList>
 </module>
 <scalar dataType="xsd:double" dictRef="n:ls">0.0</scalar>
-<scalar dataType="xsd:double" dictRef="n:deltae">-2.84E-7</scalar>
-<scalar dataType="xsd:double" dictRef="n:rms">4.15E-6</scalar>
 <scalar dataType="xsd:double" dictRef="n:diserr">4.82E-7</scalar>
 <module id="finalization" dictRef="compchem:finalization">
 <propertyList>
 <property dictRef="compchem:totalEnergy">
 <scalar dataType="xsd:double" units="nonsi:hartree">-311.0886138331</scalar>
+</property>
+<property dictRef="compchem:iterativeTotalEnergyDifference">
+<scalar dataType="xsd:double" units="nonsi:hartree">-2.84E-7</scalar>
+</property>
+<property dictRef="compchem:iterativeTotalDensityDifference">
+<scalar dataType="xsd:double">4.15E-6</scalar>
 </property>
 <property dictRef="compchem:wallTime">
 <scalar dataType="xsd:double" units="si:s">133.5</scalar>
