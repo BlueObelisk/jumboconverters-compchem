@@ -15,7 +15,7 @@ import org.xmlcml.cml.converters.compchem.turbomole.log.TurbomoleLog2XMLConverte
 public class TurbomoleModule extends AbstractConverterModule {
 
 	public static final MimeType LOG_TYPE = new MimeType("chemical/x-turbomole-log", ObjectType.TEXT, "log");
-	public static final MimeType LOG_XML_TYPE = new MimeType("chemical/x-tuebomole-log-xml", ObjectType.XML, "log.xml");
+	public static final MimeType LOG_XML_TYPE = new MimeType("chemical/x-turbomole-log-xml", ObjectType.XML, "log.xml");
 	private static final String PREFIX = "turbomole";
 	
     public TurbomoleModule() {
