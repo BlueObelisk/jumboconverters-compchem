@@ -1,4 +1,4 @@
-package org.xmlcml.cml.converters.compchem.dummy.log;
+    package org.xmlcml.cml.converters.compchem.dummy.log;
 
 import java.io.IOException;
 
@@ -13,7 +13,8 @@ public class DummyLog2XMLConverter extends CompchemText2XMLTemplateConverter {
 	public static final String DUMMY_LOG_TO_XML_CONVERTER = "Dummy Log to XML Converter";
 
 	public DummyLog2XMLConverter() {
-		this(getDefaultTemplate("dummy", "log", TEMPLATE_XML_REL_TO_CLAZZ, DummyLog2XMLConverter.class));
+//jmht - think this is deprecated.
+//		this(getDefaultTemplate("dummy", "log", TEMPLATE_XML_REL_TO_CLAZZ, DummyLog2XMLConverter.class));
 	}
 
 	public DummyLog2XMLConverter(Element templateElement) {
