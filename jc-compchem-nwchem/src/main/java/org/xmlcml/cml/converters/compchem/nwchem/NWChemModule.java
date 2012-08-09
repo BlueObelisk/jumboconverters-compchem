@@ -15,9 +15,9 @@ import org.xmlcml.cml.converters.compchem.nwchem.log.NWChemLog2XMLConverter;
  */
 public class NWChemModule extends AbstractConverterModule {
 
-	public static final MimeType INPUT_TYPE = new MimeType("chemical/x-nwchem-input", ObjectType.TEXT, "inp");
-	public static final MimeType LOG_TYPE = new MimeType("chemical/x-nwchem-log", ObjectType.TEXT, "log");
-	public static final MimeType LOG_XML_TYPE = new MimeType("chemical/x-nwchem-xml", ObjectType.XML, "log.xml");
+	public static final MimeType INPUT_TYPE = new MimeType("chemical/x-nwchem-input", ObjectType.TEXT, "nw");
+	public static final MimeType LOG_TYPE = new MimeType("chemical/x-nwchem-log", ObjectType.TEXT, "nwo");
+	public static final MimeType LOG_XML_TYPE = new MimeType("chemical/x-nwchem-xml", ObjectType.XML, "nwo.xml");
 	private static final String PREFIX = "nwchem";
 
 	public NWChemModule() {
@@ -32,7 +32,7 @@ public class NWChemModule extends AbstractConverterModule {
 		if (converterList == null) {
 			converterList = new ArrayList<Converter>();
 			converterList.add(new NWChemLog2CompchemConverter());
-			converterList.add(new NWChemLog2XMLConverter());
+			//converterList.add(new NWChemLog2XMLConverter());
 		}
 		return converterList;
 	}
@@ -41,8 +41,8 @@ public class NWChemModule extends AbstractConverterModule {
 		if (mimeTypeList == null) {
 			mimeTypeList = new ArrayList<MimeType>();
 			mimeTypeList.add(LOG_TYPE);
-			mimeTypeList.add(LOG_XML_TYPE);
-			mimeTypeList.add(INPUT_TYPE);
+			//mimeTypeList.add(LOG_XML_TYPE);
+			//mimeTypeList.add(INPUT_TYPE);
 		}
 		return mimeTypeList;
 		

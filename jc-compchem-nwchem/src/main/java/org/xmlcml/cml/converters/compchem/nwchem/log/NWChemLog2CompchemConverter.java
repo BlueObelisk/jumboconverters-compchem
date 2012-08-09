@@ -8,17 +8,16 @@ import nu.xom.Element;
 import org.apache.log4j.Logger;
 import org.xmlcml.cml.converters.AbstractConverter;
 import org.xmlcml.cml.converters.MimeType;
-import org.xmlcml.cml.converters.cml.CMLCommon;
 import org.xmlcml.cml.converters.compchem.nwchem.NWChemModule;
 
 public class NWChemLog2CompchemConverter extends AbstractConverter {
 
-    private static final Logger LOG = Logger.getLogger(NWChemLog2CompchemConverter.class);
+//    private static final Logger LOG = Logger.getLogger(NWChemLog2CompchemConverter.class);
 
-    private static final String DEFAULT_TEMPLATE_RESOURCE =
-            "org/xmlcml/cml/converters/compchem/NWChem/log/templates/nwchem2compchem.xml";
+//    private static final String DEFAULT_TEMPLATE_RESOURCE =
+//            "org/xmlcml/cml/converters/compchem/NWChem/log/templates/nwchem2compchem.xml";
 
-    private static final String BASE_URI = "classpath:/"+DEFAULT_TEMPLATE_RESOURCE;
+//    private static final String BASE_URI = "classpath:/"+DEFAULT_TEMPLATE_RESOURCE;
 
 	private NWChemLog2XMLConverter logConverter = null;
 	private NWChemLogXML2CompchemConverter xmlConverter = null;
@@ -113,7 +112,7 @@ public class NWChemLog2CompchemConverter extends AbstractConverter {
 	}
 	
 	public MimeType getOutputType() {
-		return CMLCommon.CML_TYPE;
+		return MimeType.CML;
 	}
 	
 	public String getDescription() {
